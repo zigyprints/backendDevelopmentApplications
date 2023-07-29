@@ -37,10 +37,10 @@ npm install
 3. Start the server:
 
 ```
-nodemon app.js
+nodemon app.ts
 ```
 
-The server will start on port 5000 by default. You can change the port in the `config.js` file.
+The server will start on port 5000 by default. You can change the port in the `app.ts` file.
 
 4. Make sure your MongoDB server is running. Update the database configuration in `config.js` if necessary.
 
