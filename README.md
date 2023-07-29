@@ -37,7 +37,7 @@ npm install
 3. Start the server:
 
 ```
-npm start
+nodemon app.js
 ```
 
 The server will start on port 5000 by default. You can change the port in the `config.js` file.
