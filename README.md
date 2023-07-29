@@ -1,35 +1,157 @@
-Assignment: Simple Backend API Development with TypeScript
 
-Duration: 3-4 days
+# To-Do List Backend Application - CRUD API
 
-Instructions: Welcome to our Simple Backend API Development assignment! In this task, you will build a basic RESTful API backend using Node.js, Express.js, TypeScript, and a lightweight database. This project aims to assess your skills in setting up a backend server and handling API requests with strict typing.
+This project is a backend application for a To-Do list application, built using the MVC (Model-View-Controller) architecture. It provides endpoints to perform CRUD (Create, Read, Update, Delete) operations on tasks through Postman or any other API testing tool.
 
-Task: You are required to create a backend web application that provides API endpoints to interact with a simple "To-Do List" application. The frontend (To-Do List app) will be built separately and will communicate with your backend through the provided API endpoints. The backend should allow users to create, retrieve, update, and delete tasks from their to-do list.
+## Technologies Used
 
-Requirements:
+- Node.js: JavaScript runtime environment
+- Express.js: Web application framework for Node.js
+- MongoDB: NoSQL database for storing tasks
+- Mongoose: MongoDB object modeling for Node.js
+- Postman: API testing tool
 
-Build the backend using Node.js, Express.js, and TypeScript for handling HTTP requests and responses with strict typing.
-Implement the necessary API endpoints for creating, retrieving, updating, and deleting tasks in the to-do list.
-Use a lightweight database (e.g., SQLite) to store the tasks.
-Ensure the API endpoints are RESTful and follow best practices in API design.
-Handle error cases and provide appropriate error responses with strict typing.
-Create Postman collection or Swagger documentation for your API endpoints to provide detailed information about the API requests and responses.
-Submission Details:
+## Prerequisites
 
-Fork this repository from GitHub [[https://github.com/zigyprints/backendDevelopmentApplications]].
-Create a branch with your name (e.g., "yourname_assignment").
-Commit your code regularly, so we can see your progress.
-Once completed, create a pull request from your branch to the main repository (replace "main repository" with the URL of the original repository).
-Include a README.md file explaining your approach, challenges faced, and any additional features or improvements you might have added if given more time.
-Include the link to your Postman collection documenter or Swagger documentation in the README.md file.
-Evaluation Criteria: Your assignment will be evaluated based on the following factors:
+To run this application locally, you need to have the following installed on your system:
 
-Technical Proficiency - Demonstrating your skills in using Node.js, Express.js, TypeScript, and a database to build a functional backend for the To-Do List application with strict typing.
-Code Quality - Writing clean, well-structured, and maintainable code with proper comments and strict typing.
-API Design - Creating API endpoints following best practices for a smooth integration with the frontend application.
-Database Usage - Efficiently storing and retrieving data from the database.
-Error Handling - Implementing error handling mechanisms for a robust backend with strict typing.
-Documentation - Providing detailed Postman collection or Swagger documentation for the API endpoints.
-Submission Deadline: 3-4 days from the date you received this assignment.
+- Node.js (https://nodejs.org)
+- MongoDB (https://www.mongodb.com)
+- Postman (https://www.postman.com)
 
-Good luck with the assignment! If you have any questions during the development process, feel free to reach out to us for clarification. Happy coding!
+## Getting Started
+
+1. Clone the repository:
+
+```
+git clone https://github.com/Ishan-creed/backendDevelopmentApplications.git
+
+```
+
+2. Install dependencies:
+
+```
+npm install
+```
+
+3. Start the server:
+
+```
+npm start
+```
+
+The server will start on port 5000 by default. You can change the port in the `config.js` file.
+
+4. Make sure your MongoDB server is running. Update the database configuration in `config.js` if necessary.
+
+## Endpoints
+
+The API provides the following endpoints for task management:
+
+### Create a new task
+
+- **Endpoint**: `POST /addTask`
+- **Request body**:
+  ```
+  {
+    "taskId": 1/2/3...,
+    "taskName": "Task title",
+    "taskDescription": "Task description",
+    "isCompleted":"false"
+  }
+  ```
+- **Response**:
+  ```
+  {
+    "_id": "taskId",
+    "taskName": "taskName",
+    "description": "taskDescription",
+    "createdAt": "timestamp",
+    "updatedAt": "timestamp"
+  }
+  ```
+
+### Retrieve all tasks
+
+- **Endpoint**: `GET /getTasks`
+- **Response**:
+  ```
+  [
+    {
+      "_id": "task_id",
+      "title": "Task title",
+      "description": "Task description",
+      "createdAt": "timestamp",
+      "updatedAt": "timestamp"
+    },
+    {
+      "_id": "task_id2",
+      "title": "Task title 2",
+      "description": "Task description 2",
+      "createdAt": "timestamp",
+      "updatedAt": "timestamp"
+    },
+    ...
+  ]
+  ```
+
+### Retrieve a specific task
+
+- **Endpoint**: `GET /api/tasks/:id`
+- **Response**:
+  ```
+  {
+    "_id": "task_id",
+    "title": "Task title",
+    "description": "Task description",
+    "createdAt": "timestamp",
+    "updatedAt": "timestamp"
+  }
+  ```
+
+### Update a task
+
+- **Endpoint**: `PUT /api/tasks/:id`
+- **Request body**:
+  ```
+  {
+    "title": "Updated task title",
+    "description": "Updated task description"
+  }
+  ```
+- **Response**:
+  ```
+  {
+    "_id": "task_id",
+    "title": "Updated task title",
+    "description": "Updated task description",
+    "createdAt": "timestamp",
+    "updatedAt": "timestamp"
+  }
+  ```
+
+### Delete a task
+
+- **Endpoint**: `DELETE /api/tasks/:id`
+- **Response**:
+  ```
+  {
+    "message": "Task deleted successfully"
+  }
+  ```
+
+## Using Postman
+
+To interact with the API, import the provided Postman collection documenter file and use the pre-configured requests for each endpoint. The Postman collection file can be found here: [Link to Postman Collection Documenter](https://example.com)
+
+## Additional Features and Improvements
+
+Given more time, some additional features and improvements that could be added to the application are:
+
+- User authentication and authorization for secure task management.
+- Task priority and due date fields for better organization.
+- Sorting and filtering options for tasks retrieval.
+- Writing comprehensive unit and integration tests for better code quality.
+- Validation of user to use apis.
+
+
