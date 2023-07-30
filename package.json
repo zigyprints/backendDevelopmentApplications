@@ -4,9 +4,16 @@
   "description": "Assignment: Simple Backend API Development with TypeScript",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "ts-node": "^10.9.1"
+  }
 }
