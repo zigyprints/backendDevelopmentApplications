@@ -97,7 +97,7 @@ The API provides the following endpoints for task management:
 
 ### Retrieve a specific task
 
-- **Endpoint**: `GET /api/tasks/:id`
+- **Endpoint**: `GET /getTasks`
 - **Response**:
   ```
   {
@@ -111,10 +111,11 @@ The API provides the following endpoints for task management:
 
 ### Update a task
 
-- **Endpoint**: `PUT /api/tasks/:id`
+- **Endpoint**: `PUT /updateTask`
 - **Request body**:
   ```
   {
+    "taskId": "taskId",
     "title": "Updated task title",
     "description": "Updated task description"
   }
@@ -132,7 +133,7 @@ The API provides the following endpoints for task management:
 
 ### Delete a task
 
-- **Endpoint**: `DELETE /api/tasks/:id`
+- **Endpoint**: `DELETE /deleteTask`
 - **Response**:
   ```
   {
