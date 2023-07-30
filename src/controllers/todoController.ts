@@ -32,6 +32,7 @@ class TodoController{
         const { id } = req.params; //req.params cause id would be in req search
         const { text, done, duedate} = req.body; // req.body cause fields will be json in form
 
+        console.log(`${text}`)
         try{
             const todo = await Todo.findByPk(id);
             if(!todo){
@@ -61,7 +62,14 @@ class TodoController{
                 return;
             }
 
-            await todo.destroy();
+            console.log(todo);
+            //Working but minor bug
+            await Todo.destroy({
+                where: {
+                    id: id,
+                },
+            });
+            console.log(todo);
             res.status(204);
         }catch (error){
             res.status(500).json({ error: 'Internal server error'});
