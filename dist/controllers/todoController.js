@@ -46,6 +46,7 @@ class TodoController {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params; //req.params cause id would be in req search
             const { text, done, duedate } = req.body; // req.body cause fields will be json in form
+            console.log(`${text}`);
             try {
                 const todo = yield todo_1.default.findByPk(id);
                 if (!todo) {
@@ -73,7 +74,14 @@ class TodoController {
                     res.status(404).json({ error: 'Todo not found' });
                     return;
                 }
-                yield todo.destroy();
+                console.log(todo);
+                //Working but minor bug
+                yield todo_1.default.destroy({
+                    where: {
+                        id: id,
+                    },
+                });
+                console.log(todo);
                 res.status(204);
             }
             catch (error) {

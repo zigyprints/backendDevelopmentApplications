@@ -20,14 +20,14 @@ User.init(
             allowNull: false,
         },
         password: {
-            type: DataTypes.BOOLEAN,
-            defaultValue: false,
+            type: DataTypes.STRING,
+            allowNull: false,
         },
 
     },
     {
         sequelize,
-        modelName: 'Todo', //The model wil be saved by the name 'Todo'
+        modelName: 'User', //The model wil be saved by the name 'User'
     }
 );
 
