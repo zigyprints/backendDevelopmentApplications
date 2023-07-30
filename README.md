@@ -8,11 +8,11 @@ Task: You are required to create a backend web application that provides API end
 
 Approach: I have first created back-end using node ts and mongodb(as i haven't used the sqlite yet). Then i learnt sqlite from youtube and ediited the code made schema in sqlite and then made the whole back-end ready and deployed api end points. Then I shifted to frontend made the api fetching and made whole frontend ready.
 
-Difficulty: Learning SQLITE  was the most difficult task and making documentation for the first time was also felt challenging
+Difficulty: Learning SQLITE  was the most difficult task and making documentation for the first time was also felt challenging. 
 
 POSTMAN COLLECTION LINK: https://documenter.getpostman.com/view/22755840/2s9XxtxauZ
 
-BACKEND DEPLOYED LINK: https://assingment-backend.onrender.com
+BACKEND DEPLOYED LINK: https://assingment-backend.onrender.com/api/todos
 
 BACKEND GITHUB LINK: https://github.com/ice-009/backendDevelopmentApplications/tree/ArmaanShukla_Assignment
 
