@@ -11,6 +11,10 @@ const database_1 = __importDefault(require("./config/database"));
 const passport_1 = __importDefault(require("passport"));
 const todoController_1 = __importDefault(require("./controllers/todoController"));
 const userController_1 = require("./controllers/userController");
+const authMiddleware_1 = require("./middlewares/authMiddleware");
+const crypto_1 = __importDefault(require("crypto"));
+const secretKey = crypto_1.default.randomBytes(64).toString('hex');
+console.log(secretKey);
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const port = process.env.PORT || 3000;
@@ -21,10 +25,10 @@ app.use(passport_1.default.initialize());
 app.post('/api/register', userController_1.registerUser);
 app.post('/api/login', userController_1.loginUser);
 //TODO Routes
-app.get('/api/todos', todoController_1.default.getAllTodos);
-app.post('/api/todos', todoController_1.default.createTodo);
-app.put('/api/todos/:id', todoController_1.default.updateTodo);
-app.delete('/api/todos/:id', todoController_1.default.deleteTodo);
+app.get('/api/todos', authMiddleware_1.authMiddleware, authMiddleware_1.todoAuthMiddleware, todoController_1.default.getAllTodos);
+app.post('/api/todos', authMiddleware_1.authMiddleware, authMiddleware_1.todoAuthMiddleware, todoController_1.default.createTodo);
+app.put('/api/todos/:id', authMiddleware_1.authMiddleware, authMiddleware_1.todoAuthMiddleware, todoController_1.default.updateTodo);
+app.delete('/api/todos/:id', authMiddleware_1.authMiddleware, authMiddleware_1.todoAuthMiddleware, todoController_1.default.deleteTodo);
 //Sync db
 database_1.default.sync({ alter: true })
     .then(() => {

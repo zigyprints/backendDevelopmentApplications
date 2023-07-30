@@ -26,3 +26,11 @@ const jwtVerify = async (payload: { userId: number }, done: any) => {
 passport.use(new JwtStrategy(jwtOptions, jwtVerify));
 
 export const authMiddleware = passport.authenticate('jwt', {session: false});
+
+export const todoAuthMiddleware = (req: any, res: any, next: any) => {
+    if(!req.user){
+        return res.status(401).json({ error: 'Unauthorized'});
+    }
+
+    next();
+};

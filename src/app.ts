@@ -7,7 +7,11 @@ import passport from 'passport';
 import todoController from  './controllers/todoController';
 import User from './models/user';
 import { registerUser, loginUser } from './controllers/userController';
-import { authMiddleware } from './middlewares/authMiddleware';
+import { authMiddleware, todoAuthMiddleware } from './middlewares/authMiddleware';
+import crypto from 'crypto';
+
+const secretKey = crypto.randomBytes(64).toString('hex');
+console.log(secretKey);
 
 dotenv.config();
 const app = express();
@@ -22,10 +26,10 @@ app.post('/api/register', registerUser);
 app.post('/api/login', loginUser);
 
 //TODO Routes
-app.get('/api/todos', todoController.getAllTodos);
-app.post('/api/todos', todoController.createTodo);
-app.put('/api/todos/:id', todoController.updateTodo);
-app.delete('/api/todos/:id', todoController.deleteTodo);
+app.get('/api/todos', authMiddleware, todoAuthMiddleware, todoController.getAllTodos);
+app.post('/api/todos', authMiddleware, todoAuthMiddleware, todoController.createTodo);
+app.put('/api/todos/:id', authMiddleware, todoAuthMiddleware, todoController.updateTodo);
+app.delete('/api/todos/:id', authMiddleware, todoAuthMiddleware, todoController.deleteTodo);
 
 //Sync db
 sequelize.sync({ alter: true})
