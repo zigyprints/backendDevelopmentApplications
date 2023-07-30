@@ -16,7 +16,8 @@ exports.todoAuthMiddleware = exports.authMiddleware = void 0;
 const passport_1 = __importDefault(require("passport"));
 const passport_jwt_1 = require("passport-jwt");
 const user_1 = __importDefault(require("../models/user"));
-const secretKey = 'my_secret_key';
+const secretKey = process.env.SECRET_KEY;
+console.log(secretKey);
 const jwtOptions = {
     jwtFromRequest: passport_jwt_1.ExtractJwt.fromAuthHeaderAsBearerToken(),
     secretKey: secretKey,
