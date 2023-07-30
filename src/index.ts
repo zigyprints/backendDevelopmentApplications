@@ -2,6 +2,7 @@ import express, {Request, Response} from 'express'
 const http = require('http')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
+const cors= require('cors')
 const app= express()
 app.use(bodyParser.json())
 app.use((req: Request, res: Response, next) => {
@@ -12,6 +13,8 @@ mongoose.connect('mongodb+srv://ice-009:ice-009@cluster0.n4xny3y.mongodb.net/', 
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
+app.use(cors())
+
 
 const todoSchema = new mongoose.Schema({
     heading: { type: String, required: true },
