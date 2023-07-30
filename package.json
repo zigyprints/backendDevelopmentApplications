@@ -1,0 +1,22 @@
+{
+  "name": "sunny-assignment",
+  "version": "1.0.0",
+  "description": "\"A basic RESTful CRUD API using typescript\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sunny Dubey",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "joi": "^17.9.2",
+    "mongoose": "^7.4.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "typescript": "^5.1.6"
+  }
+}
