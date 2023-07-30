@@ -12,6 +12,7 @@ import { addTask } from "../controllers/controller.tAddask";
 import { updateTask } from "../controllers/contoller.updateTask";
 import { deleteTask } from "../controllers/contoller.deleteTask";
 import  {getTasks} from '../controllers/contoller.getTasks';
+import { createUser, authenticateUser  } from "../controllers/controller.auth";
 import verifyToken from "../controllers/controller.auth";
 
 
@@ -21,6 +22,15 @@ router.get("/", (req, res) => {
     res.send("API Working");
   });
   
+
+//New Account 
+
+router.post("/createUser", createUser);
+
+
+// Signin
+
+router.post("/signIn", authenticateUser);
 
 //Add new task:
 
