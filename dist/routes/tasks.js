@@ -12,50 +12,70 @@ const express_1 = __importDefault(require("express"));
 const database_1 = __importDefault(require("../db/database"));
 const router = express_1.default.Router();
 router.get('/tasks', (req, res) => {
-    database_1.default.all("SELECT * FROM newtodo", (error, rows) => {
-        if (error) {
-            return res.status(500).json({ error: "Failed to retrieve from the database" }); // status code of 500 is given for internal error
-        }
-        res.json(rows); // when successful the api will return all the list.
-    });
+    try {
+        database_1.default.all("SELECT * FROM newtodo", (error, rows) => {
+            if (error) {
+                return res.status(400).json({ error: "Failed to retrieve from the database" }); // status code of 500 is given for internal error
+            }
+            res.json(rows); // when successful the api will return all the list.
+        });
+    }
+    catch (err) {
+        return res.status(500).json({ err: "Internal server error" });
+    }
 });
 router.post('/tasks/add', (req, res) => {
-    const { task, desc } = req.body;
-    if (!task || !desc) { // Both the title and description of the task is required.
-        return res.status(400).json({ error: "Title and Description are missing!" });
-    }
-    const newTodo = {
-        id: Math.random().toString(10).substring(2),
-        task,
-        desc,
-        completed: false
-    };
-    database_1.default.run("INSERT INTO newtodo (id,task,desc,completed) VALUES(?,?,?,?)", //sqlite query to insert new item value into the table.
-    [newTodo.id, newTodo.task, newTodo.desc, newTodo.completed ? 1 : 0], (error) => {
-        if (error) {
-            return res.status(500).json({ error: "Failed to create the task. Try again..." });
+    try {
+        const { task, desc } = req.body;
+        if (!task || !desc) { // Both the title and description of the task is required.
+            return res.status(400).json({ error: "Title and Description are missing!" });
         }
-        res.status(201).json(newTodo);
-    });
+        const newTodo = {
+            id: Math.random().toString(10).substring(2),
+            task,
+            desc,
+            completed: false
+        };
+        database_1.default.run("INSERT INTO newtodo (id,task,desc,completed) VALUES(?,?,?,?)", //sqlite query to insert new item value into the table.
+        [newTodo.id, newTodo.task, newTodo.desc, newTodo.completed ? 1 : 0], (error) => {
+            if (error) {
+                return res.status(500).json({ error: "Failed to create the task. Try again..." });
+            }
+            res.status(201).json(newTodo);
+        });
+    }
+    catch (err) {
+        return res.status(500).json({ err: "Internal server error" });
+    }
 });
 router.put('/tasks/:id', (req, res) => {
-    const id = req.params.id;
-    const { task, desc, completed } = req.body;
-    database_1.default.run("UPDATE newtodo SET task = ?, desc = ?, completed = ? WHERE id = ?", [task, desc, completed ? 1 : 0, id], //sqlite query to update the task by getting the item through id.
-    (error) => {
-        if (error) {
-            return res.status(500).json({ error: "Unable to update the task item!!" });
-        }
-        res.status(200).json({ success: "Successfuly updated." });
-    });
+    try {
+        const id = req.params.id;
+        const { task, desc, completed } = req.body;
+        database_1.default.run("UPDATE newtodo SET task = ?, desc = ?, completed = ? WHERE id = ?", [task, desc, completed ? 1 : 0, id], //sqlite query to update the task by getting the item through id.
+        (error) => {
+            if (error) {
+                return res.status(500).json({ error: "Unable to update the task item!!" });
+            }
+            res.status(200).json({ success: "Successfuly updated." });
+        });
+    }
+    catch (err) {
+        return res.status(500).json({ err: "Internal server error" });
+    }
 });
 router.delete("/tasks/:id", (req, res) => {
-    const id = req.params.id;
-    database_1.default.run("DELETE FROM newtodo WHERE id = ?", [id], (error) => {
-        if (error) {
-            return res.status(500).json({ error: "The task item does not exist." });
-        }
-        res.status(200).json("The item is deleted.");
-    });
+    try {
+        const id = req.params.id;
+        database_1.default.run("DELETE FROM newtodo WHERE id = ?", [id], (error) => {
+            if (error) {
+                return res.status(500).json({ error: "The task item does not exist." });
+            }
+            res.status(200).json("The item is deleted.");
+        });
+    }
+    catch (err) {
+        return res.status(500).json({ err: "Internal server error" });
+    }
 });
 module.exports = router;
