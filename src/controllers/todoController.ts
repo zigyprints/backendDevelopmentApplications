@@ -24,3 +24,21 @@ export const getAllTodos = async (req: Request, res: Response) => {
     todos,
   })
 };
+
+//get a particular todo by id from database
+export const getTodoById = async (req: Request, res: Response) => {
+  const todoId = req.params._id;
+
+  try {
+    const todo = await TodoModel.findById(todoId);
+
+    if (!todo) {
+      return res.status(404).json({ error: "Todo doesn't exist" });
+    }
+
+    return res.json(todo);
+
+  } catch (error) {
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
