@@ -1,35 +1,50 @@
-Assignment: Simple Backend API Development with TypeScript
+# To-Do List App
 
-Duration: 3-4 days
+A basic RESTful API backend for a To-Do List application built using Node.js, Express.js, TypeScript, and SQLite database. The frontend communicates with the backend through the provided API endpoints.
 
-Instructions: Welcome to our Simple Backend API Development assignment! In this task, you will build a basic RESTful API backend using Node.js, Express.js, TypeScript, and a lightweight database. This project aims to assess your skills in setting up a backend server and handling API requests with strict typing.
+![To-Do List App Snapshot](snapshot.JPG)
 
-Task: You are required to create a backend web application that provides API endpoints to interact with a simple "To-Do List" application. The frontend (To-Do List app) will be built separately and will communicate with your backend through the provided API endpoints. The backend should allow users to create, retrieve, update, and delete tasks from their to-do list.
+## Installation
 
-Requirements:
+1. Clone the repository:
 
-Build the backend using Node.js, Express.js, and TypeScript for handling HTTP requests and responses with strict typing.
-Implement the necessary API endpoints for creating, retrieving, updating, and deleting tasks in the to-do list.
-Use a lightweight database (e.g., SQLite) to store the tasks.
-Ensure the API endpoints are RESTful and follow best practices in API design.
-Handle error cases and provide appropriate error responses with strict typing.
-Create Postman collection or Swagger documentation for your API endpoints to provide detailed information about the API requests and responses.
-Submission Details:
+`git clone https://github.com/ibr03/backendDevelopmentApplications.git
+ cd backendDevelopmentApplications`
 
-Fork this repository from GitHub [[https://github.com/zigyprints/backendDevelopmentApplications]].
-Create a branch with your name (e.g., "yourname_assignment").
-Commit your code regularly, so we can see your progress.
-Once completed, create a pull request from your branch to the main repository (replace "main repository" with the URL of the original repository).
-Include a README.md file explaining your approach, challenges faced, and any additional features or improvements you might have added if given more time.
-Include the link to your Postman collection documenter or Swagger documentation in the README.md file.
-Evaluation Criteria: Your assignment will be evaluated based on the following factors:
+2. Install dependencies:
 
-Technical Proficiency - Demonstrating your skills in using Node.js, Express.js, TypeScript, and a database to build a functional backend for the To-Do List application with strict typing.
-Code Quality - Writing clean, well-structured, and maintainable code with proper comments and strict typing.
-API Design - Creating API endpoints following best practices for a smooth integration with the frontend application.
-Database Usage - Efficiently storing and retrieving data from the database.
-Error Handling - Implementing error handling mechanisms for a robust backend with strict typing.
-Documentation - Providing detailed Postman collection or Swagger documentation for the API endpoints.
-Submission Deadline: 3-4 days from the date you received this assignment.
+`npm install`
 
-Good luck with the assignment! If you have any questions during the development process, feel free to reach out to us for clarification. Happy coding!
+3. Set up the database:
+
+The SQLite database is used for this project. The database file database.sqlite will be created automatically when you run the application.
+
+4. Set up environment variables:
+
+Create a .env file in the root directory of the project and set the desired port for the server:
+
+`PORT=4000`
+
+5. Build the TypeScript code:
+
+`npx tsc`
+
+## Usage
+
+1. Start the server
+
+`npm start`
+
+2. Open your browser and navigate to http://localhost:4000 to access the To-Do List app.
+
+## API Endpoints
+
+The API provides the following endpoints - 
+GET /api/tasks: Get a list of all tasks.
+POST /api/tasks: Create a new task.
+GET /api/tasks/:id: Get details of a specific task.
+PUT /api/tasks/:id: Update details of a specific task.
+DELETE /api/tasks/:id: Delete a specific task.
+
+Check out this Postman collection for usage - https://www.postman.com/telecoms-technologist-44260770/workspace/my-workspace/collection/26804310-e6c47803-285c-4b57-a741-09f26f88a5b1?action=share&creator=26804310
+

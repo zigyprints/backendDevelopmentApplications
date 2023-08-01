@@ -1,0 +1,95 @@
+body {
+    font-family: Arial, sans-serif;
+}
+  
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+}
+
+form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+input[type="text"] {
+  flex: 1;
+  padding: 8px;
+}
+
+button {
+  padding: 8px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+.completed {
+  text-decoration: line-through;
+}
+
+.add-task-button {
+  width: 100%; /* Set the desired width, such as 200px or any other value */
+}
+
+.task-item {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.task-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.task-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.task-description {
+  margin-bottom: 5px;
+}
+
+/* Task action buttons */
+.task-action {
+  display: flex;
+  gap: 10px;
+}
+
+.complete-button,
+.delete-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.complete-button {
+  background-color: #28a745; /* Green color */
+}
+
+.delete-button {
+  background-color: #dc3545; /* Red color */
+}
