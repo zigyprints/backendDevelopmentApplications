@@ -37,4 +37,4 @@ authorization that needed to be added.
 
 Improvements
 
-The API endpoints could have been made secured by adding in the authentication best practises of using JWT Tokens.
+The API endpoints could have been secured by adding in the authentication best practises of using JWT Tokens.
