@@ -40,10 +40,10 @@ A basic RESTful API backend for a To-Do List application built using Node.js, Ex
 ## API Endpoints
 
 The API provides the following endpoints: 
-    * GET /api/tasks: Get a list of all tasks.
-    * POST /api/tasks: Create a new task.
-    * PUT /api/tasks/:id: Update details of a specific task.
-    * DELETE /api/tasks/:id: Delete a specific task.
+* GET /api/tasks: Get a list of all tasks.
+* POST /api/tasks: Create a new task.
+* PUT /api/tasks/:id: Update details of a specific task.
+* DELETE /api/tasks/:id: Delete a specific task.
 
 Check out this Postman collection for usage - 
 https://www.postman.com/telecoms-technologist-44260770/workspace/my-workspace/collection/26804310-e6c47803-285c-4b57-a741-09f26f88a5b1?action=share&creator=26804310
