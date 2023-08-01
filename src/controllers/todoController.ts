@@ -15,3 +15,12 @@ export const createTodo = async (req: Request, res: Response) => {
         message: "Todo created successfully"
     })
 };
+
+//get all the todos from database
+export const getAllTodos = async (req: Request, res: Response) => {
+  const todos = await TodoModel.find<itodo>();
+
+  res.json({
+    todos,
+  })
+};
