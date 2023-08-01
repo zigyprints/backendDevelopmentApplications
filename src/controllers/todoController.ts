@@ -64,3 +64,23 @@ export const updateTodo = async (req: Request, res: Response) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 };
+
+//delete todo by id
+export const deleteTodoById = async (req: Request, res: Response) => {
+  const todoId = req.params._id;
+
+  try {
+    const deleteTodo = await TodoModel.findByIdAndDelete(todoId);
+
+    if (!deleteTodo) {
+      return res.status(404).json({ error: "Todo doesn't exist" });
+    }
+
+    return res.json({
+        message : "Todo was deleted successfully"
+    });
+
+  } catch (error) {
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
