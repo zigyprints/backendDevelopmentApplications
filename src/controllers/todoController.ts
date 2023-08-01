@@ -42,3 +42,25 @@ export const getTodoById = async (req: Request, res: Response) => {
     res.status(500).json({ error: "Internal server error" });
   }
 };
+
+// Update an existing todo
+export const updateTodo = async (req: Request, res: Response) => {
+  const todoId = req.params._id;
+  const { title, description, status } = req.body;
+
+  try {
+    const todo = await TodoModel.findByIdAndUpdate(
+      todoId,
+      { title, description, status },
+      { new: true }
+    );
+    if (!todo) {
+      return res.status(404).json({ error: 'Todo not found' });
+    }
+    return res.json({
+      message: "Todo was updated",
+    });
+  } catch (error) {
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
