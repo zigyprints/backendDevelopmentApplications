@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 
 //paths
 import connectDB from './config/dbConnection';
+import todoRoutes from './routes/todoRoutes';
 
 const app = express();
 
@@ -18,6 +19,9 @@ app.get('/', (req: Request, res: Response) =>{
         message: "Rest API using Node"
     })
 })
+
+// Routes
+app.use('/api/v1/todos', todoRoutes);
 
 //port declaration
 const PORT = process.env.PORT || 8080;
