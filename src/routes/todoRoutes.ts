@@ -1,5 +1,9 @@
 import express from "express";
-import { createTodo, getAllTodos } from "../controllers/todoController";
+import {
+  createTodo,
+  getAllTodos,
+  getTodoById,
+} from "../controllers/todoController";
 
 const router = express.Router();
 
@@ -8,5 +12,8 @@ router.post('/', createTodo);
 
 //get all todos
 router.get("/", getAllTodos);
+
+//get todo by id
+router.get("/:_id", getTodoById);
 
 export default router;
