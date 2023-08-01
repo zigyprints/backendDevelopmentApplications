@@ -1,7 +1,10 @@
 import express, { Request, Response } from "express";
+import dotenv from "dotenv";
 
 const app = express();
-const PORT = 8080;
+
+//configuring env
+dotenv.config();
 
 //test route
 app.get('/', (req: Request, res: Response) =>{
@@ -9,6 +12,9 @@ app.get('/', (req: Request, res: Response) =>{
         message: "Rest API using Node"
     })
 })
+
+//port declaration
+const PORT = process.env.PORT || 8080;
 
 //server
 app.listen(PORT, () => {
