@@ -1,0 +1,23 @@
+{
+  "name": "backenddevappzigyprints",
+  "version": "1.0.0",
+  "description": "Assignment: Simple Backend API Development with TypeScript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SAUMYXA/backendDevAppZigyprints.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SAUMYXA/backendDevAppZigyprints/issues"
+  },
+  "homepage": "https://github.com/SAUMYXA/backendDevAppZigyprints#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "typescript": "^5.1.6"
+  }
+}
