@@ -6,5 +6,4 @@ Challenges: Since this is first time in the backend development that I used Sqli
 
 Improvements: Need to become more familiar with Sqlite and proper fullstack todo list app can be created.
 
-Postman documentation link : [[https://documenter.getpostman.com/view/11208547/2s9XxvTaUv#a21a1245-5aac-4733-ae0a-b48cae817758]]
-
+Postman documentation link: [[https://documenter.getpostman.com/view/11208547/2s9XxvTaUv]]
