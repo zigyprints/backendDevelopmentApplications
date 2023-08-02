@@ -48,7 +48,7 @@ export const createTodo = async (req: Request, res: Response) => {
 
     // Responding to the user
     const newTodo: Todo = {
-      id, // BUG -> ID is showing null during res
+      id, 
       title,
       description,
       isCompleted: false,
@@ -57,5 +57,93 @@ export const createTodo = async (req: Request, res: Response) => {
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Failed to create new task" });
+  }
+};
+
+export const getTodoById = async (req: Request, res: Response) => {
+  try {
+    const taskId = parseInt(req.params.id);
+
+    // Opening the SQLite database connection
+    const db = await openDb();
+
+    // Finding the task with the given ID in the 'todo' table
+    const todo = await db.get<Todo>('SELECT * FROM todo WHERE id = ?', taskId);
+
+    // Closing the database connection
+    await db.close();
+
+    if (!todo) {
+      return res.status(404).json({ error: 'Task not found.' });
+    }
+
+    res.status(200).json(todo);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to retrieve the task.' });
+  }
+};
+
+
+export const updateTodo = async (req: Request, res: Response) => {
+  try {
+    const taskId = parseInt(req.params.id);
+    const { title, description, isCompleted } = req.body;
+
+    // Opening the SQLite database connection
+    const db = await openDb();
+
+    // Finding the task with the given ID in the 'todo' table
+    const todo = await db.get<Todo>('SELECT * FROM todo WHERE id = ?', taskId);
+
+    if (!todo) {
+      await db.close();
+      return res.status(404).json({ error: 'Task not found.' });
+    }
+
+    // Updating the task details in the 'todo' table
+    await db.run('UPDATE todo SET title = ?, description = ?, isCompleted = ? WHERE id = ?',
+      title,
+      description,
+      isCompleted ? 1 : 0,
+      taskId
+    );
+
+    // Getting the updated task from the database
+    const updatedTodo = await db.get<Todo>('SELECT * FROM todo WHERE id = ?', taskId);
+
+    // Closing the database connection
+    await db.close();
+
+    //Responding to the user after successful updation
+    res.status(200).json(updatedTodo);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to update the task.' });
+  }
+};
+
+export const deleteTodo = async (req: Request, res: Response) => {
+  try { 
+    const taskId = parseInt(req.params.id);
+
+    // Openning the SQLite database connection
+    const db = await openDb();
+
+    // Finding the task with the given ID in the 'todo' table
+    const todo = await db.get<Todo>('SELECT * FROM todo WHERE id = ?', taskId);
+
+    if (!todo) {
+      await db.close();
+      return res.status(404).json({ error: 'Task not found.' });
+    }
+
+    // Deleting the task from the 'todo' table
+    await db.run('DELETE FROM todo WHERE id = ?', taskId);
+
+    // Close the database connection
+    await db.close();
+
+    res.status(200).json(todo);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to delete the task.' });
   }
 };
