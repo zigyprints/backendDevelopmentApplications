@@ -1,9 +1,8 @@
 import express, { Request, Response } from "express";
 import taskRoutes from './routes/tasksRoutes';
-import './database'; 
+import '../database/db'; 
 const app = express();
-const port = 6000;
-
+const port = 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/api', taskRoutes);
