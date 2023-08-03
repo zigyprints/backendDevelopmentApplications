@@ -22,8 +22,6 @@ export const getTaskById = async (req: Request, res: Response) => {
       res.status(404).json({ error: 'Task not found' });
     }
   };
-
-
   export const createTask = async (req: Request, res: Response) => {
     const { title, description } = req.body;
   
@@ -38,15 +36,17 @@ export const getTaskById = async (req: Request, res: Response) => {
       [title, description, false],
       function (err) {
         if (err) {
+          console.error('Error creating task:', err); // Log the specific error
           db.close();
           res.status(500).json({ error: 'Error creating task' });
           return;
         }
   
-        const lastID = this.lastID;
+        const lastID = this.lastID; // this.lastID is undefined here, use the 'lastID' from the result instead
         db.get<Task>('SELECT * FROM tasks WHERE id = ?', lastID, (err, newTask) => {
           db.close();
           if (err) {
+            console.error('Error fetching new task:', err); // Log the specific error
             res.status(500).json({ error: 'Error fetching new task' });
           } else {
             res.status(201).json(newTask);
@@ -55,6 +55,8 @@ export const getTaskById = async (req: Request, res: Response) => {
       }
     );
   };
+  
+ 
   
   export const updateTask = async (req: Request, res: Response) => {
     const { id } = req.params;
@@ -89,4 +91,3 @@ export const getTaskById = async (req: Request, res: Response) => {
     await db.close();
     res.sendStatus(204);
   };
-  
