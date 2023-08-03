@@ -56,4 +56,37 @@ export const getTaskById = async (req: Request, res: Response) => {
     );
   };
   
+  export const updateTask = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const { title, description, completed } = req.body;
+  
+    if (!title || !description) {
+      res.status(400).json({ error: 'Title and description are required' });
+      return;
+    }
+  
+    const db = await initializeDatabase();
+    await db.run('UPDATE tasks SET title=?, description=?, completed=? WHERE id=?', [
+      title,
+      description,
+      completed,
+      id,
+    ]);
+    const updatedTask = await db.get<Task>('SELECT * FROM tasks WHERE id = ?', id);
+    await db.close();
+  
+    if (updatedTask) {
+      res.json(updatedTask);
+    } else {
+      res.status(404).json({ error: 'Task not found' });
+    }
+  };
+
+  export const deleteTask = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const db = await initializeDatabase();
+    await db.run('DELETE FROM tasks WHERE id = ?', id);
+    await db.close();
+    res.sendStatus(204);
+  };
   
