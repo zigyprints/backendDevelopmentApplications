@@ -3,12 +3,34 @@ import { Request, Response } from 'express';
 import { initializeDatabase } from '../database/db';
 import { Task } from '../models/tasks';
 
+// export const getAllTasks = async (req: Request, res: Response) => {
+//     try {
+//       const db = await initializeDatabase();
+//       const tasks = await db.all<Task[]>('SELECT * FROM tasks');
+//       await db.close();
+//       res.json(tasks);
+//     } catch (err) {
+//       res.status(500).json({ error: 'Error fetching tasks' });
+//     }
+//   };
+
 export const getAllTasks = async (req: Request, res: Response) => {
-  const db = await initializeDatabase();
-  const tasks = await db.all<Task[]>('SELECT * FROM tasks');
-  await db.close();
-  res.json(tasks);
-};
+    try {
+      const db = await initializeDatabase();
+      const tasks = await db.all<Task[]>('SELECT * FROM tasks');
+      await db.close();
+  
+      if (!tasks) {
+        res.json([]);
+      } else {
+        res.json(tasks);
+      }
+    } catch (err) {
+      res.status(500).json({ error: 'Error fetching tasks' });
+    }
+  };
+  
+  
 
 export const getTaskById = async (req: Request, res: Response) => {
     const { id } = req.params;
@@ -22,41 +44,54 @@ export const getTaskById = async (req: Request, res: Response) => {
       res.status(404).json({ error: 'Task not found' });
     }
   };
+
+
+  
   export const createTask = async (req: Request, res: Response) => {
-    const { title, description } = req.body;
+    const { title, description, completed } = req.body;
   
     if (!title || !description) {
       res.status(400).json({ error: 'Title and description are required' });
       return;
     }
   
-    const db = await initializeDatabase();
-    db.run(
-      'INSERT INTO tasks (title, description, completed) VALUES (?, ?, ?)',
-      [title, description, false],
-      function (err) {
-        if (err) {
-          console.error('Error creating task:', err); // Log the specific error
-          db.close();
-          res.status(500).json({ error: 'Error creating task' });
-          return;
-        }
+    try {
+      const db = await initializeDatabase();
+      await db.run(
+        'INSERT INTO tasks (title, description, completed) VALUES (?, ?, ?)',
+        [title, description, completed || false]
+      );
   
-        const lastID = this.lastID; // this.lastID is undefined here, use the 'lastID' from the result instead
-        db.get<Task>('SELECT * FROM tasks WHERE id = ?', lastID, (err, newTask) => {
-          db.close();
+      const newTaskId = await new Promise<number>((resolve, reject) => {
+        db.get<{ id: number }>('SELECT last_insert_rowid() as id', (err, row) => {
           if (err) {
-            console.error('Error fetching new task:', err); // Log the specific error
-            res.status(500).json({ error: 'Error fetching new task' });
+            reject(err);
           } else {
-            res.status(201).json(newTask);
+            resolve(row?.id);
           }
         });
-      }
-    );
-  };
+      });
   
- 
+      await db.close();
+  
+      if (!newTaskId) {
+        res.status(500).json({ error: 'Error creating task' });
+        return;
+      }
+  
+      const newTask: Task = {
+        id: newTaskId,
+        title,
+        description,
+        completed: completed || false,
+      };
+  
+      res.status(201).json(newTask);
+    } catch (err) {
+      console.error('Error creating task:', err); // Log the specific error
+      res.status(500).json({ error: 'Error creating task' });
+    }
+  };
   
   export const updateTask = async (req: Request, res: Response) => {
     const { id } = req.params;
