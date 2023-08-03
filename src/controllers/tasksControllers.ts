@@ -9,3 +9,18 @@ export const getAllTasks = async (req: Request, res: Response) => {
   await db.close();
   res.json(tasks);
 };
+
+export const getTaskById = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const db = await initializeDatabase();
+    const task = await db.get<Task>('SELECT * FROM tasks WHERE id = ?', id);
+    await db.close();
+  
+    if (task) {
+      res.json(task);
+    } else {
+      res.status(404).json({ error: 'Task not found' });
+    }
+  };
+
+  
