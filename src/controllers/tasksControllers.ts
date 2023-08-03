@@ -23,4 +23,37 @@ export const getTaskById = async (req: Request, res: Response) => {
     }
   };
 
+
+  export const createTask = async (req: Request, res: Response) => {
+    const { title, description } = req.body;
+  
+    if (!title || !description) {
+      res.status(400).json({ error: 'Title and description are required' });
+      return;
+    }
+  
+    const db = await initializeDatabase();
+    db.run(
+      'INSERT INTO tasks (title, description, completed) VALUES (?, ?, ?)',
+      [title, description, false],
+      function (err) {
+        if (err) {
+          db.close();
+          res.status(500).json({ error: 'Error creating task' });
+          return;
+        }
+  
+        const lastID = this.lastID;
+        db.get<Task>('SELECT * FROM tasks WHERE id = ?', lastID, (err, newTask) => {
+          db.close();
+          if (err) {
+            res.status(500).json({ error: 'Error fetching new task' });
+          } else {
+            res.status(201).json(newTask);
+          }
+        });
+      }
+    );
+  };
+  
   
