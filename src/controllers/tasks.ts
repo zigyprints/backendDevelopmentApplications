@@ -80,3 +80,25 @@ export const updateTask = asyncHandler(
     });
   }
 );
+
+// @desc    Delete task
+// @route   DELETE /api/v1/tasks/:id
+// @access  Public
+export const deleteTask = asyncHandler(
+  async (req: Request, res: Response, next: NextFunction) => {
+    const task = await Task.findById(req.params.id);
+
+    if (!task) {
+      return next(
+        new ErrorResponse(`Task not found with id of ${req.params.id}`, 404)
+      );
+    }
+
+    await task.deleteOne();
+
+    res.status(200).json({
+      success: true,
+      data: {},
+    });
+  }
+);
