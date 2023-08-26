@@ -38,5 +38,10 @@ If I had more time, I would consider adding the following features:
 
 Proper error handling is implemented for various scenarios, ensuring a robust backend with strict typing. Detailed error messages are provided in the responses.
 
+## Postman Documentation
 
+Detailed documentation for the API endpoints can be found in the [Postman Collection](https://documenter.getpostman.com/view/24017362/2s9Y5YRhRz), which provides information about the requests, responses, and usage of the API.
 
+## Deployment
+
+The backend has been deployed on Render. You can access it using the following link: [Render Deployment](https://todolist-1mvk.onrender.com).
