@@ -12,6 +12,8 @@ You can check out the documentation on <br/>
 ## Getting Started
 
 To run the To-Do List API locally, follow these steps:
+<br/>
+<br/>
 
 1. get the repository from following github :
 
@@ -40,6 +42,8 @@ cd Backend
 ```bash
 nodemon 
 ```
+<br/>
+<br/>
 
 The server will be up and running at :<br/> 
 `http://localhost:3000`.
