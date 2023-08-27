@@ -9,15 +9,20 @@ let port = 3000;
 // get db connection function
 let mongo = require('./dbconnection/db')
 
-// connect to db
-mongo();
-
 //cors required for external server use
 const cors =require ("cors");   
 app.use(cors());
 
 // give acess to read req.body json
 app.use(express.json());
+
+
+app.listen(port, () => {
+    console.log(`Server form on port : ${port}`)
+})
+app.get('/',(request,response)=>{
+    response.send("done");
+});
 
 // create route
 app.use('/api/', require('./routes/create'));
@@ -34,11 +39,6 @@ app.use('/api/', require('./routes/update'));
 // readall route
 app.use('/api/', require('./routes/readall'));
 
-app.get('/',(request,response)=>{
-    response.send("done");
-});
 
-// add port listener 
-app.listen(port, () => {
-    console.log(`Server form on port : ${port}`)
-})
+// connect to db
+mongo();
