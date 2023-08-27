@@ -9,7 +9,7 @@ let moongoseurl = `mongodb+srv://${process.env.MONGO_ID}:${process.env.MONGO_PAS
 const mongodb = async () => {
 
     // strictquery setup
-    mongoose.set('strictQuery', true);
+   mongoose.set('strictQuery', true);
 
     try {
         await mongoose.connect(moongoseurl);

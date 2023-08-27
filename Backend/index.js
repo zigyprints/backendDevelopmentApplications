@@ -12,6 +12,9 @@ let mongo = require('./dbconnection/db')
 // connect to db
 mongo();
 
+//cors required for external server use
+const cors =require ("cors");   
+app.use(cors());
 
 // give acess to read req.body json
 app.use(express.json());
