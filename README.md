@@ -1,35 +1,92 @@
-Assignment: Simple Backend API Development with TypeScript
 
-Duration: 3-4 days
+# To-Do List
 
-Instructions: Welcome to our Simple Backend API Development assignment! In this task, you will build a basic RESTful API backend using Node.js, Express.js, TypeScript, and a lightweight database. This project aims to assess your skills in setting up a backend server and handling API requests with strict typing.
+This repository is a part of assignment from @Zigy assigned as a backend project for Backend intern assesment process.
+Following is an API list of all the necessary API,s.
+The server is made with Express.JS and using MongoDB database.
 
-Task: You are required to create a backend web application that provides API endpoints to interact with a simple "To-Do List" application. The frontend (To-Do List app) will be built separately and will communicate with your backend through the provided API endpoints. The backend should allow users to create, retrieve, update, and delete tasks from their to-do list.
+## Getting Started
 
-Requirements:
+To run the To-Do List API locally, follow these steps:
 
-Build the backend using Node.js, Express.js, and TypeScript for handling HTTP requests and responses with strict typing.
-Implement the necessary API endpoints for creating, retrieving, updating, and deleting tasks in the to-do list.
-Use a lightweight database (e.g., SQLite) to store the tasks.
-Ensure the API endpoints are RESTful and follow best practices in API design.
-Handle error cases and provide appropriate error responses with strict typing.
-Create Postman collection or Swagger documentation for your API endpoints to provide detailed information about the API requests and responses.
-Submission Details:
+1. get the repository from following github :
 
-Fork this repository from GitHub [[https://github.com/zigyprints/backendDevelopmentApplications]].
-Create a branch with your name (e.g., "yourname_assignment").
-Commit your code regularly, so we can see your progress.
-Once completed, create a pull request from your branch to the main repository (replace "main repository" with the URL of the original repository).
-Include a README.md file explaining your approach, challenges faced, and any additional features or improvements you might have added if given more time.
-Include the link to your Postman collection documenter or Swagger documentation in the README.md file.
-Evaluation Criteria: Your assignment will be evaluated based on the following factors:
+```bash
+git clone https://github.com/Rishabhluv/backendDevelopmentApplications
+```
 
-Technical Proficiency - Demonstrating your skills in using Node.js, Express.js, TypeScript, and a database to build a functional backend for the To-Do List application with strict typing.
-Code Quality - Writing clean, well-structured, and maintainable code with proper comments and strict typing.
-API Design - Creating API endpoints following best practices for a smooth integration with the frontend application.
-Database Usage - Efficiently storing and retrieving data from the database.
-Error Handling - Implementing error handling mechanisms for a robust backend with strict typing.
-Documentation - Providing detailed Postman collection or Swagger documentation for the API endpoints.
-Submission Deadline: 3-4 days from the date you received this assignment.
+2. Install the dependencies:
 
-Good luck with the assignment! If you have any questions during the development process, feel free to reach out to us for clarification. Happy coding!
+```bash
+npm install
+```
+or
+```bash
+npm i
+```
+
+3. Change the directory and get into backend:
+   
+```bash
+cd Backend
+```
+
+4. Start the server:
+
+```bash
+nodemon 
+```
+
+The server will be up and running at `http://localhost:3000`.
+
+
+                                    OR
+
+
+To use the already deployed server, you can use :
+`https://todo-backend-app-1.onrender.com`.
+
+
+## API Endpoints
+
+The following API endpoints are available:
+
+1. **GET `/api/readall`**: Retrieves all todos from the database.
+
+2. **GET `/api/read/[:id]`**: Retrieves a single task by its _id from the database.
+
+3. **POST `/api/create`**: Creates a new task and stores it in the database.
+   - Request Body (JSON):
+     ```json
+     {
+       "title": "Task 1",
+       "description": "This is task 1 description"
+     }
+     ```
+
+4. **PUT `/api/tasks/[:id]`**: Updates an existing todo in the database by its _id.
+   - Request Body (JSON):
+     ```json
+     {
+       "title": "Updated Task 1",
+       "description": "Updated description",
+     }
+     ```
+
+5. **DELETE `/api/delete/[:id]`**: Deletes a task from the database by its _id.
+
+## Testing with Postman
+
+To test the API endpoints using Postman:
+
+1. Use Postman to make API requests to the specified endpoints.
+2. For the POST and PUT requests, provide the required data in the request body as shown in the examples above.
+
+
+## Note
+
+This project is an assignment, and the provided code includes the necessary functions for handling CRUD operations on tasks in the to-do list using an MongoDB database .
+
+For any issues or questions, feel free to contact me.
+
+Happy task management with the To-Do List API!
