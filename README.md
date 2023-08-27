@@ -3,8 +3,12 @@
 
 This repository is a part of assignment from @Zigy assigned as a backend project for Backend intern assesment process.<br/>
 Following is an API list of all the necessary API's.<br/>
-The server is made with Express.JS and using MongoDB database.
+The server is made with Express.JS and using MongoDB database.<br/>
+<br/>
+You can check out the documentation on <br/>
+`https://www.postman.com/spacecraft-astronomer-95031941/workspace/my-workspace/collection/29359776-d61ecde8-7e88-4086-8dd5-181522590cf4?action=share&creator=29359776`
 
+<br/>
 ## Getting Started
 
 To run the To-Do List API locally, follow these steps:
