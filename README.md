@@ -1,8 +1,8 @@
 
 # To-Do List
 
-This repository is a part of assignment from @Zigy assigned as a backend project for Backend intern assesment process.
-Following is an API list of all the necessary API,s.
+This repository is a part of assignment from @Zigy assigned as a backend project for Backend intern assesment process.<br/>
+Following is an API list of all the necessary API's.<br/>
 The server is made with Express.JS and using MongoDB database.
 
 ## Getting Started
@@ -20,7 +20,7 @@ git clone https://github.com/Rishabhluv/backendDevelopmentApplications
 ```bash
 npm install
 ```
-or
+    or
 ```bash
 npm i
 ```
@@ -40,11 +40,15 @@ nodemon
 The server will be up and running at `http://localhost:3000`.
 
 
-OR
+<br/>
+  OR
+<br/>
 
 
-To use the already deployed server, you can use :
+
+To use the already deployed server, you can use :<br/>
 `https://todo-backend-app-1.onrender.com`.
+
 
 
 ## API Endpoints
