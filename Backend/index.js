@@ -16,19 +16,19 @@ mongo();
 app.use(express.json());
 
 // create route
-app.use('/', require('./routes/create'));
+app.use('/api/', require('./routes/create'));
 
 // delete route
-app.use('/', require('./routes/delete'));
+app.use('/api/', require('./routes/delete'));
 
 // read route
-app.use('/', require('./routes/read'));
+app.use('/api/', require('./routes/read'));
 
 // update route
-app.use('/', require('./routes/update'));
+app.use('/api/', require('./routes/update'));
 
 // readall route
-app.use('/', require('./routes/readall'));
+app.use('/api/', require('./routes/readall'));
 
 // add port listener 
 app.listen(port, () => {
