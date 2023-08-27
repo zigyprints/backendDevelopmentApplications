@@ -4,7 +4,7 @@ let mongoose = require('mongoose');
 require('dotenv').config();
 
 // url to connect to database
-let mongoURL = `mongodb+srv://rishabhluv:fnRyybKZ3T79IEOo@cluster0.h3xovr7.mongodb.net/?retryWrites=true&w=majority`;
+let mongoURL = `mongodb+srv://${process.env.MONGO_ID}:${process.env.MONGO_PASSWORD}@cluster0.h3xovr7.mongodb.net/?retryWrites=true&w=majority`;
 
 const mongodb = async () => {
 
