@@ -24,7 +24,7 @@ git clone https://github.com/Rishabhluv/backendDevelopmentApplications
 ```bash
 npm install
 ```
-    or
+or
 ```bash
 npm i
 ```
