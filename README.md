@@ -9,7 +9,8 @@ You can check out the documentation on <br/>
 [rishabhluv/postmandoc](https://www.postman.com/spacecraft-astronomer-95031941/workspace/my-workspace/collection/29359776-d61ecde8-7e88-4086-8dd5-181522590cf4?action=share&creator=29359776)
 
 <br/>
-## Getting Started
+
+# Getting Started
 
 To run the To-Do List API locally, follow these steps:
 <br/>
@@ -59,7 +60,7 @@ OR
 To use the already deployed server, you can use :<br/>
 `https://todo-backend-app-1.onrender.com`.
 
-
+<br/>
 
 ## API Endpoints
 
@@ -89,6 +90,7 @@ The following API endpoints are available:
 
 5. **DELETE `/api/delete/[:id]`**: Deletes a task from the database by its _id.
 
+<br/>
 
 ## Additional Features
 
@@ -99,7 +101,7 @@ If I had more time, I would consider adding the following features:
 - Make batch deletion api.
 - Make record of last update date and creation date of all todos.
 
-
+<br/>
 
 ## Testing with Postman
 
@@ -108,6 +110,7 @@ To test the API endpoints using Postman:
 1. Use Postman to make API requests to the specified endpoints.
 2. For the POST and PUT requests, provide the required data in the request body as shown in the examples above.
 
+<br/>
 
 ## Note
 
