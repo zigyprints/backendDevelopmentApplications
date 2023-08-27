@@ -8,12 +8,13 @@ let moongoseurl = `mongodb+srv://${process.env.MONGO_ID}:${process.env.MONGO_PAS
 
 const mongodb = async () => {
 
+    console.log("before connecting");
     // strictquery setup
    mongoose.set('strictQuery', true);
-
+ 
+   console.log("after strictquery");
     try {
-        await mongoose.connect(moongoseurl);
-        console.log("connected DB");
+        await mongoose.connect(moongoseurl).then(()=>{console.log("connected DB");})
     }
     catch (err) {
         console.log(err);

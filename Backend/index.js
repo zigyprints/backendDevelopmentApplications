@@ -7,10 +7,10 @@ let app = express();
 let port = 3000;
 
 // get db connection function
-let mongo = require('./dbconnection/db')
+let mongodb = require('./dbconnection/db')
 
 // connect to db
-mongo();
+mongodb();
 
 app.get('/',(request,response)=>{
     response.send("done");
