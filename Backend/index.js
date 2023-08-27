@@ -12,9 +12,6 @@ let mongo = require('./dbconnection/db')
 // connect to db
 mongo();
 
-app.get('/',(request,response)=>{
-    response.send("done");
-});
 
 // give acess to read req.body json
 app.use(express.json());
@@ -33,6 +30,10 @@ app.use('/api/', require('./routes/update'));
 
 // readall route
 app.use('/api/', require('./routes/readall'));
+
+app.get('/',(request,response)=>{
+    response.send("done");
+});
 
 // add port listener 
 app.listen(port, () => {
