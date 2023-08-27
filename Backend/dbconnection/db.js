@@ -19,4 +19,5 @@ const mongodb = async () => {
         console.log(err);
     }
 }
+
 module.exports = mongodb;
