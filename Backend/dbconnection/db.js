@@ -4,21 +4,18 @@ let mongoose = require('mongoose');
 require('dotenv').config();
 
 // url to connect to database
-let moongoseurl = `mongodb+srv://rishabhluv:fnRyybKZ3T79IEOo@cluster0.h3xovr7.mongodb.net/?retryWrites=true&w=majority`;
+let mongoURL = `mongodb+srv://rishabhluv:fnRyybKZ3T79IEOo@cluster0.h3xovr7.mongodb.net/?retryWrites=true&w=majority`;
 
 const mongodb = async () => {
 
-    console.log("before connecting");
-    // strictquery setup
    mongoose.set('strictQuery', true);
  
-   console.log("after strictquery");
-    try {
-        await mongoose.connect(moongoseurl).then(()=>{console.log("connected DB");})
-    }
-    catch (err) {
-        console.log(err);
-    }
+   await mongoose.connect(mongoURL).then(()=>{
+    console.log("Database connection successfull");
+})
+.catch((err)=>{
+    console.error(err.message);
+});
 }
 
 module.exports = mongodb;
