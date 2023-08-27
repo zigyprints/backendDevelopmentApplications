@@ -6,7 +6,7 @@ Following is an API list of all the necessary API's.<br/>
 The server is made with Express.JS and using MongoDB database.<br/>
 <br/>
 You can check out the documentation on <br/>
-`https://www.postman.com/spacecraft-astronomer-95031941/workspace/my-workspace/collection/29359776-d61ecde8-7e88-4086-8dd5-181522590cf4?action=share&creator=29359776`
+[rishabhluv/postmandoc](https://www.postman.com/spacecraft-astronomer-95031941/workspace/my-workspace/collection/29359776-d61ecde8-7e88-4086-8dd5-181522590cf4?action=share&creator=29359776)
 
 <br/>
 ## Getting Started
@@ -47,6 +47,7 @@ The server will be up and running at :<br/>
 
 <br/>
 OR
+<br/>
 <br/>
 <br/>
 
