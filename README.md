@@ -37,11 +37,12 @@ cd Backend
 nodemon 
 ```
 
-The server will be up and running at `http://localhost:3000`.
+The server will be up and running at :<br/> 
+`http://localhost:3000`.
 
 
 <br/>
-  OR
+OR
 <br/>
 <br/>
 
