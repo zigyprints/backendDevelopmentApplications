@@ -17,7 +17,7 @@ router.delete('/delete/:id', async (req, res) => {
         try {
             
             // delete note
-            await Notes.deleteOne({ _id: ObjectId(`${notes_id}`) });
+            await Notes.deleteOne({ _id: new ObjectId(`${notes_id}`) });
 
             // return message
             res.send({
