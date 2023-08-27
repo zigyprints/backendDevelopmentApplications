@@ -89,6 +89,18 @@ The following API endpoints are available:
 
 5. **DELETE `/api/delete/[:id]`**: Deletes a task from the database by its _id.
 
+
+## Additional Features
+
+If I had more time, I would consider adding the following features:
+
+- Creating separate todo listing for different users.
+- Add user authentication with login facility in front-end or with the help of respective key generation for each user.
+- Make batch deletion api.
+- Make record of last update date and creation date of all todos.
+
+
+
 ## Testing with Postman
 
 To test the API endpoints using Postman:
