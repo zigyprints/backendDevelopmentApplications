@@ -12,6 +12,10 @@ let mongo = require('./dbconnection/db')
 // connect to db
 mongo();
 
+app.get('/',(request,response)=>{
+    response.send("done");
+});
+
 // give acess to read req.body json
 app.use(express.json());
 
