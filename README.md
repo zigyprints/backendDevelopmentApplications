@@ -40,7 +40,7 @@ nodemon
 The server will be up and running at `http://localhost:3000`.
 
 
-                                    OR
+OR
 
 
 To use the already deployed server, you can use :
@@ -64,7 +64,7 @@ The following API endpoints are available:
      }
      ```
 
-4. **PUT `/api/tasks/[:id]`**: Updates an existing todo in the database by its _id.
+4. **PUT `/api/update/[:id]`**: Updates an existing todo in the database by its _id.
    - Request Body (JSON):
      ```json
      {
