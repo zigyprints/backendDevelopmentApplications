@@ -1,0 +1,153 @@
+{
+	"info": {
+		"_postman_id": "d25c88c4-c120-40d9-b505-84d5a76601df",
+		"name": "Todo App",
+		"description": "Welcome to our Simple Backend API Development assignment! In this task, you will build a basic RESTful API backend using Node.js, Express.js, JavaScript, and a lightweight database.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17209035"
+	},
+	"item": [
+		{
+			"name": "Create Task",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"taskName\":\"task1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/api/create",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"create"
+					]
+				},
+				"description": "This request creates a new task using the provided data. The task is then added to the database."
+			},
+			"response": []
+		},
+		{
+			"name": "Update Task",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\":\"64ec501f5ee97b5f3273312b\",\n    \"taskName\":\"task updated\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/api/update",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"update"
+					]
+				},
+				"description": "This request updates an existing task with new data. The task identified by its unique ID is modified with the provided information."
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Task",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\":\"64ec501f5ee97b5f327331b\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/api/delete",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"delete"
+					]
+				},
+				"description": "This request deletes a task based on its unique ID. The task is permanently removed from the database."
+			},
+			"response": []
+		},
+		{
+			"name": "All Tasks",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/api/tasks",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"api",
+						"tasks"
+					]
+				},
+				"description": "This request retrieves a list of all tasks stored in the database."
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": "http://localhost:3000",
+			"type": "string"
+		}
+	]
+}
