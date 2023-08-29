@@ -2,11 +2,14 @@ import mongoose from "mongoose"
 
 const connectDB = async () => {
     if (process.env.Mongo_URL) {
-        mongoose.connect(process.env.Mongo_URL)
-        console.log("Database is connected ....")
+        try {
+            mongoose.connect(process.env.Mongo_URL)
+            console.log("Database is connected ....")
+        } catch (error) {
+            console.log("Error in connecting DataBase ....")
+        }
     }
-    else console.log("Not Connectd in connection ts ...");
-    // handle error here ....
+    else console.log("No Connection String Provided to Connect to DataBase ...")
 }
 
 export default connectDB 

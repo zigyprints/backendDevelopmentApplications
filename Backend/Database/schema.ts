@@ -1,11 +1,10 @@
 import mongoose from "mongoose"
+import Task from "./types"
 
-const userSchema = new mongoose.Schema({
-    task: {
-        type: String,
-        required: true,
-        trime: true
-    }
+// user schema ....
+const userSchema = new mongoose.Schema<Task>({
+    title: { type: String, required: true },
+    completed: { type: Boolean, default: false }
 })
 
-export default mongoose.model('model', userSchema)
+export default mongoose.model<Task>('model', userSchema)
