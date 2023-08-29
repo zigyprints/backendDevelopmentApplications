@@ -1,28 +1,39 @@
 import express, { Express } from "express"
-import mongoose from "mongoose"
-// import cors from "cors"
+import mongoose, { ConnectOptions } from "mongoose";
+import cors from "cors"
 import todoRoutes from "./routes/routes"
-import { json } from "stream/consumers"
 
 const app: Express = express()
 
-const PORT: string | number = process.env.PORT || 5050
+const PORT: string | number = process.env.PORT || 3000
 
-// app.use(cors())
-app.use(json)
+const uri: string = 'mongodb+srv://babrerushabh1:J3pKvyZdaNsm9dQ4@todos.zrml53b.mongodb.net/'
 
+mongoose 
+      .connect(uri, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      } as ConnectOptions)
+      .then((res) => {
+        console.log(
+          'Connected to Database - Initial Connection'
+        );
+      })
+      .catch((err) => {
+        console.log(
+          `Database connection error occured -`,
+          err
+        );
+});
+
+app.use(cors())
+app.use(express.json())
+
+// Main routers
 app.use(todoRoutes)
-
-// app.use((req, res, next) => {
-//     if (req.err) {
-//       res.status(500).send({ error: req.err });
-//     } else {
-//       res.status(404).send({ error: 'Nothing Found' });
-//     }
-//   });
 
 app.listen(PORT, (): void => {
     console.log(`This is working on ${PORT}`);
 });
 
-export default {app}
+export default app

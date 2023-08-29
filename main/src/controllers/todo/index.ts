@@ -2,6 +2,8 @@ import { Request, Response } from "express";
 import { ITodo } from "../../types/todo"
 import Todo from "../../models/todo"
 
+
+// Returns all the Todos
 const getTodos = async (req: Request, res: Response): Promise<void> => {
     try{
         const todos: ITodo[] = await Todo.find();
@@ -11,7 +13,8 @@ const getTodos = async (req: Request, res: Response): Promise<void> => {
     }
 }
 
-const addTodo = async (req:Request, res:Response): Promise<void> => {
+// Returns the todo added
+const addTodo = async (req:Request, res:Response) => {
     try {
         const body = req.body as Pick<ITodo, "name" | "description" | "status">
     
@@ -22,14 +25,14 @@ const addTodo = async (req:Request, res:Response): Promise<void> => {
         })
     
         const newTodo: ITodo = await todo.save()
-        const allTodos: ITodo[] = await Todo.find()
     
-        res.status(201).json({ message: "Todo added", todo: newTodo, todos: allTodos })
+        res.status(201).json({ message: "Todo added", todo: newTodo })
       } catch (error) {
         throw error
       }
 }
 
+// Returns updated todo
 const updateTodo = async (req: Request, res: Response): Promise<void> => {
     try {
       const {
@@ -40,27 +43,24 @@ const updateTodo = async (req: Request, res: Response): Promise<void> => {
         { _id: id },
         body
       )
-      const allTodos: ITodo[] = await Todo.find()
       res.status(200).json({
         message: "Todo updated",
-        todo: updateTodo,
-        todos: allTodos,
+        todo: updateTodo
       })
     } catch (error) {
       throw error
     }
 }
 
+// Returns deleted todo
 const deleteTodo = async (req: Request, res: Response): Promise<void> => {
     try {
       const deletedTodo: ITodo | null = await Todo.findByIdAndRemove(
         req.params.id
       )
-      const allTodos: ITodo[] = await Todo.find()
       res.status(200).json({
         message: "Todo deleted",
-        todo: deletedTodo,
-        todos: allTodos,
+        todo: deletedTodo
       })
     } catch (error) {
       throw error

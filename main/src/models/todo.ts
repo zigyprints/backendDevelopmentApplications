@@ -1,4 +1,3 @@
-import { Timestamp } from "mongodb";
 import { ITodo } from "../types/todo";
 import { model, Schema } from "mongoose"
 
@@ -16,10 +15,10 @@ const todoSchema: Schema = new Schema(
 
         status: {
             type: Boolean,
-            require: true
+            require: true,
+            default: false
         },
     },
-    { timestamps: true}
 )
 
 export default model<ITodo>("Todo",todoSchema)
