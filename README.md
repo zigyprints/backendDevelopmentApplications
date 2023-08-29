@@ -1,16 +1,101 @@
-## Project Name : Backend Development Application using Node.js, Express and TypeScript
-## Description : I am creating Backend and RESTs Api for managing Contact in using MongoDB Database and creating Api end point for Frontend.
-## Database: MongoDB Database
 
-## Step taken for Creating bakcend
+# backendDevelopmentApplications
 
-1. Import All Dependency
-2. Create Node.js Server using Express
-3. Create Router and Controller for App and use in Server
-4. Established Connection to MongoDB Database using mongoose library
-5. Created Mongoose Schema Model Used in Controller
-6. Created RESTs Api for Aplication (GET, PUT, POST, DELETE)
-7. Created Error Handler Middleware and use in app
-8. Tested all Api Working Smootly with handling error with suitable messages
-9. Stored All Contact Data in MongoDB Database Without any Problem
-10. Project is Complited
+Backend and RESTs Api for managing Contact in using MongoDB Database.
+
+
+## Features
+- Get All Contact using 
+- Get Contact using Contact.id
+- Add Contact using Name, Email and Phone
+- Delete Contact using Contact.id
+- Update Contact using Contact.id
+- Cross platform
+
+
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/zigyprints/backendDevelopmentApplications.git
+```
+
+Go to the project directory
+
+```bash
+  cd backendDevelopmentApplications
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  npm run start
+```
+
+
+## API Reference
+
+#### Get all contact
+
+```http
+  GET /api/contact
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `api_key` | `string` | **Required**. Your API key |
+
+#### Get contact by id
+
+```http
+  GET /api/contact/${id}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **Required**. Id of item to fetch |
+
+
+#### Create New contact
+
+```http
+  POST /api/contact
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `api_key` | `string` | **Required**. Your API key |
+
+
+####  Update contact
+
+```http
+  PUT /api/contact/${id}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **Required**. Id of contact to Update |
+
+####  Delete contact
+
+```http
+  DELETE /api/contact/${id}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **Required**. Id of contact to Delete |
+
+
+## Postman Documentation of API
+
+
+(https://documenter.getpostman.com/view/29405184/2s9Y5ZwNM7)
