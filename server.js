@@ -1,11 +1,15 @@
 const express = require('express');
-const env = require('dotenv')
+const env = require('dotenv');
+const router = require('./routes/contactRouter');
 
 env.config() //Configuring hostname and port form dotenv file
 hostname = process.env.HOSTNAME || 'localhost'
 port = process.env.PORT || 3000
 
-const app = express();
+const app = express(); //Created Express app
+
+//Setting up Middleware and Router
+app.use('/api/contact', router);
 
 app.listen(port, (req, res) => {
     console.log(`Server listening on port http://${hostname}:${port}`);
