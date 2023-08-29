@@ -2,7 +2,9 @@
 ## Description : I am creating Backend and RESTs Api for managing Contact in using MongoDB Database and creating Api end point for Frontend.
 ## Database: MongoDB Database
 
-## Step for Creating bakcend
+## Step taken for Creating bakcend
 
 1. Import All Dependency
 2. Create Node.js Server using Express
+3. Create Router and Controller for App and use in Server
+4. Established Connection to MongoDB Database using mongoose library
