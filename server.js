@@ -11,6 +11,7 @@ DBConnect();
 const app = express(); //Created Express app
 
 //Setting up Middleware and Router
+app.use(express.json());
 app.use('/api/contact', router);
 
 app.listen(port, (req, res) => {
