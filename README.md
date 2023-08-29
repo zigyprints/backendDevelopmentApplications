@@ -9,7 +9,7 @@
 3. Create Router and Controller for App and use in Server
 4. Established Connection to MongoDB Database using mongoose library
 5. Created Mongoose Schema Model Used in Controller
-6. Created RESTs Api for Aplication (GET, PUTE, POST, DELETE)
+6. Created RESTs Api for Aplication (GET, PUT, POST, DELETE)
 7. Created Error Handler Middleware and use in app
 8. Tested all Api Working Smootly with handling error with suitable messages
 9. Stored All Contact Data in MongoDB Database Without any Problem
