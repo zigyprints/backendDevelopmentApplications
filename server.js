@@ -1,7 +1,7 @@
 const express = require('express');
 const env = require('dotenv');
 const router = require('./routes/contactRouter');
-const DBConnect = require('./config/connectionDB');
+const DBConnect = require('./Config/connectionDB');
 
 env.config() //Configuring hostname and port form dotenv file
 hostname = process.env.HOSTNAME || 'localhost'
