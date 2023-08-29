@@ -9,6 +9,7 @@ const PORT: string | number = process.env.PORT || 3000
 
 const uri: string = 'mongodb+srv://babrerushabh1:J3pKvyZdaNsm9dQ4@todos.zrml53b.mongodb.net/'
 
+// connecting to MongoDB
 mongoose 
       .connect(uri, {
         useNewUrlParser: true,
