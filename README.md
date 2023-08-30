@@ -12,6 +12,7 @@ A simple ToDo application to manage your tasks and stay organized.
   - [Installation](#installation)
 - [Usage](#usage)
 - [API Endpoints](#api-endpoints)
+- [Postman Collection](#postman)
 - [Challenges](#Hurdles)
 - [Contributing](#contributing)
 - [License](#license)
@@ -63,16 +64,18 @@ Follow these instructions to set up the ToDo App on your local machine.
    - Create a new PostgreSQL database.
    - Update the database configuration in `src/config.ts`.
 
-5. Run database migrations:
+5. Install database configurations:
 
    ```bash
-   npm run migrate
+   npm install pg
    ```
 
 6. Start the application:
-
    ```bash
-   npm start
+    npm install -g ts-node
+    ```
+   ```bash
+    ts-node server.ts
    ```
 
 The app should now be running at `http://localhost:3000`.
@@ -92,7 +95,12 @@ The app should now be running at `http://localhost:3000`.
 
 For detailed API documentation, refer to [API Documentation](API.md).
 
-## Hurdles
+## Postman Collection
+My postman collection link 
+
+https://galactic-water-744516.postman.co/workspace/New-Team-Workspace~7d2e1b16-b666-4f92-9455-f93aee109a5b/collection/23530233-7541d1e9-2a39-4b50-9d86-6d2ed4b3b20f?action=share&creator=23530233
+
+## Challenges
  1. I was facing issues while performing post request as I was getiing null contraint violated exception .So make sure to make your primary key  auto incrementing so that it keeps incrementing itself as you add a task
 
  2. I faced similar issues while performing put request as there was a difference of parameter names .In order to correct this you need to verify your request parameters and the database parameters .
@@ -100,10 +108,3 @@ For detailed API documentation, refer to [API Documentation](API.md).
 ## Contributing
 
 Contributions are welcome! If you find any issues or have suggestions, feel free to open a GitHub issue and create pull requests.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-```
-
-Replace placeholders like `your-username` with actual values. This template covers project description, setup instructions, usage guide, API endpoints, contribution guidelines, and licensing information.
