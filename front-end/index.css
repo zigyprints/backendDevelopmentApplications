@@ -1,0 +1,26 @@
+body{
+    background-color: slategrey;
+}
+h1{
+    /* display: inline; */
+    margin-left: 40%;
+    /* align-items: center; */
+}
+h2{
+    margin-left: 45%;
+}
+p{
+    margin: 10px 10px;
+}
+#tasks{
+    border: solid black 2px;
+    text-align: center;
+    
+}
+.task{
+    border: solid black 2px;
+    margin: 10px 10px;
+    margin-left: 40%;
+    width: 30%;
+    background-color: lightpink;
+}
