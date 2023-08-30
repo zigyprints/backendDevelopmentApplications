@@ -1,35 +1,109 @@
-Assignment: Simple Backend API Development with TypeScript
 
-Duration: 3-4 days
+# ToDo App
 
-Instructions: Welcome to our Simple Backend API Development assignment! In this task, you will build a basic RESTful API backend using Node.js, Express.js, TypeScript, and a lightweight database. This project aims to assess your skills in setting up a backend server and handling API requests with strict typing.
+A simple ToDo application to manage your tasks and stay organized.
 
-Task: You are required to create a backend web application that provides API endpoints to interact with a simple "To-Do List" application. The frontend (To-Do List app) will be built separately and will communicate with your backend through the provided API endpoints. The backend should allow users to create, retrieve, update, and delete tasks from their to-do list.
+## Table of Contents
 
-Requirements:
+- [Introduction](#introduction)
+- [Features](#features)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Usage](#usage)
+- [API Endpoints](#api-endpoints)
+- [Challenges](#Hurdles)
+- [Contributing](#contributing)
+- [License](#license)
 
-Build the backend using Node.js, Express.js, and TypeScript for handling HTTP requests and responses with strict typing.
-Implement the necessary API endpoints for creating, retrieving, updating, and deleting tasks in the to-do list.
-Use a lightweight database (e.g., SQLite) to store the tasks.
-Ensure the API endpoints are RESTful and follow best practices in API design.
-Handle error cases and provide appropriate error responses with strict typing.
-Create Postman collection or Swagger documentation for your API endpoints to provide detailed information about the API requests and responses.
-Submission Details:
+## Introduction
 
-Fork this repository from GitHub [[https://github.com/zigyprints/backendDevelopmentApplications]].
-Create a branch with your name (e.g., "yourname_assignment").
-Commit your code regularly, so we can see your progress.
-Once completed, create a pull request from your branch to the main repository (replace "main repository" with the URL of the original repository).
-Include a README.md file explaining your approach, challenges faced, and any additional features or improvements you might have added if given more time.
-Include the link to your Postman collection documenter or Swagger documentation in the README.md file.
-Evaluation Criteria: Your assignment will be evaluated based on the following factors:
+The ToDo App is a web-based task management application that allows users to create, read, update, and delete tasks. With a user-friendly interface, it's designed to help users keep track of their tasks and manage their time effectively.
 
-Technical Proficiency - Demonstrating your skills in using Node.js, Express.js, TypeScript, and a database to build a functional backend for the To-Do List application with strict typing.
-Code Quality - Writing clean, well-structured, and maintainable code with proper comments and strict typing.
-API Design - Creating API endpoints following best practices for a smooth integration with the frontend application.
-Database Usage - Efficiently storing and retrieving data from the database.
-Error Handling - Implementing error handling mechanisms for a robust backend with strict typing.
-Documentation - Providing detailed Postman collection or Swagger documentation for the API endpoints.
-Submission Deadline: 3-4 days from the date you received this assignment.
+## Features
 
-Good luck with the assignment! If you have any questions during the development process, feel free to reach out to us for clarification. Happy coding!
+- Create tasks with a title and optional description.
+- Mark tasks as completed.
+- Update task details.
+- Delete unnecessary tasks.
+- Retrieve tasks by ID or view all tasks.
+- RESTful API endpoints for seamless integration.
+
+## Getting Started
+
+Follow these instructions to set up the ToDo App on your local machine.
+
+### Prerequisites
+
+- Node.js (version 16.15.0)
+- PostgreSQL (version 4.7.4)
+
+### Installation
+
+1. Clone this repository to your local machine:
+
+   ```bash
+   git clone https://github.com/ravix007/todo-app.git
+   ```
+
+2. Navigate to the project directory:
+
+   ```bash
+   cd todo-app
+   ```
+
+3. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+4. Set up the PostgreSQL database:
+   
+   - Create a new PostgreSQL database.
+   - Update the database configuration in `src/config.ts`.
+
+5. Run database migrations:
+
+   ```bash
+   npm run migrate
+   ```
+
+6. Start the application:
+
+   ```bash
+   npm start
+   ```
+
+The app should now be running at `http://localhost:3000`.
+
+## Usage
+
+1. Open your web browser and navigate to `http://localhost:3000`.
+2. Use the web interface to create, update, and manage your tasks.
+
+## API Endpoints
+
+- `GET /tasks`: Get a list of all tasks.
+- `GET /task/:id`: Get a task by ID.
+- `POST /task`: Create a new task.
+- `PUT /task/:id`: Update an existing task.
+- `DELETE /task/:id`: Delete a task.
+
+For detailed API documentation, refer to [API Documentation](API.md).
+
+## Hurdles
+ 1. I was facing issues while performing post request as I was getiing null contraint violated exception .So make sure to make your primary key  auto incrementing so that it keeps incrementing itself as you add a task
+
+ 2. I faced similar issues while performing put request as there was a difference of parameter names .In order to correct this you need to verify your request parameters and the database parameters .
+
+## Contributing
+
+Contributions are welcome! If you find any issues or have suggestions, feel free to open a GitHub issue and create pull requests.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+```
+
+Replace placeholders like `your-username` with actual values. This template covers project description, setup instructions, usage guide, API endpoints, contribution guidelines, and licensing information.

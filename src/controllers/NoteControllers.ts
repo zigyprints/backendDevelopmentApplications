@@ -2,6 +2,30 @@ import { Request, Response } from 'express';
 import { Note } from '../models/NoteModel';
 import pool from '../dbConfig';
 
+export const getTaskById = async (req: Request, res: Response) => {
+  const taskId = req.params.id;
+
+  if (!taskId) {
+    return res.status(400).json({ error: 'Task ID is required' });
+  }
+
+  try {
+    const { rows } = await pool.query(
+      'SELECT * FROM tasks WHERE uid = $1',
+      [taskId]
+    );
+
+    if (rows.length > 0) {
+      res.json(rows[0]);
+    } else {
+      res.status(404).json({ error: 'Task not found' });
+    }
+  } catch (error) {
+    console.error('Error fetching task from database:', error);
+    res.status(500).json({ error: 'Error fetching the task' });
+  }
+};
+
 
 export const getAllTasks = async (req: Request, res: Response) => {
   try {
@@ -58,7 +82,7 @@ export const updateTask = async (req: Request, res: Response) => {
 
 
 export const deleteTask = async (req: Request, res: Response) => {
-  const taskId = req.params.uid;
+  const taskId = req.params.id;
 
   try {
     await pool.query('DELETE FROM tasks WHERE uid = $1', [taskId]);
