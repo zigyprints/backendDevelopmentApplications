@@ -32,15 +32,7 @@ export const createTask = async (req: Request, res: Response): Promise<void> => 
             driver: sqlite3.Database,
         });
 
-        const result = await db.run('INSERT INTO tasks (title) VALUES (?)', [title]);
-
-        // Make sure to check if the result object has the property 'lastID' and handle it accordingly
-        const lastID = result.lastID as number; // You might need to handle this differently based on the result structure
-
-        if (typeof lastID !== 'number') {
-            res.status(500).json({ message: 'Failed to create task' });
-            return;
-        }
+        const { lastID } = await db.run('INSERT INTO tasks (title) VALUES (?)', [title]);
 
         const newTask: Task = { id: lastID, title };
         res.status(201).json({ message: 'Task created successfully', task: newTask });
@@ -49,7 +41,6 @@ export const createTask = async (req: Request, res: Response): Promise<void> => 
         res.status(500).json({ message: 'Internal server error' });
     }
 };
-
 
 // Implement updateTask and deleteTask similarly
 export const updateTask = async (req: Request, res: Response): Promise<void> => {
