@@ -1,13 +1,15 @@
 import sqlite from "sqlite3"
-sqlite.verbose();
+import path from "path"
+
+sqlite.verbose();                       //gives detail about database longer stack traces
 
 class todoModel{
-    private db: sqlite.Database; 
+    public db: sqlite.Database; 
 
     constructor(){
-        this.db = new sqlite.Database('./../db/todo.db', (err) => {
+        this.db = new sqlite.Database('./src/db/todo.db', (err) => {
             if(err){
-                console.log(err.message);
+                console.log(err);
             }
             else{
                 console.log('Connected to the database');
@@ -16,9 +18,12 @@ class todoModel{
         this.initialize();
     }
     initialize(){
-            this.db.run('CREATE TABLE IF NOT EXISTS TASK(ID INT PRIMARY KEY NOT NULL AUTOINCREMENT, TASK TEXT, COMPLETED BOOLEAN, DATE DATETIME)');
+            this.db.run('CREATE TABLE IF NOT EXISTS TASK(ID INTEGER PRIMARY KEY NOT NULL, TASK TEXT, COMPLETED BOOLEAN, DATE DATETIME)');
     }
+
 }
+
+export default new todoModel();
 
 
 

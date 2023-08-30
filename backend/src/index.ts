@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import morgan from "morgan";
 import dotenv, { config } from "dotenv";
+import todoRouter from "./router/todoRouter";
 
 const app = express();
 
@@ -19,6 +20,8 @@ app.use(bodyParser.json());
 if(process.env.NODE_ENV === 'development'){
     app.use(morgan('dev'));
 }
+
+app.use('/', todoRouter);
 
 const PORT = process.env.PORT || 8080;
 const server = app.listen(PORT, () => {

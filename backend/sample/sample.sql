@@ -1,0 +1,3 @@
+INSERT INTO todos (TASK, COMPLETED, DATE) VALUES ('Buy groceries', 0, '2023-08-26 10:00:00');
+INSERT INTO todos (TASK, COMPLETED, DATE) VALUES ('Go to the gym', 1, '2023-08-26 11:30:00');
+INSERT INTO todos (TASK, COMPLETED, DATE) VALUES ('Study for exam', 0, '2023-08-26 14:00:00');
