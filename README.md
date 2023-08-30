@@ -44,13 +44,13 @@ Follow these instructions to set up the ToDo App on your local machine.
 1. Clone this repository to your local machine:
 
    ```bash
-   git clone https://github.com/ravix007/todo-app.git
+   git clone https://github.com/ravix007/backendDevelopmentApplications.git
    ```
 
 2. Navigate to the project directory:
 
    ```bash
-   cd todo-app
+   cd backendDevelopmentApplications
    ```
 
 3. Install dependencies:
