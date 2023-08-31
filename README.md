@@ -26,11 +26,11 @@ Clone the repository using the following command in your git bash command line
 ```
 git clone https://github.com/rigved-desai/backendDevelopmentApplications.git
 ```
-Then install all necessary dependencies using the following command:
+Then install all necessary dependencies using the following command in your powershell/cmd:
 ```
 npm install
 ```
-And finally host the backend in your local machine using the following command:
+And finally host the backend in your local machine using the following command in your powershell/cmd:
 ```
 npm start
 ```
