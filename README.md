@@ -1,35 +1,210 @@
-Assignment: Simple Backend API Development with TypeScript
+<!-- WIP -->
 
-Duration: 3-4 days
+# Node.js To-Do List App with TypeScript, Express, and MongoDB
 
-Instructions: Welcome to our Simple Backend API Development assignment! In this task, you will build a basic RESTful API backend using Node.js, Express.js, TypeScript, and a lightweight database. This project aims to assess your skills in setting up a backend server and handling API requests with strict typing.
+This is a simple To-Do List application built using Node.js, TypeScript, Express, and MongoDB. The app allows users to create, retrieve, update, and delete tasks on their to-do list.
 
-Task: You are required to create a backend web application that provides API endpoints to interact with a simple "To-Do List" application. The frontend (To-Do List app) will be built separately and will communicate with your backend through the provided API endpoints. The backend should allow users to create, retrieve, update, and delete tasks from their to-do list.
+## Prerequisites
 
-Requirements:
+Before you begin, ensure you have the following installed:
 
-Build the backend using Node.js, Express.js, and TypeScript for handling HTTP requests and responses with strict typing.
-Implement the necessary API endpoints for creating, retrieving, updating, and deleting tasks in the to-do list.
-Use a lightweight database (e.g., SQLite) to store the tasks.
-Ensure the API endpoints are RESTful and follow best practices in API design.
-Handle error cases and provide appropriate error responses with strict typing.
-Create Postman collection or Swagger documentation for your API endpoints to provide detailed information about the API requests and responses.
-Submission Details:
+- Node.js: Make sure you have Node.js installed on your machine.
+- MongoDB: You should have a MongoDB server running locally or provide a remote connection URL.
 
-Fork this repository from GitHub [[https://github.com/zigyprints/backendDevelopmentApplications]].
-Create a branch with your name (e.g., "yourname_assignment").
-Commit your code regularly, so we can see your progress.
-Once completed, create a pull request from your branch to the main repository (replace "main repository" with the URL of the original repository).
-Include a README.md file explaining your approach, challenges faced, and any additional features or improvements you might have added if given more time.
-Include the link to your Postman collection documenter or Swagger documentation in the README.md file.
-Evaluation Criteria: Your assignment will be evaluated based on the following factors:
+## Installation
 
-Technical Proficiency - Demonstrating your skills in using Node.js, Express.js, TypeScript, and a database to build a functional backend for the To-Do List application with strict typing.
-Code Quality - Writing clean, well-structured, and maintainable code with proper comments and strict typing.
-API Design - Creating API endpoints following best practices for a smooth integration with the frontend application.
-Database Usage - Efficiently storing and retrieving data from the database.
-Error Handling - Implementing error handling mechanisms for a robust backend with strict typing.
-Documentation - Providing detailed Postman collection or Swagger documentation for the API endpoints.
-Submission Deadline: 3-4 days from the date you received this assignment.
+1. Clone this repository:
 
-Good luck with the assignment! If you have any questions during the development process, feel free to reach out to us for clarification. Happy coding!
+```bash
+git clone https://github.com/yourusername/todo-list-app.git
+```
+
+2. Navigate to the project directory:
+
+```bash
+cd todo-list-app
+```
+
+3. Install dependencies:
+
+```bash
+npm install
+```
+
+4. Create a `.env` file in the root directory and provide the necessary environment variables:
+
+```plaintext
+PORT=3000
+MONGODB_URI=mongodb://localhost:27017/todo-list
+```
+
+Replace the `MONGODB_URI` with your MongoDB connection URL.
+
+5. Build the TypeScript code:
+
+```bash
+npm run build
+```
+
+6. Start the application:
+
+```bash
+npm start
+```
+
+The application should now be running on `http://localhost:3000`.
+
+## API Endpoints
+
+### Create a Task
+
+- **Endpoint:** `POST /tasks`
+- **Request Body:**
+
+```json
+{
+  "title": "Buy groceries",
+  "description": "Milk, eggs, bread",
+  "dueDate": "2023-09-01"
+}
+```
+
+- **Response (Success):** Status 201 Created
+
+```json
+{
+  "message": "Task created successfully",
+  "task": {
+    "_id": "task_id",
+    "title": "Buy groceries",
+    "description": "Milk, eggs, bread",
+    "dueDate": "2023-09-01",
+    "createdAt": "timestamp"
+  }
+}
+```
+
+- **Response (Error):** Status 400 Bad Request
+
+```json
+{
+  "error": "Validation failed",
+  "message": "Title is required"
+}
+```
+
+### Get All Tasks
+
+- **Endpoint:** `GET /tasks`
+- **Response (Success):** Status 200 OK
+
+```json
+{
+  "tasks": [
+    {
+      "_id": "task_id1",
+      "title": "Buy groceries",
+      "description": "Milk, eggs, bread",
+      "dueDate": "2023-09-01",
+      "createdAt": "timestamp"
+    },
+    {
+      "_id": "task_id2",
+      "title": "Finish project",
+      "description": "Complete the presentation",
+      "dueDate": "2023-09-15",
+      "createdAt": "timestamp"
+    }
+  ]
+}
+```
+
+### Get Task by ID
+
+- **Endpoint:** `GET /tasks/:taskId`
+- **Response (Success):** Status 200 OK
+
+```json
+{
+  "_id": "task_id",
+  "title": "Buy groceries",
+  "description": "Milk, eggs, bread",
+  "dueDate": "2023-09-01",
+  "createdAt": "timestamp"
+}
+```
+
+- **Response (Error):** Status 404 Not Found
+
+```json
+{
+  "error": "Task not found",
+  "message": "The requested task could not be found"
+}
+```
+
+### Update Task
+
+- **Endpoint:** `PUT /tasks/:taskId`
+- **Request Body:**
+
+```json
+{
+  "title": "Buy groceries",
+  "description": "Milk, eggs, bread and cheese",
+  "dueDate": "2023-09-01"
+}
+```
+
+- **Response (Success):** Status 200 OK
+
+```json
+{
+  "message": "Task updated successfully",
+  "task": {
+    "_id": "task_id",
+    "title": "Buy groceries",
+    "description": "Milk, eggs, bread and cheese",
+    "dueDate": "2023-09-01",
+    "createdAt": "timestamp"
+  }
+}
+```
+
+- **Response (Error):** Status 404 Not Found
+
+```json
+{
+  "error": "Task not found",
+  "message": "The requested task could not be found"
+}
+```
+
+### Delete Task
+
+- **Endpoint:** `DELETE /tasks/:taskId`
+- **Response (Success):** Status 200 OK
+
+```json
+{
+  "message": "Task deleted successfully"
+}
+```
+
+- **Response (Error):** Status 404 Not Found
+
+```json
+{
+  "error": "Task not found",
+  "message": "The requested task could not be found"
+}
+```
+
+## Error Messages
+
+- **400 Bad Request:** Indicates that the request is invalid or missing required parameters.
+- **404 Not Found:** Indicates that the requested resource (task) could not be found.
+
+## Conclusion
+
+This To-Do List application provides basic functionality for managing tasks. You can extend and customize it according to your needs. Remember to handle errors and edge cases properly in a production environment. Happy coding!
