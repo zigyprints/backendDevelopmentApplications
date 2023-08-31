@@ -32,7 +32,7 @@ export const getATask = asyncWrapper(async (req: Request, res: Response, next: N
     const task = await setter(query, [req.params.id]);
 
     if (task.length === 0) {
-        next(new appError('No Data with this ID', 404));
+        return next(new appError('No Data with this ID', 404));
     }
 
     res.status(200).json({

@@ -1,35 +1,53 @@
-Assignment: Simple Backend API Development with TypeScript
+# Task Manager API
 
-Duration: 3-4 days
+Welcome to the Task Manager API documentation. This API allows users to manage tasks, including creating, retrieving, updating, and deleting tasks.
 
-Instructions: Welcome to our Simple Backend API Development assignment! In this task, you will build a basic RESTful API backend using Node.js, Express.js, TypeScript, and a lightweight database. This project aims to assess your skills in setting up a backend server and handling API requests with strict typing.
+## Table of Contents
 
-Task: You are required to create a backend web application that provides API endpoints to interact with a simple "To-Do List" application. The frontend (To-Do List app) will be built separately and will communicate with your backend through the provided API endpoints. The backend should allow users to create, retrieve, update, and delete tasks from their to-do list.
+- [Introduction](#introduction)
+- [Endpoints](#endpoints)
+- [Getting Started](#getting-started)
+- [Usage](#usage)
+- [Challenges Faced](#challenges-faced)
+- [Future Improvements](#future-improvements)
+- [API Documentation](#api-documentation)
 
-Requirements:
+## Introduction
 
-Build the backend using Node.js, Express.js, and TypeScript for handling HTTP requests and responses with strict typing.
-Implement the necessary API endpoints for creating, retrieving, updating, and deleting tasks in the to-do list.
-Use a lightweight database (e.g., SQLite) to store the tasks.
-Ensure the API endpoints are RESTful and follow best practices in API design.
-Handle error cases and provide appropriate error responses with strict typing.
-Create Postman collection or Swagger documentation for your API endpoints to provide detailed information about the API requests and responses.
-Submission Details:
+The Task Manager API is designed to provide a straightforward way to manage tasks. It is built using the Express framework for handling HTTP requests and utilizes SQLite for the database.
 
-Fork this repository from GitHub [[https://github.com/zigyprints/backendDevelopmentApplications]].
-Create a branch with your name (e.g., "yourname_assignment").
-Commit your code regularly, so we can see your progress.
-Once completed, create a pull request from your branch to the main repository (replace "main repository" with the URL of the original repository).
-Include a README.md file explaining your approach, challenges faced, and any additional features or improvements you might have added if given more time.
-Include the link to your Postman collection documenter or Swagger documentation in the README.md file.
-Evaluation Criteria: Your assignment will be evaluated based on the following factors:
+## Endpoints
 
-Technical Proficiency - Demonstrating your skills in using Node.js, Express.js, TypeScript, and a database to build a functional backend for the To-Do List application with strict typing.
-Code Quality - Writing clean, well-structured, and maintainable code with proper comments and strict typing.
-API Design - Creating API endpoints following best practices for a smooth integration with the frontend application.
-Database Usage - Efficiently storing and retrieving data from the database.
-Error Handling - Implementing error handling mechanisms for a robust backend with strict typing.
-Documentation - Providing detailed Postman collection or Swagger documentation for the API endpoints.
-Submission Deadline: 3-4 days from the date you received this assignment.
+- `POST /api/`: Create a new task.
+- `GET /api/`: Get a list of all tasks.
+- `GET /api/:id`: Get details of a specific task.
+- `DELETE /api/:id`: Delete a task.
+- `PATCH /api/:id`: Update the status of a task.
 
-Good luck with the assignment! If you have any questions during the development process, feel free to reach out to us for clarification. Happy coding!
+## Getting Started
+
+1. Clone this repository.
+2. Install project dependencies using `npm install`.
+3. Start the server with `npm start`.
+
+## Usage
+
+- To create a new task, send a `POST` request to `/api/` with the task details.
+- To retrieve a list of all tasks, make a `GET` request to `/api/`.
+- To get details of a specific task, send a `GET` request to `/api/:id`.
+- To delete a task, use a `DELETE` request to `/api/tasks/:id`.
+- To update a task's status, send a `PATCH` request to `/api/:id`.
+
+## Challenges Faced
+
+While developing this API, I encountered challenges such as managing asynchronous operations, implementing error handling, and ensuring data validation. Utilizing async/await and creating a consistent error handling mechanism were key aspects. Also never to typescript had me searching and studing a lot about it and made me learn a lot.
+
+## Future Improvements
+
+Given additional time, I would consider incorporating user authentication and authorization for enhanced task management. Additionally, I would have added more robust error handling including multiple errors.
+
+## API Documentation
+
+For more detailed API documentation, you can refer to the following resources:
+
+- [Postman Collection Documenter](https://documenter.getpostman.com/view/26118247/2s9Y5crzAJ)
