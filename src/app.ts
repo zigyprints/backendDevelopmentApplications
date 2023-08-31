@@ -3,7 +3,6 @@ import dotenv from "dotenv";
 if (process.env.NODE_ENV !== "production") {
   dotenv.config();
 }
-console.log(process.env.DB_URl);
 import express, { Express, Request, Response } from "express";
 import mongoose from "mongoose";
 import { json, urlencoded } from "express";
