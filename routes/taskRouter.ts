@@ -3,7 +3,7 @@ const Router = express.Router();
 const taskController = require('../controllers/taskController.ts');
 
 
-// get all task for user with userId
+// get all task for user (user)
 Router.get('/',taskController.getTask);
 
 // post a task (userId will be in req.body)

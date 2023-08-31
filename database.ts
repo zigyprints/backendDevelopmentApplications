@@ -3,10 +3,10 @@ const sqlite3 = require('sqlite3').verbose();
 
 const db=new sqlite3.Database('./DB/todo.db',sqlite3.OPEN_READWRITE, (err:any) => {
     if (err) {
-        // can't open database
-        console.error(err.message);
+
+        // this error will be shutdow the app
+        // and log the err.message
         throw err;
-        return;
     }
 
     console.log('Connected to the todo database.');

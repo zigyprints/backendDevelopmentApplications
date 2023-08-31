@@ -2,14 +2,20 @@ const db=require('../database');
 const AppError= require('../utils/AppError');
 import { Request, Response, NextFunction } from 'express';
 
+/**
+ * Get all task of a user
+ * @route GET /api/v1/task
+ * @returns {object} statusCode:200 - List of all task
+ * @returns {Error}  statusCode:500 - Error message
+ */
 
 exports.getTask = (req:Request,res:Response,next:NextFunction) => {
     const userId:string=req.body.userId;
     const query:string=`SELECT * from TASK where userId=?`;
 
-    db.all(query,[userId],(err:Error,rows:any)=>{
+    db.all(query,[userId],(err:Error,rows:any[])=>{
         if(err){
-            return next(new AppError(err.message,));
+            return next(new AppError(err.message,500));
         }
 
         res.status(200).json({
@@ -22,6 +28,12 @@ exports.getTask = (req:Request,res:Response,next:NextFunction) => {
     });
 };
 
+/**
+ * Create task 
+ * @route POST /api/v1/task
+ * @returns {object} statusCode:201 - Id of newly created task
+ * @returns {Error}  statusCode:500 - Error message
+ */
 exports.createTask =  (req:Request,res:Response,next:NextFunction) => {
     
     const {userId,description}=req.body;
@@ -45,6 +57,13 @@ exports.createTask =  (req:Request,res:Response,next:NextFunction) => {
     });
 };
 
+
+/**
+ * Update task with taskId and userId
+ * @route PATCH /api/v1/task/:taskId
+ * @returns {object} statusCode:201 - Id of newly created task
+ * @returns {Error}  statusCode:500 || 404 - Error message || Not Found
+ */
 exports.updateTask = (req:Request,res:Response,next:NextFunction) => {
     
     const {userId,description}=req.body;
@@ -66,6 +85,12 @@ exports.updateTask = (req:Request,res:Response,next:NextFunction) => {
     });
 };
 
+/**
+ * Delete task with taskId and userId
+ * @route DELETE /api/v1/task/:taskId
+ * @returns {object} statusCode:201 - Id of newly created task
+ * @returns {Error}  statusCode:500 || 404 - Error message || Not Found
+ */
 exports.deleteTask = (req:Request,res:Response,next:NextFunction) => {
     const {userId}=req.body;
     const taskId:number=Number(req.params.taskId);

@@ -17,7 +17,7 @@ app.use(xss());
 app.use(
     helmet.contentSecurityPolicy({
         directives: {
-        defaultSrc: ["'self'", 'http://127.0.0.1:3000/*'],
+        defaultSrc: ["'self'", 'http://127.0.0.1:5000/*'],
         baseUri: ["'self'"],
         fontSrc: ["'self'", 'https:', 'data:'],
         scriptSrc: ["'self'", 'https://*.cloudflare.com','https://*.stripe.com', 'https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js'],
@@ -33,8 +33,12 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
+
+// endpoints
 app.use('/api/v1/task',taskRouter);
 
+
+// no endpoint matched
 app.all('*',(req:Request,res:Response,next:NextFunction)=>{
     next(new AppError(`Can't find ${req.originalUrl} on this server!`,404));
 });

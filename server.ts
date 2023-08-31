@@ -11,8 +11,7 @@ process.on('uncaughtException', (err:Error) => {
 
 const app:any  = require('./app.ts');
 
-
-const port = process.env.PORT || 5000;
+const port:number = Number(process.env.PORT) || 5000;
 
 const server = app.listen(port,()=> {
   console.log(`App is running in port ${port}`);
