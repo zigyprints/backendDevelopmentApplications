@@ -19,17 +19,20 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
 
 app.post('/api/v1/tasks', tryCatch(appController.saveTasks))
 
-app.get('/api/v1/tasks?', tryCatch(appController.getTasks))
+app.get('/api/v1/tasks', tryCatch(appController.getTasks))
+
+app.get('/api/v1/tasks/:taskid', tryCatch(appController.getTasks))
 
 app.patch('/api/v1/tasks?', tryCatch(appController.updateTasks))
 
-app.delete('/api/v1/tasks?', tryCatch(appController.deleteTasks))
+app.delete('/api/v1/tasks/:taskid', tryCatch(appController.deleteTasks))
 
 app.use('*', (req: Request, res: Response, next: NextFunction) => {
   next(new Error('Invalid Route!'))
 })
 
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
+  console.log(err)
   if (err.status !== 400)
     return res.status(err.status).send({ message: err.message })
   return res.status(500).send({ message: 'Internal Server Error' })
