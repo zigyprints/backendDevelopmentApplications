@@ -56,4 +56,14 @@ router.put("/:id", async (req: Request, res: Response) => {
   }
 });
 
+router.delete("/:id", async (req: Request, res: Response) => {
+  try {
+    const id: string = req.params.id;
+    await ToDo.findByIdAndDelete(id);
+    res.send("ToDo Deleted");
+  } catch (error) {
+    res.status(500).send("Error deleting ToDo");
+  }
+});
+
 export default router;

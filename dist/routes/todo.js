@@ -57,15 +57,26 @@ router.post("/create", (req, res) => __awaiter(void 0, void 0, void 0, function*
 router.put("/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { task, description, completed } = req.body;
-        const updatedToDo = yield todo_1.ToDo.findByIdAndUpdate(req.params.id, {
+        const id = req.params.id;
+        const updatedToDo = yield todo_1.ToDo.findByIdAndUpdate(id, {
             task,
             description,
             completed,
         });
-        res.send("Updated the blog");
+        res.send("Updated the Todo");
     }
     catch (error) {
-        res.status(500).send("Error updating blog");
+        res.status(500).send("Error updating ToDo");
+    }
+}));
+router.delete("/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const id = req.params.id;
+        yield todo_1.ToDo.findByIdAndDelete(id);
+        res.send("ToDo Deleted");
+    }
+    catch (error) {
+        res.status(500).send("Error deleting ToDo");
     }
 }));
 exports.default = router;
