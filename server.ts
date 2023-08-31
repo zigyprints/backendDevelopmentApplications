@@ -1,18 +1,15 @@
-export {};
-const sqlite3 = require('sqlite3').verbose();
 const dotenv = require('dotenv');
-
-const app:any  = require('./app.ts');
-
 dotenv.config({path: './config.env'});
 
-const db=new sqlite3.Database('./DB/todo.db',sqlite3.OPEN_READWRITE, (err:any) => {
-    if (err) {
-      return console.error(err.message);
-    }
-    
-    console.log('Connected to the todo database.');
+
+process.on('uncaughtException', (err:Error) => {
+  console.log('UNHANDLED EXCEPTION!💥 Shutting down....')
+  console.log(err.name,err.message);
+  process.exit(1);
 });
+
+
+const app:any  = require('./app.ts');
 
 
 const port = process.env.PORT || 5000;

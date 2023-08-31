@@ -1,8 +1,13 @@
 const express = require('express');
 const helmet = require('helmet');
 const xss = require('xss-clean');
-
 const app = express();
+
+import { NextFunction, Request, Response } from 'express';
+
+const taskRouter= require('./routes/taskRouter.ts');
+const AppError = require('./utils/appError');
+const globalErrorHandler= require('./controllers/errorController');
 
 
 // Data Sanitization against XSS
@@ -28,10 +33,13 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-app.get('/mango',(req:any,res:any)=>{
-    res.status(200).json({
-        data: ['mango1','mango2']
-    });
+app.use('/api/v1/task',taskRouter);
+
+app.all('*',(req:Request,res:Response,next:NextFunction)=>{
+    next(new AppError(`Can't find ${req.originalUrl} on this server!`,404));
 });
+
+
+app.use(globalErrorHandler);
 
 module.exports=app;
