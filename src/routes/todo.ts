@@ -12,4 +12,19 @@ router.get("/", async (req: Request, res: Response) => {
   }
 });
 
+router.post("/create", async (req: Request, res: Response) => {
+  try {
+    const { task, description, completed } = req.body;
+    const newToDo = new ToDo({
+      task,
+      description,
+      completed,
+    });
+    await newToDo.save();
+    res.send("ToDo Created");
+  } catch (error) {
+    res.status(500).send("Error creating ToDo");
+  }
+});
+
 export default router;

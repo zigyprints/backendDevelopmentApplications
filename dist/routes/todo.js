@@ -24,5 +24,20 @@ router.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         res.status(500).send("Error fetching todos");
     }
 }));
+router.post("/create", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { task, description, completed } = req.body;
+        const newToDo = new todo_1.ToDo({
+            task,
+            description,
+            completed,
+        });
+        yield newToDo.save();
+        res.send("ToDo Created");
+    }
+    catch (error) {
+        res.status(500).send("Error creating ToDo");
+    }
+}));
 exports.default = router;
 //# sourceMappingURL=todo.js.map
