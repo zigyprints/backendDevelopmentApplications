@@ -10,7 +10,7 @@ import { json, urlencoded } from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import { ToDo } from "./models/todo";
-
+import ToDoRoutes from "./routes/todo";
 const app: Express = express();
 
 const dbUrl: string = process.env.DB_URL || "";
@@ -30,7 +30,7 @@ app.use(cors());
 app.get("/", (req: Request, res: Response) => {
   res.send("Welcome to the ToDo API");
 });
-
+app.use("/todos", ToDoRoutes);
 const port: number = parseInt(process.env.PORT || "3000");
 
 app.listen(port, () => {

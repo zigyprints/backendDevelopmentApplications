@@ -24,4 +24,5 @@ router.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         res.status(500).send("Error fetching todos");
     }
 }));
-//# sourceMappingURL=todos.js.map
+exports.default = router;
+//# sourceMappingURL=todo.js.map

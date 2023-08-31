@@ -12,6 +12,7 @@ const express_1 = __importDefault(require("express"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const cors_1 = __importDefault(require("cors"));
 const body_parser_1 = __importDefault(require("body-parser"));
+const todo_1 = __importDefault(require("./routes/todo"));
 const app = (0, express_1.default)();
 const dbUrl = process.env.DB_URL || "";
 mongoose_1.default
@@ -28,7 +29,7 @@ app.use((0, cors_1.default)());
 app.get("/", (req, res) => {
     res.send("Welcome to the ToDo API");
 });
-// app.use("/todos", ToDosRoutes);
+app.use("/todos", todo_1.default);
 const port = parseInt(process.env.PORT || "3000");
 app.listen(port, () => {
     console.log(`Serving on port ${port}`);
