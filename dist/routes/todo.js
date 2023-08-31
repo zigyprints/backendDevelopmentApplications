@@ -27,12 +27,12 @@ router.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 router.get("/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const id = req.params.id;
-        const todos = yield todo_1.ToDo.findById(id);
-        if (!todos) {
+        const todo = yield todo_1.ToDo.findById(id);
+        if (!todo) {
             res.send("ToDo not found");
         }
         else {
-            res.send(todos);
+            res.send(todo);
         }
     }
     catch (error) {
@@ -52,6 +52,20 @@ router.post("/create", (req, res) => __awaiter(void 0, void 0, void 0, function*
     }
     catch (error) {
         res.status(500).send("Error creating ToDo");
+    }
+}));
+router.put("/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { task, description, completed } = req.body;
+        const updatedToDo = yield todo_1.ToDo.findByIdAndUpdate(req.params.id, {
+            task,
+            description,
+            completed,
+        });
+        res.send("Updated the blog");
+    }
+    catch (error) {
+        res.status(500).send("Error updating blog");
     }
 }));
 exports.default = router;

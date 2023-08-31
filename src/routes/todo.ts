@@ -15,11 +15,11 @@ router.get("/", async (req: Request, res: Response) => {
 router.get("/:id", async (req: Request, res: Response) => {
   try {
     const id: string = req.params.id;
-    const todos: todo = await ToDo.findById(id);
-    if (!todos) {
+    const todo: todo = await ToDo.findById(id);
+    if (!todo) {
       res.send("ToDo not found");
     } else {
-      res.send(todos);
+      res.send(todo);
     }
   } catch (error) {
     res.status(500).send("Error fetching ToDo");
@@ -28,7 +28,7 @@ router.get("/:id", async (req: Request, res: Response) => {
 
 router.post("/create", async (req: Request, res: Response) => {
   try {
-    const { task, description, completed } = req.body;
+    const { task, description, completed }: todo = req.body;
     const newToDo = new ToDo({
       task,
       description,
@@ -38,6 +38,20 @@ router.post("/create", async (req: Request, res: Response) => {
     res.send("ToDo Created");
   } catch (error) {
     res.status(500).send("Error creating ToDo");
+  }
+});
+
+router.put("/:id", async (req: Request, res: Response) => {
+  try {
+    const { task, description, completed }: todo = req.body;
+    const updatedToDo = await ToDo.findByIdAndUpdate(req.params.id, {
+      task,
+      description,
+      completed,
+    });
+    res.send("Updated the Todo");
+  } catch (error) {
+    res.status(500).send("Error updating ToDo");
   }
 });
 
