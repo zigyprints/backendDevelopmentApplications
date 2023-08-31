@@ -35,7 +35,7 @@ The Task Manager API is designed to provide a straightforward way to manage task
 - To create a new task, send a `POST` request to `/api/` with the task details.
 - To retrieve a list of all tasks, make a `GET` request to `/api/`.
 - To get details of a specific task, send a `GET` request to `/api/:id`.
-- To delete a task, use a `DELETE` request to `/api/tasks/:id`.
+- To delete a task, use a `DELETE` request to `/api/:id`.
 - To update a task's status, send a `PATCH` request to `/api/:id`.
 
 ## Challenges Faced
