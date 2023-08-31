@@ -3,6 +3,7 @@ import mongoose  from 'mongoose';
 import { ITodo } from '../interfaces';
 import ToDoModel from '../models/todoModel';
 
+// Retrieve all To-Dos from the database
 const getTodos = async (req : Request, res : Response, next : NextFunction) => {
     try {
         const todoList = await ToDoModel.find().select("name description createdAt isCompleted");
@@ -21,6 +22,7 @@ const getTodos = async (req : Request, res : Response, next : NextFunction) => {
     }
 }   
 
+// Retrieve a single To-Do from the database by passing its ID
 const getTodoById = async(req : Request, res: Response, next: NextFunction) => {
 
     const {id} = req.params;
@@ -54,6 +56,7 @@ const getTodoById = async(req : Request, res: Response, next: NextFunction) => {
 
 }
 
+// Create a new To-Do and add it to the database
 const createTodo = async (req: Request,  res: Response, next: NextFunction) => {
     const {name , description} = req.body;
 
@@ -99,6 +102,7 @@ const createTodo = async (req: Request,  res: Response, next: NextFunction) => {
     }
 }
 
+// Update a single To-Do from the database by passing its ID
 const updateTodo = async(req: Request, res : Response, next: NextFunction)=> {
     const {name, description, isCompleted} = req.body;
     const {id} = req.params;
@@ -150,6 +154,7 @@ const updateTodo = async(req: Request, res : Response, next: NextFunction)=> {
     }
 } 
 
+// Delete a single To-Do from the database by passing its ID
 const deleteTodo  = async(req: Request, res: Response, next: NextFunction) => {
     const {id} = req.params;
 

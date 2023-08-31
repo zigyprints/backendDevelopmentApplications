@@ -26,5 +26,4 @@ const todoSchema = new mongoose.Schema<ITodo>({
 
 const ToDoModel = mongoose.model<ITodo>("To-Do", todoSchema);
 
-export default ToDoModel
-;
+export default ToDoModel;
