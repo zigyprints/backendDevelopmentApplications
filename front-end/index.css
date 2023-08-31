@@ -24,3 +24,13 @@ p{
     width: 30%;
     background-color: lightpink;
 }
+#t{
+    font-size: large;
+}
+#new_div{
+    border: solid black 2px;
+    padding: 10px;
+    margin: 10px 10px;
+    width: 30%;
+    font-size: large;
+}

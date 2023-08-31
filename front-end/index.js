@@ -1,13 +1,61 @@
-const APILINK = "http://localhost:3000/";
+
+const APILINK = "http://localhost:3000/api/v1/tasks";
 const main = document.getElementById("tasks");
+const create = document.getElementById("create");
+const newTask = document.getElementById("newTask");
+// create.innerText = "Create Task";
+// const complete = document.getElementById("complete");
+// const incomplete = document.getElementById("incomplete");
+
+// console.log(complete, incomplete);
 
 returnTasks(APILINK);
+
+function createTask(){
+  const new_div = document.createElement('div');
+  const uniqueId = Date.now();
+  new_div.setAttribute("id", "new_div")
+  new_div.innerHTML = `
+    <input id="t_${uniqueId}" type="text" placeholder="enter task..."><br/>
+    <a href="#" onclick="addTask('t_${uniqueId}')">save</a>
+  `
+  newTask.appendChild(new_div);
+}
+
+function addTask(task_id){
+  const task = document.getElementById(task_id).value;
+  const requestOptions = {
+    method:"POST",
+    headers: {
+      'Content-Type': 'application/json', // Specify the content type as JSON
+    },
+    body: JSON.stringify({"task": task})
+  }
+  fetch(APILINK, requestOptions)
+  .then(res=>res.json())
+  .then(res=>{
+    if (res.error) 
+      alert(res.error);
+    else{
+    console.log(res);
+    location.reload();
+  }
+  })
+  .catch(error=>{
+    throw error;
+  })
+}
 
 function returnTasks(url){
     fetch(url)
     .then(res=>res.json())
     .then(function(data){
         console.log(data.tasks);
+         
+        create.onclick = createTask;
+        // create.innerHTML = `
+        //   <a href="" onclick="createTask()"></a>
+        // `
         data.tasks.forEach(task => {
             const div_task = document.createElement('div');
             div_task.innerHTML = `
@@ -21,6 +69,21 @@ function returnTasks(url){
             main.appendChild(div_task);
         });
     })
+}
+
+function deleteTask(id){
+  const requestOptions = {
+    method:'DELETE',
+    headers: {
+      'Content-Type': 'application/json', // Specify the content type as JSON
+    },
+    body: JSON.stringify({_id: id})
+  }
+  fetch(APILINK, requestOptions)
+  .then(res=> res.json())
+  .then(res=>{
+    location.reload();
+  })
 }
 
 function editTask(id, d){

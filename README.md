@@ -1,35 +1,37 @@
-Assignment: Simple Backend API Development with TypeScript
+I have included a basic front-end which will make testing easier....
 
-Duration: 3-4 days
+My approach:
+1. Each task in the list has 2 values: Task(string) and completed(boolean). The completed is set to false by default.
 
-Instructions: Welcome to our Simple Backend API Development assignment! In this task, you will build a basic RESTful API backend using Node.js, Express.js, TypeScript, and a lightweight database. This project aims to assess your skills in setting up a backend server and handling API requests with strict typing.
+2. I used MongoDB as the light weight database to store the tasks. Each request/operation to database is performed using "Mongoose".
 
-Task: You are required to create a backend web application that provides API endpoints to interact with a simple "To-Do List" application. The frontend (To-Do List app) will be built separately and will communicate with your backend through the provided API endpoints. The backend should allow users to create, retrieve, update, and delete tasks from their to-do list.
+3. First, all tasks in the database are shown.
 
-Requirements:
+4. If you finished a task, click on "edit" and check the checkbox next to "completed". Next, click "save" to update the "completed" to true.
 
-Build the backend using Node.js, Express.js, and TypeScript for handling HTTP requests and responses with strict typing.
-Implement the necessary API endpoints for creating, retrieving, updating, and deleting tasks in the to-do list.
-Use a lightweight database (e.g., SQLite) to store the tasks.
-Ensure the API endpoints are RESTful and follow best practices in API design.
-Handle error cases and provide appropriate error responses with strict typing.
-Create Postman collection or Swagger documentation for your API endpoints to provide detailed information about the API requests and responses.
-Submission Details:
+5. Delete a task by clicking on delete.
 
-Fork this repository from GitHub [[https://github.com/zigyprints/backendDevelopmentApplications]].
-Create a branch with your name (e.g., "yourname_assignment").
-Commit your code regularly, so we can see your progress.
-Once completed, create a pull request from your branch to the main repository (replace "main repository" with the URL of the original repository).
-Include a README.md file explaining your approach, challenges faced, and any additional features or improvements you might have added if given more time.
-Include the link to your Postman collection documenter or Swagger documentation in the README.md file.
-Evaluation Criteria: Your assignment will be evaluated based on the following factors:
+6. I've used middlewares to handle errors.
 
-Technical Proficiency - Demonstrating your skills in using Node.js, Express.js, TypeScript, and a database to build a functional backend for the To-Do List application with strict typing.
-Code Quality - Writing clean, well-structured, and maintainable code with proper comments and strict typing.
-API Design - Creating API endpoints following best practices for a smooth integration with the frontend application.
-Database Usage - Efficiently storing and retrieving data from the database.
-Error Handling - Implementing error handling mechanisms for a robust backend with strict typing.
-Documentation - Providing detailed Postman collection or Swagger documentation for the API endpoints.
-Submission Deadline: 3-4 days from the date you received this assignment.
+7. you can also filter the tasks based on whether they are "completed" or not. This will show only the tasks with the specified completion status.
 
-Good luck with the assignment! If you have any questions during the development process, feel free to reach out to us for clarification. Happy coding!
+
+Challenges:
+1. I only know the basics of TypeScript because I used it to create another simple web app which uses NestJS for the backend. This was an assessment 
+    which was part of the hiring process of another start-up. I had to learn TypeScript again for NodeJS as I had only used it for that specific assignment, and I'm used to writing in JavaScript for NodeJS. This was a little time consuming.
+
+
+
+Additional features I could've added with more time:
+1. Intuitive search function which can search through all the tasks and return the tasks matching the keywords.
+
+2. User Authentication and Authorization.
+
+3. I also thought of seperating the tasks based on categories.
+
+
+
+Misc:
+1. I have also include the Postman collection json file in Github called "task-manager.postman_collection".
+
+2. The front-end doesn't include the filter option. This is also another feature I could've incorporated if I had more time.

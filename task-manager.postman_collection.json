@@ -1,0 +1,138 @@
+{
+	"info": {
+		"_postman_id": "1aca1717-250d-4ae6-8b55-605b5ebec4fd",
+		"name": "task-manager",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10891463"
+	},
+	"item": [
+		{
+			"name": "Create task",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"task\":\"project\",\r\n    \"completed\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}",
+					"host": [
+						"{{URL}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get tasks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete task",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"task\":\"project\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}",
+					"host": [
+						"{{URL}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update task",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"completed\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/update/64f0c035016c3f6dd19b88fe",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"update",
+						"64f0c035016c3f6dd19b88fe"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get tasks (completed or incomplete)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/query?completed=false",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"query"
+					],
+					"query": [
+						{
+							"key": "completed",
+							"value": "false"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

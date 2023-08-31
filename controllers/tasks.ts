@@ -1,53 +1,57 @@
 import Task from '../db/connect';
+import { asyncWrapper } from '../middleware/async';
 import  { Request, Response, NextFunction } from 'express';
+import {createCustomError} from '../errors/custom-error';
 
 
 export default class TaskController {
-    static async createTask(req: Request, res: Response){
-        try {
-            const taskResponse = await Task.create(req.body);
-            res.json({taskResponse});
-        } catch (error: any) {
-            res.status(400).json({error: error.message});
-        }
-    }
 
-    static async getTasks(req: Request, res: Response){
-        try {
+    static createTask = asyncWrapper(async (req: Request, res: Response, next: NextFunction)=>{
+        const task = req.body.task;
+        if(task.length<3){                                                                
+                return next(createCustomError(`Task length should atleast be 3`, 400));         //task length should be atleast 3
+        }
+        const tasks = await Task.create(req.body); 
+        res.status(201).json({tasks});                                                          //successfully created
+    })
+
+    static getTasks =  asyncWrapper(async (req: Request, res: Response, next: NextFunction)=>{
             const tasks = await Task.find();
-            res.json({tasks});
-        } catch (error: any) {
-            res.status(404).json({error: error.message});
-        }
-    }
+            res.status(200).json({tasks});                                                     //get all tasks
+    })
 
-    static async deleteTask(req: Request, res: Response){
-        try {
+    static deleteTask= asyncWrapper(async (req: Request, res: Response, next: NextFunction)=>{
             const tasks = await Task.findOneAndDelete(req.body);
-            res.json({tasks});
-        } catch (error: any) {
-            res.status(404).json({error: error.message});
-        }
-    }
+            if(!tasks){
+                return next(createCustomError(`No task called: ${req.body.task}`, 404));               //no task found with that name
+            }
+            res.status(200).json({tasks});                                                     //successfully deleted
+    })
 
-    static async updateTask(req: Request, res: Response){
-        try {
+    static updateTask = asyncWrapper(async (req: Request, res: Response, next: NextFunction)=>{
             const id = req.params.id;
+            if(id.length!=24){
+                return next(createCustomError(`Invalid id: id length should be 24`, 422));                     //length of id is always 24
+            }
             const tasks = await Task.findOneAndUpdate({_id:id}, req.body, {new:true, runValidators:true});
-            res.json({tasks});
-        } catch (error: any) {
-            res.status(400).json({error: error.message});
-        }
-    }
+            if(!tasks){
+                return next(createCustomError(`No task with id: ${id}`, 404));                                  //no task found with that id
+            }
+            res.status(200).json({tasks});                                                                      //successfully updated
+    })
 
-    static async getTask(req: Request, res: Response){
-        try {
-            const query = req.query.task;
-            // const tasks = await Task.find(query);
-            const tasks = await Task.find({ task: { $regex: `^${query}`, $options: 'i' } });
-            res.json({tasks});
-        } catch (error: any) {
-            res.status(404).json({error: error.message});
-        }
-    }
+
+    //get all tasks which are completed/incomplete    (or) complete = true / complete = false
+
+    static getTask = asyncWrapper(async (req: Request, res: Response, next: NextFunction)=>{
+            const query = req.query.completed;
+            if (query !== 'true' && query !== 'false') {                                                       //true or false are the only choices
+                return next(createCustomError('Invalid value for completed parameter. Use true or false.', 400));
+            }
+            const tasks = await Task.find({ "completed":query });
+            if(!tasks){
+                return next(createCustomError(`No tasks found`, 404));
+            }
+            res.status(200).json({tasks});                                                                     ////successfully returned tasks
+    })
 }

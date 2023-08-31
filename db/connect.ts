@@ -1,13 +1,8 @@
 import  mongoose  from "mongoose";
 // import { boolean } from "webidl-conversions";
 
-export const connectDB = (url: string) => {                            //use strict typing here.........................
-    return mongoose.connect(url, {
-    //   useNewUrlParser: true,
-    //   useCreateIndex: true,
-    //   useFindAndModify: false,
-    //   useUnifiedTopology: true,
-    })
+export const connectDB = (url: string) => {                          
+    return mongoose.connect(url);
   }
 
   const taskSchema = new mongoose.Schema({
@@ -23,4 +18,3 @@ export const connectDB = (url: string) => {                            //use str
   })
 
   export default mongoose.model('task', taskSchema);
-//   export default {connectDB, taskSchema};
