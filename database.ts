@@ -12,12 +12,12 @@ const db=new sqlite3.Database('./DB/todo.db',sqlite3.OPEN_READWRITE, (err:any) =
     console.log('Connected to the todo database.');
 
     const sql=`CREATE table TASK (
-        taskId INTEGER PRIMARY KEY AUTO_INCREMENT,
+        taskId INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
         userId VARCHAR(50),
         description VARCHAR(255),
         timestamp DATETIME
     );`;
-    
+        
     db.run(sql,(err:Error)=>{
         if (err) {
             console.log('Table already created.');

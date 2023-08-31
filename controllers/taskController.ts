@@ -32,7 +32,7 @@ exports.getTask = (req:Request,res:Response,next:NextFunction) => {
  * Create task 
  * @route POST /api/v1/task
  * @returns {object} statusCode:201 - Id of newly created task
- * @returns {Error}  statusCode:500 - Error message
+ * @returns {Error}  statusCode:400 - Error message
  */
 exports.createTask =  (req:Request,res:Response,next:NextFunction) => {
     
@@ -42,7 +42,7 @@ exports.createTask =  (req:Request,res:Response,next:NextFunction) => {
 
     db.run(query,[userId,description,Date.now()],function(this: import('sqlite3').RunResult,err:Error){
         if(err){
-            return next(new AppError('Unable to create task.Please try again!',500));
+            return next(new AppError(err.message,400));
         }
 
         const taskId:number=this.lastID;
@@ -73,7 +73,7 @@ exports.updateTask = (req:Request,res:Response,next:NextFunction) => {
 
     db.run(query,[description,taskId],function(this: import('sqlite3').RunResult,err:Error){
         if(err){
-            return  next(new AppError('Unable to update. Please try again!',500));
+            return  next(new AppError(err.message,400));
         }
         if(this.changes == 0){
             return next(new AppError(`No such item exist with taskId: ${taskId} exist for userId: ${userId}`,404));
@@ -89,7 +89,7 @@ exports.updateTask = (req:Request,res:Response,next:NextFunction) => {
  * Delete task with taskId and userId
  * @route DELETE /api/v1/task/:taskId
  * @returns {object} statusCode:201 - Id of newly created task
- * @returns {Error}  statusCode:500 || 404 - Error message || Not Found
+ * @returns {Error}  statusCode:400 || 404 - Error message || Not Found
  */
 exports.deleteTask = (req:Request,res:Response,next:NextFunction) => {
     const {userId}=req.body;
@@ -99,7 +99,7 @@ exports.deleteTask = (req:Request,res:Response,next:NextFunction) => {
 
     db.run(query,[taskId,userId],function(this: import('sqlite3').RunResult,err:Error){
         if(err){
-            return next(new AppError('Unable to delete. Please try again!',500));
+            return next(new AppError(err.message,400));
         }
         if(this.changes == 0){
             return next(new AppError(`No item with taskId: ${taskId} exist for userId: ${userId}`,404));
