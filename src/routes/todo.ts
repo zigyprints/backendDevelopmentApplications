@@ -44,7 +44,8 @@ router.post("/create", async (req: Request, res: Response) => {
 router.put("/:id", async (req: Request, res: Response) => {
   try {
     const { task, description, completed }: todo = req.body;
-    const updatedToDo = await ToDo.findByIdAndUpdate(req.params.id, {
+    const id: string = req.params.id;
+    const updatedToDo = await ToDo.findByIdAndUpdate(id, {
       task,
       description,
       completed,
