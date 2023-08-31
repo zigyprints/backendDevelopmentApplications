@@ -4,14 +4,14 @@ import { Request, Response, NextFunction } from 'express';
 
 
 exports.getTask = (req:Request,res:Response,next:NextFunction) => {
-    const userId=req.body.userId;
-    const query=`SELECT * from TASK where userId=?`;
+    const userId:string=req.body.userId;
+    const query:string=`SELECT * from TASK where userId=?`;
 
     db.all(query,[userId],(err:Error,rows:any)=>{
         if(err){
             return next(new AppError(err.message,));
         }
-        
+
         res.status(200).json({
             status: 'success',
             data:{
@@ -26,14 +26,14 @@ exports.createTask =  (req:Request,res:Response,next:NextFunction) => {
     
     const {userId,description}=req.body;
     
-    const query=`INSERT INTO TASK (userId,description,timestamp) VALUES (?,?,?);`;
+    const query:string=`INSERT INTO TASK (userId,description,timestamp) VALUES (?,?,?);`;
 
     db.run(query,[userId,description,Date.now()],function(this: import('sqlite3').RunResult,err:Error){
         if(err){
             return next(new AppError('Unable to create task.Please try again!',500));
         }
 
-        const taskId=this.lastID;
+        const taskId:number=this.lastID;
         
         res.status(201).json({
             status: 'success',
@@ -48,9 +48,9 @@ exports.createTask =  (req:Request,res:Response,next:NextFunction) => {
 exports.updateTask = (req:Request,res:Response,next:NextFunction) => {
     
     const {userId,description}=req.body;
-    const taskId=req.params.taskId;
+    const taskId:number=Number(req.params.taskId);
 
-    const query=`UPDATE TASK SET description=? WHERE taskId=?;`;
+    const query:string=`UPDATE TASK SET description=? WHERE taskId=?;`;
 
     db.run(query,[description,taskId],function(this: import('sqlite3').RunResult,err:Error){
         if(err){
@@ -68,9 +68,9 @@ exports.updateTask = (req:Request,res:Response,next:NextFunction) => {
 
 exports.deleteTask = (req:Request,res:Response,next:NextFunction) => {
     const {userId}=req.body;
-    const taskId=req.params.taskId;
+    const taskId:number=Number(req.params.taskId);
 
-    const query=`DELETE FROM TASK WHERE taskId=? AND userId=?;`;
+    const query:string=`DELETE FROM TASK WHERE taskId=? AND userId=?;`;
 
     db.run(query,[taskId,userId],function(this: import('sqlite3').RunResult,err:Error){
         if(err){
