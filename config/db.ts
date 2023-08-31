@@ -1,5 +1,5 @@
 // src/db.ts
-import sqlite3 from 'sqlite3';
+import * as sqlite3 from 'sqlite3';
 import { open } from 'sqlite';
 
 async function connect() {
