@@ -11,7 +11,7 @@ Delete existing To-Dos
 Tech Stack:
 Node.js for the backend with Express framework
 Used TypeScript for strict typing
-MongoDB Atlas for database
+SQlite for database
 get request
 ![image](https://github.com/TEJASWANTH123/backendDevelopmentApplications/assets/93636836/67e695aa-0128-437f-9309-6443f02eda37)
 post request
