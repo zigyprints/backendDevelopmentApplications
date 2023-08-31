@@ -1,5 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import todoModel from "./../model/todoModel";
+import appError from "./../utils/appError";
+import asyncWrapper from "../utils/asyncWrapper";
 
 function setter(query: string, param: any[]): Promise<any[]> {
     return new Promise((resolve, reject) => {
@@ -13,64 +15,48 @@ function setter(query: string, param: any[]): Promise<any[]> {
     })
 }
 
-export const getAllTask = async (req: Request, res: Response, next: NextFunction) => {
-    try {
+// function check_ID(id: string){
+//     const query = `SELECT * FROM TASK WHERE ID = ? LIMIT 1`;
+//     const result = todoModel.db.all(query,[id]); 
+//     return Object.keys(result).length === 1;
+// }
+
+export const getAllTask = asyncWrapper(async (req: Request, res: Response, next: NextFunction) => {
         const query = 'SELECT * FROM TASK';
         const task = await setter(query, []);
         res.status(200).json({
             status: 'success',
             data: task
         });
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({
-            status: 'fail',
-            message: error.message
-        });
-    }
-    next();
-}
+});
 
-export const getATask = async (req: Request, res: Response, next: NextFunction) => {
-    try {
+export const getATask = asyncWrapper(async (req: Request, res: Response, next: NextFunction) => {
+
         const query = `SELECT * FROM TASK WHERE ID = ?`;
         const task = await setter(query, [req.params.id]);
-        if(Object.keys(task).length === 0){
-            throw new Error('No Task with this ID');
+        
+        if(task.length === 0){
+            next(new appError('No Data with this ID', 404));
         }
+
         res.status(200).json({
             status: 'success',
             data: task
         });
-    } catch (error) {
-        res.status(400).json({
-            status: 'fail',
-            message: error.message
-        });
     }
-    next();
-}
+)
 
-export const deleteATask = async (req: Request, res: Response, next: NextFunction) => {
-    try {
+export const deleteATask = asyncWrapper(async (req: Request, res: Response, next: NextFunction) => {
         const query = 'DELETE FROM TASK WHERE ID = ?';
         const values = [req.params.id];
         const task = await setter(query, values);
 
         res.status(200).json({
             status: 'Success',
-            data: task
         })
-    } catch (error) {
-        res.status(400).json({
-            status: "fail",
-            message: error.message
-        })
-    }
-}
+})
 
-export const updateATask = async (req: Request, res: Response, next: NextFunction) => {
-    try {
+export const updateATask = asyncWrapper( async (req: Request, res: Response, next: NextFunction) => {
         const currentDate = new Date();
         let formattedDate = currentDate.toISOString().replace(/T/, ' ').replace(/\..+/, '');
 
@@ -86,20 +72,10 @@ export const updateATask = async (req: Request, res: Response, next: NextFunctio
         const task = await setter(query, values);
         res.status(200).json({
             status: 'success',
-            data: task
         })
-    } catch (error) {
-        console.log(error);
-        
-        res.status(400).json({
-            status: 'fail',
-            message: error.message
-        })
-    }
-}
+})
 
-export const addATask = async (req: Request, res: Response, next: NextFunction) => {
-    try {
+export const addATask = asyncWrapper(async (req: Request, res: Response, next: NextFunction) => {
         const currentDate = new Date();
         const formattedDate = currentDate.toISOString().replace(/T/, ' ').replace(/\..+/, '');      // Format date as 'YYYY-MM-DD HH:MM:SS'
         
@@ -110,8 +86,4 @@ export const addATask = async (req: Request, res: Response, next: NextFunction) 
         res.status(200).json({
             status: 'success',
         });
-    } catch (error) {
-        res.status(400).json(error);
-    }
-    next();
-}
+})
