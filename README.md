@@ -1,9 +1,17 @@
-Using Node.js, Express.js, and TypeScript, and sqlite.  
+Description:
+This is a basic CRUD (Create, Read, Update, Delete) backend for a To-Do list application. It provides endpoints to create, retrieve, update, and delete To-Dos in the to-do list.
 
-Challenges faced in connecting with SQLite and tried to work on it.
-with more time could have added swagger and docker to the project.
-https://www.postman.com/interstellar-shuttle-474792/workspace/backend/request/28012338-b1a2a912-ff94-4fc0-bab8-50de668640f7
+Features:
+A user can:
 
+Create new To-Dos
+Read information about existing To-Dos (name, description, status and creation date)
+Update existing To-Dos i.e. mark them as done/undone, change their name and description
+Delete existing To-Dos
+Tech Stack:
+Node.js for the backend with Express framework
+Used TypeScript for strict typing
+MongoDB Atlas for database
 get request
 ![image](https://github.com/TEJASWANTH123/backendDevelopmentApplications/assets/93636836/67e695aa-0128-437f-9309-6443f02eda37)
 post request
