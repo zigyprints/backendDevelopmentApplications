@@ -24,6 +24,21 @@ router.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         res.status(500).send("Error fetching todos");
     }
 }));
+router.get("/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const id = req.params.id;
+        const todos = yield todo_1.ToDo.findById(id);
+        if (!todos) {
+            res.send("ToDo not found");
+        }
+        else {
+            res.send(todos);
+        }
+    }
+    catch (error) {
+        res.status(500).send("Error fetching ToDo");
+    }
+}));
 router.post("/create", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { task, description, completed } = req.body;

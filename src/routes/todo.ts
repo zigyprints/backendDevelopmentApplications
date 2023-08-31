@@ -1,14 +1,28 @@
 import express, { Request, Response } from "express";
 import { ToDo } from "../models/todo";
-
+import { todo } from "../interfaces/interface";
 const router = express.Router();
 
 router.get("/", async (req: Request, res: Response) => {
   try {
-    const todos = await ToDo.find({});
+    const todos: todo[] = await ToDo.find({});
     res.send(todos);
   } catch (error) {
     res.status(500).send("Error fetching todos");
+  }
+});
+
+router.get("/:id", async (req: Request, res: Response) => {
+  try {
+    const id: string = req.params.id;
+    const todos: todo = await ToDo.findById(id);
+    if (!todos) {
+      res.send("ToDo not found");
+    } else {
+      res.send(todos);
+    }
+  } catch (error) {
+    res.status(500).send("Error fetching ToDo");
   }
 });
 
