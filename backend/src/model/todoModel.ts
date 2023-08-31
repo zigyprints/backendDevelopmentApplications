@@ -1,29 +1,34 @@
-import sqlite from "sqlite3"
-import path from "path"
+import sqlite from "sqlite3";
 
-sqlite.verbose();                       //gives detail about database longer stack traces
+// Enable verbose mode for more detailed database information
+sqlite.verbose();
 
-class todoModel{
-    public db: sqlite.Database; 
+class TodoModel {
+    public db: sqlite.Database;
 
-    constructor(){
+    constructor() {
         this.db = new sqlite.Database('./src/db/todo.db', (err) => {
-            if(err){
+            if (err) {
                 console.log(err);
-            }
-            else{
+            } else {
                 console.log('Connected to the database');
             }
         });
         this.initialize();
     }
-    initialize(){
-            this.db.run('CREATE TABLE IF NOT EXISTS TASK(ID INTEGER PRIMARY KEY NOT NULL, TASK TEXT NOT NULL, COMPLETED BOOLEAN NOT NULL, ST_DATE DATETIME NOT NULL, FN_DATE DATETIME)');
-    }
 
+    // Initialize the database schema
+    initialize() {
+        this.db.run(`
+            CREATE TABLE IF NOT EXISTS TASK(
+                ID INTEGER PRIMARY KEY NOT NULL,
+                TASK TEXT NOT NULL,
+                COMPLETED BOOLEAN NOT NULL,
+                ST_DATE DATETIME NOT NULL,
+                FN_DATE DATETIME
+            )
+        `);
+    }
 }
 
-export default new todoModel();
-
-
-
+export default new TodoModel();
