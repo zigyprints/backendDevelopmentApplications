@@ -2,6 +2,8 @@ import express, { Request, Response, NextFunction, Application } from 'express'
 import { config } from './config/app.config'
 import { appController } from './controller/app.controller'
 import { tryCatch } from './utils/trycatch.utils'
+import { errorHandler } from './middleware/error.middleware'
+import { CustomError } from './error/custom.error'
 
 const app: Application = express()
 
@@ -17,6 +19,10 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   next()
 })
 
+app.get('/api/v1', (req: Request, res: Response, next: NextFunction) => {
+  return res.sendStatus(200)
+})
+
 app.post('/api/v1/tasks', tryCatch(appController.saveTasks))
 
 app.get('/api/v1/tasks', tryCatch(appController.getTasks))
@@ -28,11 +34,9 @@ app.patch('/api/v1/tasks/:taskid', tryCatch(appController.updateTasks))
 app.delete('/api/v1/tasks/:taskid', tryCatch(appController.deleteTasks))
 
 app.use('*', (req: Request, res: Response, next: NextFunction) => {
-  next(new Error('Invalid Route!'))
+  next(CustomError.invalidRouteError('Invalid Routes!'))
 })
 
-app.use((err: any, req: Request, res: Response, next: NextFunction) => {
-  return res.status(500).send({ message: err.message })
-})
+app.use(errorHandler)
 
 export default app

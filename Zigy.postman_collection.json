@@ -1,0 +1,159 @@
+{
+	"info": {
+		"_postman_id": "788bf84b-426b-40d5-8df6-46c61bc0e534",
+		"name": "Zigy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "14277613"
+	},
+	"item": [
+		{
+			"name": "GET all todo",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImlIYXJvb24yOSIsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTY5MzQwMjg4NCwiZXhwIjoxNjkzNDA2NDg0fQ.sKmOt_4u9HRtZSfPNSGxXfHXqsUuClTrBvJhucr7WGxui17zkRLGs7m_1heBZagCn2ZTYbg1FWovAB-4doxaNQ"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5500/api/v1/tasks?test=asdasd",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5500",
+					"path": [
+						"api",
+						"v1",
+						"tasks"
+					],
+					"query": [
+						{
+							"key": "priority",
+							"value": "low",
+							"disabled": true
+						},
+						{
+							"key": "test",
+							"value": "asdasd"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SAVE todo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\":\"haroon\",\r\n    \"description\":\"this is cool-2\",\r\n    \"priority\":\"low\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:5500/api/v1/tasks"
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE todo",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5500/api/v1/tasks/:taskid",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5500",
+					"path": [
+						"api",
+						"v1",
+						"tasks",
+						":taskid"
+					],
+					"variable": [
+						{
+							"key": "taskid",
+							"value": "64f0a292021330d0d89a5721"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET todo by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5500/api/v1/tasks/:taskid",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5500",
+					"path": [
+						"api",
+						"v1",
+						"tasks",
+						":taskid"
+					],
+					"variable": [
+						{
+							"key": "taskid",
+							"value": "64f0a318253cfdad44ab336"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UPDATE todo by ID",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\":\"haroon\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5500/api/v1/tasks/:taskid",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5500",
+					"path": [
+						"api",
+						"v1",
+						"tasks",
+						":taskid"
+					],
+					"variable": [
+						{
+							"key": "taskid",
+							"value": "64f0a318253cfdad44ab336a"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
