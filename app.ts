@@ -1,7 +1,7 @@
 import express, { Request, Response, NextFunction, Application } from 'express'
 import { config } from './config/app.config'
 import { appController } from './controller/app.controller'
-import { tryCatch } from './utils/trycatch'
+import { tryCatch } from './utils/trycatch.utils'
 
 const app: Application = express()
 
@@ -23,7 +23,7 @@ app.get('/api/v1/tasks', tryCatch(appController.getTasks))
 
 app.get('/api/v1/tasks/:taskid', tryCatch(appController.getTasks))
 
-app.patch('/api/v1/tasks?', tryCatch(appController.updateTasks))
+app.patch('/api/v1/tasks/:taskid', tryCatch(appController.updateTasks))
 
 app.delete('/api/v1/tasks/:taskid', tryCatch(appController.deleteTasks))
 
@@ -32,10 +32,7 @@ app.use('*', (req: Request, res: Response, next: NextFunction) => {
 })
 
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
-  console.log(err)
-  if (err.status !== 400)
-    return res.status(err.status).send({ message: err.message })
-  return res.status(500).send({ message: 'Internal Server Error' })
+  return res.status(500).send({ message: err.message })
 })
 
 export default app
