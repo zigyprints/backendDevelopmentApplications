@@ -33,3 +33,6 @@ Documentation - Providing detailed Postman collection or Swagger documentation f
 Submission Deadline: 3-4 days from the date you received this assignment.
 
 Good luck with the assignment! If you have any questions during the development process, feel free to reach out to us for clarification. Happy coding!
+
+
+Postman link- https://documenter.getpostman.com/view/27052697/2s9Y5csfMJ
