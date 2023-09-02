@@ -1,12 +1,42 @@
 import { Request, Response } from 'express';
 import Task, { ITask } from '../model/model';
 import { Router } from 'express';
-import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 
 
 const router = Router();
 
+
+/**
+ * @swagger
+ * /api/todo/tasks:
+ *   post:
+ *     summary: Create a new task
+ *     description: Create a new task with the provided title and description.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               title:
+ *                 type: string
+ *               description:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Task created successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *       500:
+ *         description: Server error
+ */
 
 router.post("/tasks", async (req: Request, res: Response) => {
     try {
@@ -23,13 +53,30 @@ router.post("/tasks", async (req: Request, res: Response) => {
  * @swagger
  * /api/todo/tasks:
  *   get:
- *     description: Get all tasks
+ *     summary: Get all tasks
+ *     description: Retrieve a list of all tasks.
  *     responses:
  *       200:
- *         description: Success
+ *         description: Successful response with a list of tasks.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   _id:
+ *                     type: string
+ *                   title:
+ *                     type: string
+ *                   description:
+ *                     type: string
+ *                   completed:
+ *                     type: boolean
  *       500:
- *         description: Server Error
+ *         description: Server error.
  */
+
 router.get("/tasks", async (req: Request, res: Response) => {
     try {
         const tasks = await Task.find();
@@ -38,6 +85,53 @@ router.get("/tasks", async (req: Request, res: Response) => {
         res.status(500).json({ error: 'Server error' });
     }
 });
+/**
+ * @swagger
+ * /api/todo/tasks/{id}:
+ *   put:
+ *     summary: Update a task by ID
+ *     description: Update the task with the provided ID using the given data.
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: The ID of the task to update.
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               title:
+ *                 type: string
+ *               description:
+ *                 type: string
+ *               completed:
+ *                 type: boolean
+ *     responses:
+ *       200:
+ *         description: Task updated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 _id:
+ *                   type: string
+ *                 title:
+ *                   type: string
+ *                 description:
+ *                   type: string
+ *                 completed:
+ *                   type: boolean
+ *       404:
+ *         description: Task not found
+ *       500:
+ *         description: Server error
+ */
 
 router.put("/tasks/:id", async (req: Request, res: Response) => {
     try {
@@ -59,6 +153,36 @@ router.put("/tasks/:id", async (req: Request, res: Response) => {
         res.status(500).json({ error: 'Server error' });
     }
 });
+
+
+/**
+ * @swagger
+ * /api/todo/tasks/{id}:
+ *   delete:
+ *     summary: Delete a task by ID
+ *     description: Delete the task with the provided ID.
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: The ID of the task to delete.
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Task deleted successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *       404:
+ *         description: Task not found
+ *       500:
+ *         description: Server error
+ */
 
 router.delete("/tasks/:id", async (req: Request, res: Response) => {
     try {

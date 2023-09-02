@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import router  from './routes/index'
 import swaggerUi from 'swagger-ui-express';
-import swaggerSpec from './swagger';
+import swaggDOC from './swagg/swagger.json'
 
 
 const app = express();
@@ -21,7 +21,11 @@ mongoose.connect('mongodb+srv://admin:admin@cluster0.evgfd47.mongodb.net/todolis
 
 // Routes
 app.use('/api/todo', router);
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.get('/swagger.json', (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.send(swaggDOC);
+  });
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggDOC));
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

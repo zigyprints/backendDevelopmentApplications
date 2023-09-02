@@ -16,7 +16,7 @@ Handle error cases and provide appropriate error responses with strict typing.
 Create Postman collection or Swagger documentation for your API endpoints to provide detailed information about the API requests and responses.
 Submission Details:
 
-Fork this repository from GitHub [[https://github.com/zigyprints/backendDevelopmentApplications]].
+Fork this repository from GitHub [[https://github.com/zigyprints/backendDevelopmentApplications].
 Create a branch with your name (e.g., "yourname_assignment").
 Commit your code regularly, so we can see your progress.
 Once completed, create a pull request from your branch to the main repository (replace "main repository" with the URL of the original repository).
