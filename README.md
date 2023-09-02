@@ -4,6 +4,10 @@
 
 This project is a simple To-Do List API built using Node.js, Express.js, TypeScript, and SQLite. It provides endpoints to manage tasks in a to-do list. The API allows users to create, retrieve, update, and delete tasks.
 
+## Postman Collection Link 
+
+https://drive.google.com/file/d/1x44Ze7DidQpMqW0Sga-CH_sKz0OhNny6/view?usp=sharing
+
 ## Features
 
 - **Create a Task:** Users can create new tasks by sending a POST request to the `/api/tasks` endpoint.
@@ -28,15 +32,9 @@ This project is a simple To-Do List API built using Node.js, Express.js, TypeScr
 
 While developing this To-Do List API, several challenges were encountered:
 
-- **Database Management**: Configuring and managing the SQLite database, especially dealing with complex queries and relationships, was a challenge.
+- **Database Management**: Configuring and managing the SQLite database and looking foe appropriate commands.
 
-- **Error Handling**: Implementing robust error handling for various scenarios, including validation errors and database-related errors, required careful consideration.
-
-- **Testing**: Thoroughly testing the API to ensure it handles all edge cases and scenarios was time-consuming but essential.
-
-- **Documentation**: Creating comprehensive API documentation to assist front-end developers in utilizing the endpoints effectively.
-
-- **Authentication**: Implementing user authentication and authorization is a critical aspect that could enhance security but requires careful planning.
+- **Error Handling**: Implementing robust error handling for various scenarios,like database-related errors etc.
 
 ## Future Improvements
 
@@ -48,16 +46,6 @@ As this project serves as a foundation for a To-Do List application, there are s
 
 - **Pagination**: Introduce pagination for listing tasks to improve performance and usability when dealing with large datasets.
 
-- **Front-End Integration**: Build a front-end application to interact with this API, allowing users to manage tasks in a user-friendly way.
+- **Images and Videos**: Add the ability to also add photos and videos related to the task according to user requirements.
 
-- **Unit Testing**: Implement unit tests to ensure the API functions as expected, reducing the risk of bugs and regressions.
-
-- **WebSockets**: Enable real-time updates for tasks using WebSockets, providing users with instant notifications.
-
-- **Data Backup**: Implement regular data backups and a recovery mechanism to prevent data loss.
-
-- **Logs and Monitoring**: Set up logging and monitoring solutions to track API usage, identify issues, and analyze performance.
-
-- **Deployment**: Deploy the API to a production environment with proper security measures and scalability considerations.
-
-These improvements can help make the To-Do List application more robust, user-friendly, and suitable for real-world usage. Feel free to contribute or extend the project with these enhancements.
+These improvements can help make the To-Do List application more robust, user-friendly, and suitable for real-world usage. 
