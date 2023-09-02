@@ -13,7 +13,7 @@ You should have installed nodejs >=v14 and npm to run this application.
 
 ## Tech Stack
 
-_Express, nodejs, momgodb_
+_Express, nodejs, mongodb_
 
 ## Features
 
