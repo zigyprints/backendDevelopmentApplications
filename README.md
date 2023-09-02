@@ -7,7 +7,7 @@ You should have installed nodejs >=v14 and npm to run this application.
 ```bash
   cd googledoc-clone\
   npm install
-  npm build
+  npm run build
   npm run start-prod
 ```
 
