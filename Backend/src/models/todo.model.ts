@@ -12,5 +12,5 @@ const todoSchema: Schema = new Schema({
   completed: { type: Boolean, default: false },
 });
 
- const Todo=mongoose.model<Todo>('todo', todoSchema);
- export default Todo
+ const TodoModel=mongoose.model<Todo>('todo', todoSchema);
+ export default TodoModel

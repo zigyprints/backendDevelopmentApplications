@@ -5,9 +5,7 @@
   "main": "index.js",
   "scripts": {
     "tsc": "npx tsc",
-    "nodemon": "nodemon dist/app.js",
-    "dev": "concurrently \"npx tsc \" \"npm run start\"",
-    "start": "nodemon dist/app.js"
+    "nodemon": "nodemon dist/app.js"
   },
   "keywords": [],
   "author": "",
@@ -23,7 +21,7 @@
     "typescript": "^5.2.2"
   },
   "devDependencies": {
-    "@types/node": "^20.5.9",
-    "concurrently": "^8.2.1"
+    "@types/cors": "^2.8.13",
+    "@types/node": "^20.5.9"
   }
 }
