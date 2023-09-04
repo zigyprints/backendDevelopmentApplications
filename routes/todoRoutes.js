@@ -6,3 +6,6 @@ const {createATodo}=require("../controllers/todoControllers")
 
 
 router.post("/todo/new", createATodo);
+
+
+module.exports=router;
