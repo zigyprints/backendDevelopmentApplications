@@ -26,7 +26,8 @@ exports.getAllTodo = (req, res) => {
   
   
 exports.deleteTodo=(req,res)=>{
-    const todoID=req.query.todoID
+    const todoID=req.params.todoID
+    console.log(todoID)
     Todo.findByIdAndDelete(todoID)
     .exec()
     .then((deleted)=>{
@@ -39,4 +40,24 @@ exports.deleteTodo=(req,res)=>{
     })
 }
   
+exports.updateTodo = (req, res) => {
+    const todoID = req.params.todoID; 
+    console.log(req.query)
+    console.log(todoID)
+    Todo.findById(todoID)
+      .exec()
+      .then((todoData) => {
+        if (!todoData) {
+          return res.status(404).json({ message: "Todo not found." });
+        }
+        todoData.title = req.body.title || todoData.title;
+        todoData.description = req.body.description || todoData.description;
+        todoData.completed = req.body.completed || todoData.completed;
+        const updated = todoData.save();
+        return res.status(200).json({ message:"Updated Successfully" });
+      })
+      .catch((err) => {
+        return res.status(400).json(err);
+      });
+  };
   
