@@ -1,3 +1,12 @@
+to run backend:
+cd todo-api-ts
+npx ts-node src/server.ts
+
+to run frontend
+cd todoFrontend
+npm run dev
+
+
 Assignment: Simple Backend API Development with TypeScript
 
 Duration: 3-4 days
