@@ -1,35 +1,67 @@
-Assignment: Simple Backend API Development with TypeScript
+# Simple Backend API Development with TypeScript
 
-Duration: 3-4 days
+## Introduction
+Backend for a Todo list application built using Node.js, Express.js, TypeScript, and MongoDB as the database. It offers a RESTful API with endpoints for creating, retrieving, updating, and deleting tasks. MongoDB is used to store task data, and the code includes error handling and follows best practices in API design.
 
-Instructions: Welcome to our Simple Backend API Development assignment! In this task, you will build a basic RESTful API backend using Node.js, Express.js, TypeScript, and a lightweight database. This project aims to assess your skills in setting up a backend server and handling API requests with strict typing.
+## Approach
+1.Project Structure: Organize the project with a clear directory structure for controllers, models, routes, and main application files.
 
-Task: You are required to create a backend web application that provides API endpoints to interact with a simple "To-Do List" application. The frontend (To-Do List app) will be built separately and will communicate with your backend through the provided API endpoints. The backend should allow users to create, retrieve, update, and delete tasks from their to-do list.
+2.TypeScript: Use TypeScript for strict typing and enhanced code quality.
 
-Requirements:
+3.Express.js: Build the API using Express.js to handle HTTP requests and responses.
 
-Build the backend using Node.js, Express.js, and TypeScript for handling HTTP requests and responses with strict typing.
-Implement the necessary API endpoints for creating, retrieving, updating, and deleting tasks in the to-do list.
-Use a lightweight database (e.g., SQLite) to store the tasks.
-Ensure the API endpoints are RESTful and follow best practices in API design.
-Handle error cases and provide appropriate error responses with strict typing.
-Create Postman collection or Swagger documentation for your API endpoints to provide detailed information about the API requests and responses.
-Submission Details:
+4.Database: Depending on the choice of database (MongoDB or SQLite), create a schema/model for tasks and handle database interactions.
 
-Fork this repository from GitHub [[https://github.com/zigyprints/backendDevelopmentApplications]].
-Create a branch with your name (e.g., "yourname_assignment").
-Commit your code regularly, so we can see your progress.
-Once completed, create a pull request from your branch to the main repository (replace "main repository" with the URL of the original repository).
-Include a README.md file explaining your approach, challenges faced, and any additional features or improvements you might have added if given more time.
-Include the link to your Postman collection documenter or Swagger documentation in the README.md file.
-Evaluation Criteria: Your assignment will be evaluated based on the following factors:
+5.API Endpoints: Implement RESTful API endpoints for task creation, retrieval, update, and deletion.
 
-Technical Proficiency - Demonstrating your skills in using Node.js, Express.js, TypeScript, and a database to build a functional backend for the To-Do List application with strict typing.
-Code Quality - Writing clean, well-structured, and maintainable code with proper comments and strict typing.
-API Design - Creating API endpoints following best practices for a smooth integration with the frontend application.
-Database Usage - Efficiently storing and retrieving data from the database.
-Error Handling - Implementing error handling mechanisms for a robust backend with strict typing.
-Documentation - Providing detailed Postman collection or Swagger documentation for the API endpoints.
-Submission Deadline: 3-4 days from the date you received this assignment.
+6.Error Handling: Handle errors gracefully with appropriate status codes and error responses.
 
-Good luck with the assignment! If you have any questions during the development process, feel free to reach out to us for clarification. Happy coding!
+7.API Documentation: Optionally, create API documentation using Postman or other tools to help users understand and use your API.
+
+## Challenges
+1.Deployment: Deploying the backend to a production environment and configuring server settings, security, and monitoring.
+- Solution:Follow Railway's documentation and guidelines for deploying Node.js applications.
+
+## API Deplolyed Link
+[todo-api-prodction.up.railway.app](https://todo-api-prodction.up.railway.app/)
+
+## Postman Documentation Link
+[todo-api-prodction.up.railway.app](https://documenter.getpostman.com/view/29508966/2s9Y5eMzLp)
+
+## Installation and Setup
+
+1. Clone this repository:
+   ```sh
+   git clone https://github.com/rahulyadav826870/backendDevelopmentApplications.git
+
+2. Change the directory to the project folder:
+   ```sh
+   cd backendDevelopmentApplications
+
+3. Install the dependencies and build the project:
+   ```sh
+   npm install && npm run build
+
+4. Run the server:
+   ```sh
+   npm start
+
+## Features
+List out the key features of your application.
+
+- Add Todo
+- Update Todo
+- Delete Todo
+- Get Todo
+
+
+## Technology Stack
+List and provide a brief overview of the technologies used in the project.
+
+- Node.js
+- Express.js
+- Typescript
+- MongoDB
+- Nodemon
+- cors
+- railway (Deployment)
