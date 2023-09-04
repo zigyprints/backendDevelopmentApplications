@@ -26,7 +26,17 @@ exports.getAllTodo = (req, res) => {
   
   
 exports.deleteTodo=(req,res)=>{
-    
+    const todoID=req.query.todoID
+    Todo.findByIdAndDelete(todoID)
+    .exec()
+    .then((deleted)=>{
+        return res.status(200).json({message:"Todo Deleted Succesfully"})
+    })
+    .catch((err)=>{
+        return res.status(400).json({
+            message:err
+        })
+    })
 }
   
   
