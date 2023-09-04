@@ -25,7 +25,8 @@ exports.getAllTodo = (req, res) => {
   };
   
   
-  
-  
+exports.deleteTodo=(req,res)=>{
+    
+}
   
   
