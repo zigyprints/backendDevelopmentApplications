@@ -30,7 +30,7 @@
 - Inputting the Date in UNIX timestamp format each time was troublesome so I had to set the default value to the current date and time.
 
 
-## Additional Features
+## Additional Features to be implemented
 - Implement Logging using Logger in NestJS
 - Allow user to enter date in YYYY-MM-DD format instead of UNIX timestamp.
 - Allocate priority for the tasks(Low,Medium,High)
