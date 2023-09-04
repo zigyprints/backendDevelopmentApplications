@@ -1,8 +1,12 @@
 const express=require("express")
 const app =express()
+const todoRoutes=require("./routes/todoRoutes")
 
+app.get("/",(req,res)=>{
+    res.status(200).json({message:"Welcome to TODO Application"})
+})
 
-const todoCreate=app.post("/")
+app.use("/api",)
 
 //PORT
 const port=4000;
