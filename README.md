@@ -1,5 +1,5 @@
-## backendDevelopmentApplications
-backend using Node.js, Express.js, Sqlite, and TypeScript for handling HTTP requests and responses
+## Backend Development Applications 
+To-Do Application backend using Node.js, Express.js, Sqlite, and TypeScript for handling HTTP requests and responses
 
 ## Install dependencies
 bash - 
