@@ -1,12 +1,12 @@
-### backendDevelopmentApplications
+## backendDevelopmentApplications
 backend using Node.js, Express.js, Sqlite, and TypeScript for handling HTTP requests and responses
 
-##Install dependencies
-bash
+## Install dependencies
+bash - 
   npm install
 
-##Start the server
-bash
+## Start the server
+bash - 
   npm run start
 
 ## Tech Stack
