@@ -13,7 +13,7 @@ import { TodolistService } from 'src/todolist/services/todolist/todolist.service
 @Controller('todolist')
 export class TodolistController {
   constructor(private readonly todolistService: TodolistService) {}
-
+  //@GET(), @POST() , @PUT(), @DELETE() are methods on HTTP
   @Get()
   findAll() {
     return this.todolistService.findAll();
@@ -31,7 +31,7 @@ export class TodolistController {
 
   @Put(':id')
   update(
-    @Param('id', ParseIntPipe) id: number,
+    @Param('id', ParseIntPipe) id: number, //@Param is for path parameter
     @Body() todolistDto: TodolistDto,
   ) {
     return this.todolistService.update(id, todolistDto);
