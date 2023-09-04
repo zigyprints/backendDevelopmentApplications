@@ -1,0 +1,104 @@
+{
+	"info": {
+		"_postman_id": "6842d9e4-abea-4418-998d-8e29c7474c64",
+		"name": "Zigy TODO list using Typescript",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23391836",
+		"_collection_link": "https://interstellar-astronaut-503539.postman.co/workspace/TODO-Workspace~e5896c32-7cf4-49d4-8d9b-29bc4e57e668/collection/23391836-6842d9e4-abea-4418-998d-8e29c7474c64?action=share&source=collection_link&creator=23391836"
+	},
+	"item": [
+		{
+			"name": "localhost:3000/api/tasks",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var template = `\r",
+							"<style type=\"text/css\">\r",
+							"    body {\r",
+							"        margin: 0;\r",
+							"        padding: 0;\r",
+							"        font-family: Arial, sans-serif;\r",
+							"        background-color: #f5f5f5;\r",
+							"    }\r",
+							"    \r",
+							"    .container {\r",
+							"        display: flex;\r",
+							"        justify-content: center;\r",
+							"        align-items: center;\r",
+							"        height: 100vh;\r",
+							"    }\r",
+							"    \r",
+							"    .card {\r",
+							"        padding: 20px;\r",
+							"        background-color: #fff;\r",
+							"        border-radius: 4px;\r",
+							"        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\r",
+							"    }\r",
+							"    \r",
+							"    h1 {\r",
+							"        margin: 0;\r",
+							"        font-size: 24px;\r",
+							"        font-weight: bold;\r",
+							"        text-align: center;\r",
+							"        margin-bottom: 20px;\r",
+							"    }\r",
+							"    \r",
+							"    p {\r",
+							"        margin: 0;\r",
+							"        font-size: 16px;\r",
+							"        text-align: center;\r",
+							"    }\r",
+							"</style>\r",
+							"\r",
+							"<div class=\"container\">\r",
+							"    <div class=\"card\">\r",
+							"        <h1>Swagger UI</h1>\r",
+							"        <p>This is the Swagger UI visualization for the API documentation.</p>\r",
+							"    </div>\r",
+							"</div>\r",
+							"`;\r",
+							"\r",
+							"function constructVisualizerPayload() {\r",
+							"    return { response: {} };\r",
+							"}\r",
+							"\r",
+							"pm.visualizer.set(template, constructVisualizerPayload());"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"Task1\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/tasks",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"tasks"
+					]
+				},
+				"description": "Zigy TODO list using Typescript"
+			},
+			"response": []
+		}
+	]
+}
