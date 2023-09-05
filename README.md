@@ -1,35 +1,105 @@
-Assignment: Simple Backend API Development with TypeScript
 
-Duration: 3-4 days
+# To-Do API
 
-Instructions: Welcome to our Simple Backend API Development assignment! In this task, you will build a basic RESTful API backend using Node.js, Express.js, TypeScript, and a lightweight database. This project aims to assess your skills in setting up a backend server and handling API requests with strict typing.
+This is a simple To-Do API that allows you to perform CRUD (Create, Read, Update, Delete) operations on tasks. It utilizes both MongoDB and SQLite3 databases for storage. You can use this API to manage your to-do list efficiently.
 
-Task: You are required to create a backend web application that provides API endpoints to interact with a simple "To-Do List" application. The frontend (To-Do List app) will be built separately and will communicate with your backend through the provided API endpoints. The backend should allow users to create, retrieve, update, and delete tasks from their to-do list.
+## Features
 
-Requirements:
+- Create tasks with details such as Title, Description, Status, and Due Date.
+- Retrieve tasks from both MongoDB and SQLite3 databases.
+- Update tasks with ease by providing the required details.
+- Delete tasks from both databases to keep your list organized.
 
-Build the backend using Node.js, Express.js, and TypeScript for handling HTTP requests and responses with strict typing.
-Implement the necessary API endpoints for creating, retrieving, updating, and deleting tasks in the to-do list.
-Use a lightweight database (e.g., SQLite) to store the tasks.
-Ensure the API endpoints are RESTful and follow best practices in API design.
-Handle error cases and provide appropriate error responses with strict typing.
-Create Postman collection or Swagger documentation for your API endpoints to provide detailed information about the API requests and responses.
-Submission Details:
+## Getting Started
 
-Fork this repository from GitHub [[https://github.com/zigyprints/backendDevelopmentApplications]].
-Create a branch with your name (e.g., "yourname_assignment").
-Commit your code regularly, so we can see your progress.
-Once completed, create a pull request from your branch to the main repository (replace "main repository" with the URL of the original repository).
-Include a README.md file explaining your approach, challenges faced, and any additional features or improvements you might have added if given more time.
-Include the link to your Postman collection documenter or Swagger documentation in the README.md file.
-Evaluation Criteria: Your assignment will be evaluated based on the following factors:
+Follow these steps to set up and use the To-Do API on your local machine:
 
-Technical Proficiency - Demonstrating your skills in using Node.js, Express.js, TypeScript, and a database to build a functional backend for the To-Do List application with strict typing.
-Code Quality - Writing clean, well-structured, and maintainable code with proper comments and strict typing.
-API Design - Creating API endpoints following best practices for a smooth integration with the frontend application.
-Database Usage - Efficiently storing and retrieving data from the database.
-Error Handling - Implementing error handling mechanisms for a robust backend with strict typing.
-Documentation - Providing detailed Postman collection or Swagger documentation for the API endpoints.
-Submission Deadline: 3-4 days from the date you received this assignment.
+### Prerequisites
 
-Good luck with the assignment! If you have any questions during the development process, feel free to reach out to us for clarification. Happy coding!
+1. Node.js: Make sure you have Node.js installed. You can download it from [nodejs.org](https://nodejs.org/).
+
+### Installation
+
+1. Clone the repository to your local machine:
+
+   ```bash
+   git clone https://github.com/theavitw/backendDevelopmentApplications.git
+   ```
+
+2. Navigate to the project directory:
+
+   ```bash
+   cd to-do-api
+   ```
+
+3. Install the project dependencies:
+
+   ```bash
+   npm install
+   ```
+
+4. Configure the environment variables:
+
+   - Create a `.env` file in the root directory.
+   - Add the following environment variables:
+
+     ```dotenv
+     MONGODB_URI=<your-mongodb-uri>
+     SQLITE3_DB_PATH=<path-to-sqlite3-database>
+     ```
+
+     Replace `<your-mongodb-uri>` with your MongoDB connection URI, and `<path-to-sqlite3-database>` with the path to your SQLite3 database file.
+
+### Usage
+
+1. Start the API server:
+
+   ```bash
+   npm start
+   ```
+
+   The API will be accessible at `http://localhost:3000/api/`.
+
+2. Use a tool like Postman or cURL to interact with the API by sending HTTP requests to the provided endpoints.
+
+### API Endpoints
+
+- `GET /tasks`: Retrieve all tasks from both MongoDB and SQLite3 databases.
+- `GET /tasks/:id`: Retrieve a task by ID from both databases.
+- `POST /tasks`: Create a new task in both databases. Include the task details in the request body.
+- `PUT /tasks/:id`: Update a task by ID in both databases. Include the updated task details in the request body.
+- `DELETE /tasks/:id`: Delete a task by ID from both databases.
+
+### Sample Request
+
+Here's a sample request to create a new task using cURL:
+
+```bash
+curl -X POST -H "Content-Type: application/json" -d '{
+  "title": "Complete Assignment",
+  "description": "Finish the To-Do API assignment",
+  "status": "In Progress",
+  "dueDate": "2023-09-30"
+}' http://localhost:3000/api/
+```
+
+### Additional Notes
+
+- This API allows you to perform CRUD operations on tasks in both MongoDB and SQLite3 databases simultaneously.
+- Make sure to configure the environment variables with your database connections.
+
+## Troubleshooting and Learnings
+
+While developing this To-Do API, I faced a few challenges and learned valuable lessons:
+
+- **Database Integration**: Integrating two different databases (MongoDB and SQLite3) required careful design and management of data models.
+
+- **Concurrent Updates**: Handling concurrent updates to two databases without data inconsistencies was a challenge. I used transactional operations in SQLite3 to address this.
+
+- **Environment Configuration**: Managing environment variables for database connections was crucial for flexibility and security.
+
+- **Error Handling**: Implementing robust error handling and providing meaningful error messages improved the API's usability.
+
+Feel free to explore and further enhance this To-Do API for your needs! If you have any questions or need assistance, please don't hesitate to reach out.
+
+Happy coding!
