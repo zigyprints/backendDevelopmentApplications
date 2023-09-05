@@ -1,0 +1,17 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# TypeScript
+*.tsbuildinfo
+*.js.map
+
+# Visual Studio Code
+.vscode/
+
+# SQLite Database
+database.db
+
+# Environment Variables
+.env
