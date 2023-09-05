@@ -30,6 +30,6 @@ API Design - Creating API endpoints following best practices for a smooth integr
 Database Usage - Efficiently storing and retrieving data from the database.
 Error Handling - Implementing error handling mechanisms for a robust backend with strict typing.
 Documentation - Providing detailed Postman collection or Swagger documentation for the API endpoints.
-Submission Deadline: 3-4 days from the date you received this assignment.
+Submission Deadline: 3-4 days from the date you received this assignment.xyz
 
 Good luck with the assignment! If you have any questions during the development process, feel free to reach out to us for clarification. Happy coding!
