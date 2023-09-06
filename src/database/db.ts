@@ -1,4 +1,4 @@
-import {Database} from 'sqlite3';
+import {Database} from "sqlite3";
 import "dotenv/config";
 
 export async function initializeDatabase() {
@@ -9,14 +9,14 @@ export async function initializeDatabase() {
         console.log("Database Unable to Connect");
         reject(err);
       } else {
-        console.log('Database Connected!!');
+        console.log("Database Connected!!");
         
         db.run(`
           CREATE TABLE IF NOT EXISTS todos (
-            id INTEGER PRIMARY KEY,
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT NOT NULL,
             description TEXT NOT NULL,
-            completed BOOLEAN NOT NULL
+            completed BOOLEAN DEFAULT false NOT NULL
           )
         `, (createTableErr) => {
           if (createTableErr) {
