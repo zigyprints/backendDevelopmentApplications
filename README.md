@@ -63,7 +63,7 @@ Follow these steps to set up and use the To-Do API on your local machine:
 3. Or use the Postman Collection Link Provided to Test All APIs at Once.
 
 ### Postman Documentation Link
-[Postman Collection](link.com)
+[Postman Collection](https://documenter.getpostman.com/view/28005375/2s9YBz1a16)
 
 ### API Endpoints
 
