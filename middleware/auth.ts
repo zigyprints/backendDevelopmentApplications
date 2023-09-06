@@ -20,7 +20,6 @@ export const authMiddleware = (
     req.body.token = decode;
     next();
   } catch (error) {
-    console.log("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
     return res.status(401).json({ message: "unauthorized reqeuest" });
   }
 };
