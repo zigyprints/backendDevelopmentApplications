@@ -1,12 +1,11 @@
-import express, {Request, Response} from "express";
+import express, {Request, Response, Router} from "express";
 import db from "../server";
-import { error } from "console";
 import uuid from "crypto";
 
 
-const router = express.Router(); 
+const router: Router = express.Router(); 
 
-  
+//GET ALL TODOS
 
 router.get('/todos', (req: Request, res: Response) => {
 
@@ -22,10 +21,13 @@ router.get('/todos', (req: Request, res: Response) => {
 })
 
 
+//GET ONE TODO
+
 router.get('/todos/:id', (req: Request, res: Response) => {
-    db.all(`SELECT * FROM TODOS WHERE id = "${req.params.id}"`, (err, rows) => {
+    const id: String = req.params.id; 
+    db.all(`SELECT * FROM TODOS WHERE id = "${id}"`, (err, rows) => {
         if(rows.length == 0){
-            res.status(404).json({error: "Entry doesn't exist"})
+            res.status(404).json({message: "todo doesn't exist"})
         }
         else{
             res.json(rows)
@@ -34,9 +36,16 @@ router.get('/todos/:id', (req: Request, res: Response) => {
 )
 })
 
+
+//POST a TODO in DB.
+
 router.post("/todos", (req: Request, res: Response) => {
 
-const { title, details, status} = req.body;
+const title: String = req.body.title; 
+
+const details: String = req.body.details; 
+
+const status: Number = req.body.status; 
 console.log(title, details, status)
 
 if(title == null || details == null || status == null) {
@@ -58,16 +67,26 @@ else{
     
 })
 
+//UPDATE A TODO in DB.
+
 router.put("/todos/:id", (req, res) => {
     console.log(req.body);
 
-const { title, details, status} = req.body;  
+const title: String = req.body.title; 
+
+const details: String = req.body.details; 
+
+const status: Number = req.body.status; 
+
+const id: String = req.params.id; 
+
+
 if(title == null || details == null || status == null) {
     res.status(400).json({message: "Missing fields"})
 }
 else{
 
-    db.run(`UPDATE TODOS SET title = "${title}", details ="${details}", status = ${status} WHERE ID = "${req.params.id}"`, (err) => {
+    db.run(`UPDATE TODOS SET title = "${title}", details ="${details}", status = ${status} WHERE id = "${id}"`, (err) => {
         if(err){
             res.status(500).json({error: "Internal Server Error" + err.message})
         }
@@ -78,8 +97,13 @@ else{
 }
 })
 
+
+//DELETE a TODO from the DB
+
 router.delete("/todos/:id", (req, res) => {
-    db.run(`DELETE FROM TODOS WHERE id = "${req.params.id}"`, (error)=> {
+    const id: String = req.params.id; 
+    console.log(id);
+    db.run(`DELETE FROM TODOS WHERE id="${id}"`, (error)=> {
         if(error){
             res.status(500).json({error: "Internal Server Error"});
         }

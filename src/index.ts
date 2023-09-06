@@ -3,6 +3,8 @@ import router from './routes/getTodos';
 import bodyParser from 'body-parser';
 
 
+//SETUP EXPRESS SERVER
+
 const app: Application = express(); 
 
 app.use(bodyParser.json());

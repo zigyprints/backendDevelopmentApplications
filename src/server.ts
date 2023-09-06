@@ -4,9 +4,13 @@ import uuid from "crypto";
 
 const iniitalizer = sqlite3.verbose(); 
 
+//initialize DB 
+
 
 let db = new iniitalizer.Database('./store.db'); 
       console.log("Connection with SQLite has been established");
+
+//CREATING TABLE IF IT DOESN'T EXIST 
 
 db.exec(`
       CREATE TABLE IF NOT EXISTS TODOS
@@ -19,6 +23,5 @@ db.exec(`
       );
     `);
 
-// db.exec(`INSERT INTO TODOS VALUES ("${uuid.randomUUID()}", "First", "lorem ipsum", 1)`); 
 
 export default db;
