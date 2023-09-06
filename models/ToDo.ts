@@ -17,3 +17,7 @@ ToDo.belongsTo(User, {
   foreignKey: "userId",
   onDelete: "CASCADE",
 });
+
+(async () => {
+  await ToDo.sync({ force: true });
+})();
