@@ -22,13 +22,13 @@ export const register = async (req: Request, res: Response) => {
     const token = generateToken({ email: user.email, id: user.id });
 
     // returning user details and token
-    res.status(200).json({
+    return res.status(200).json({
       user: { email: user.email, name: user.name },
       token,
       message: "user registered successfully",
     });
   } catch (error) {
-    res.status(500).json({ message: "some internal error occur" });
+    return res.status(500).json({ message: "some internal error occur" });
   }
 };
 
@@ -52,12 +52,12 @@ export const login = async (req: Request, res: Response) => {
     const token = generateToken({ email: user.email, id: user.id });
 
     // returning user details and token
-    res.status(200).json({
+    return res.status(200).json({
       user: { email: user.email, name: user.name },
       token,
       message: "user logged in",
     });
   } catch (error) {
-    res.status(500).json({ message: "some internal error occur" });
+    return res.status(500).json({ message: "some internal error occur" });
   }
 };
