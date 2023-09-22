@@ -17,12 +17,12 @@ A user can:
   - Used TypeScript for strict typing
   - SQlite for database
 
-## Future Improvements
+## Documentation
 
-I think the following things could be added to improve the user experience and make the app feature rich:
-- User Authentication to enable multiple user support.
-- Assigning priorities to To-Dos and sorting them acccordingly.
-- Adding feature to auto delete To-Dos when completed.
+The Swagger documentation for the API will be available at:
+```
+http://localhost:3000/api-docs/
+```
 
 get request
 ![image](https://github.com/TEJASWANTH123/backendDevelopmentApplications/assets/93636836/67e695aa-0128-437f-9309-6443f02eda37)
