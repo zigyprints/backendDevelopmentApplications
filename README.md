@@ -1,35 +1,92 @@
-Assignment: Simple Backend API Development with TypeScript
+### Task: Build a Real-Time Chat Application
 
-Duration: 3-4 days
+In this assignment, your task is to create a real-time chat application using Node.js, Express.js, TypeScript, and Socket.io. This chat application will enable users to communicate with each other by sending text messages and sharing images in real-time within a chat room.
 
-Instructions: Welcome to our Simple Backend API Development assignment! In this task, you will build a basic RESTful API backend using Node.js, Express.js, TypeScript, and a lightweight database. This project aims to assess your skills in setting up a backend server and handling API requests with strict typing.
+### Requirements:
 
-Task: You are required to create a backend web application that provides API endpoints to interact with a simple "To-Do List" application. The frontend (To-Do List app) will be built separately and will communicate with your backend through the provided API endpoints. The backend should allow users to create, retrieve, update, and delete tasks from their to-do list.
+1. **Backend Setup with Node.js, Express.js, TypeScript, and Socket.io:**
 
-Requirements:
+   - Set up a Node.js server using Express.js to handle HTTP requests and Socket.io to enable real-time WebSocket communication.
 
-Build the backend using Node.js, Express.js, and TypeScript for handling HTTP requests and responses with strict typing.
-Implement the necessary API endpoints for creating, retrieving, updating, and deleting tasks in the to-do list.
-Use a lightweight database (e.g., SQLite) to store the tasks.
-Ensure the API endpoints are RESTful and follow best practices in API design.
-Handle error cases and provide appropriate error responses with strict typing.
-Create Postman collection or Swagger documentation for your API endpoints to provide detailed information about the API requests and responses.
-Submission Details:
+2. **User Authentication:**
 
-Fork this repository from GitHub [[https://github.com/zigyprints/backendDevelopmentApplications]].
-Create a branch with your name (e.g., "yourname_assignment").
-Commit your code regularly, so we can see your progress.
-Once completed, create a pull request from your branch to the main repository (replace "main repository" with the URL of the original repository).
-Include a README.md file explaining your approach, challenges faced, and any additional features or improvements you might have added if given more time.
-Include the link to your Postman collection documenter or Swagger documentation in the README.md file.
-Evaluation Criteria: Your assignment will be evaluated based on the following factors:
+   - Implement user authentication to allow users to join the chat room with a unique username. Users should not be able to use the same username simultaneously.
 
-Technical Proficiency - Demonstrating your skills in using Node.js, Express.js, TypeScript, and a database to build a functional backend for the To-Do List application with strict typing.
-Code Quality - Writing clean, well-structured, and maintainable code with proper comments and strict typing.
-API Design - Creating API endpoints following best practices for a smooth integration with the frontend application.
-Database Usage - Efficiently storing and retrieving data from the database.
-Error Handling - Implementing error handling mechanisms for a robust backend with strict typing.
-Documentation - Providing detailed Postman collection or Swagger documentation for the API endpoints.
-Submission Deadline: 3-4 days from the date you received this assignment.
+3. **Chat Room Creation:**
 
-Good luck with the assignment! If you have any questions during the development process, feel free to reach out to us for clarification. Happy coding!
+   - Create a chat room where users can join and exchange messages. Multiple chat rooms may be supported, and users should be able to choose a room to join.
+
+4. **Real-Time Text Messaging:**
+
+   - Implement real-time text messaging functionality within the chat room. Messages sent by one user should be immediately visible to all other users in the same chat room.
+
+5. **Image Sharing:**
+
+   - Enable users to upload and share images within the chat. Images should be uploaded to the server, temporarily stored, and then shared as part of the chat conversation.
+
+6. **Error Handling:**
+
+   - Implement error handling mechanisms to gracefully handle scenarios such as user disconnections, failed image uploads, or other potential issues that may arise during real-time communication.
+
+7. **Documentation:**
+
+   - Create Postman collection or Swagger documentation for your WebSocket API endpoints. The documentation should provide comprehensive information about the WebSocket events, data structures, and message formats used for communication.
+
+### Submission Details:
+
+To submit your assignment, follow these steps:
+
+1. **Fork Repository:**
+
+   - Fork the provided GitHub repository to create your own copy.
+
+2. **Create Branch:**
+
+   - Create a new branch in your forked repository with your name (e.g., "yourname_assignment").
+
+3. **Commit Regularly:**
+
+   - Commit your code regularly to the branch so that your progress can be tracked.
+
+4. **Pull Request:**
+
+   - Once you have completed the assignment, create a pull request from your branch to the main repository. Replace "main repository" with the URL of the original repository.
+
+5. **README.md:**
+
+   - Include a README.md file in your project repository. This README should explain your approach to building the chat application, any challenges you faced, and any additional features or improvements you would have added if given more time.
+
+6. **Documentation Link:**
+
+   - Include the link to your Postman collection or Swagger documentation in the README.md file.
+
+### Evaluation Criteria:
+
+Your assignment will be evaluated based on the following factors:
+
+- **Technical Proficiency:**
+  - Demonstrating your skills in using Node.js, Express.js, TypeScript, and Socket.io to build a functional real-time chat application with image sharing.
+
+- **Code Quality:**
+  - Writing clean, well-structured, and maintainable code with proper comments and strict typing.
+
+- **WebSocket Implementation:**
+  - Creating WebSocket endpoints and handling real-time communication effectively.
+
+- **User Authentication:**
+  - Implementing a secure user authentication system.
+
+- **Image Upload:**
+  - Allowing users to upload and share images in the chat room.
+
+- **Error Handling:**
+  - Implementing error handling mechanisms for a robust chat application.
+
+- **Documentation:**
+  - Providing detailed Postman collection or Swagger documentation for the WebSocket API endpoints.
+
+### Submission Deadline:
+
+You have 3-4 days from the date you received this assignment to complete and submit it.
+
+Good luck with the assignment! If you have any questions during the development process, feel free to reach out for clarification. Happy coding!
