@@ -29,7 +29,6 @@ const chatRoom = (req: Request, res: Response) => {
                 roomObj?.users.filter(user => user != username);
                 io.to(roomname).emit('onlineUsers', roomObj.users);
             }
-
         });
     });
 };
