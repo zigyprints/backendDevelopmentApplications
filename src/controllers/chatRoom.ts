@@ -1,5 +1,5 @@
-import { Request, Response} from "express";
-import { app } from "../app.js";
+import express, { Request, Response} from "express";
+const app = express();
 import http from 'http';
 const server = http.createServer(app);
 import { Server } from "socket.io";
