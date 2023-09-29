@@ -1,4 +1,5 @@
 import {Schema, model, connect} from 'mongoose';
+connect('mongodb://localhost:27017/munish_assignment').then(()=>console.log('mongoose connected'));
 
 interface userModel {
     username:string;
@@ -10,7 +11,6 @@ const userSchema = new Schema<userModel> ({
         type:String,
         required:true,
         unique:true,
-        trim: true
     },
     password:{
         type:String,
@@ -19,6 +19,5 @@ const userSchema = new Schema<userModel> ({
 });
 
 const User = model<userModel>('users', userSchema);
-connect('mongodb://localhost:27017/munish_assignment').then(()=>console.log('mongoose connected'));
 
 export default User;

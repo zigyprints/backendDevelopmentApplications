@@ -5,6 +5,7 @@ const server = http.createServer(app);
 import { Server } from "socket.io";
 const io = new Server(server);
 import chatRooms from "../chatRooms.js";
+import fs from 'fs';
 
 const chatRoom = (req: Request, res: Response) => {
     const roomname = req.params.roomname;
@@ -22,11 +23,16 @@ const chatRoom = (req: Request, res: Response) => {
         socket.on('chat-message', (message) => {
             socket.broadcast.to(roomname).emit(message);
         });
+        
+        socket.on('file',(filename, data)=> {
+            fs.writeFileSync(`../../images/${roomname}/${Date.now()}_${filename}`, data);
+            socket.emit('recieve-file', data);
+        });
 
         socket.on('disconnect', (username) => {
             socket.leave(roomname);
             if (roomObj) {
-                roomObj?.users.filter(user => user != username);
+                roomObj.users.filter(user => user != username);
                 io.to(roomname).emit('onlineUsers', roomObj.users);
             }
         });
