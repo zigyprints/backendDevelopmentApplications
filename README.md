@@ -3,7 +3,6 @@ A chat application which allows various users to connect at real time and allows
 
 ## Authentication
 ### API Endpoints
-
 1. **POST /signup**
    - Get username and password from the request body and adds the user in the database.
    - Password will be stored in database in hashed form(using bcrypt).
@@ -42,14 +41,13 @@ All the routes other than /auth are protected with userProtect controller.
    - Stores the file on the server.
    - Sends the file to all users in the chatroom.
 
-   3. **socket.on('disconnect')**
+   4. **socket.on('disconnect')**
    - Will catch the event when user disconnects from the chatroom.
    - Gets the username of the user as parameter.
    - Disconnects the user from chatroom.
    - Updates the list of users present in the chatroom.
 
 ## Data Models
-
 - Users in the application are represented using the following TypeScript interface:
 ```typescript
 interface userModel {
@@ -61,15 +59,15 @@ interface userModel {
 
 - Chatrooms in the application are represented using the following TypeScript interface:
 ```typescript
-interface chatroom  {
-    name: string;
-    users: string[];
+interface chatroom {
+  name: string;
+  users: string[];
 }
-const chatrooms:chatroom[] = [
-    {name: 'ROOM NAME', users:[]},
-];
+const chatrooms: chatroom[] = [{ name: "ROOM NAME", users: [] }];
 ```
 
-### Challenge Faced
+## Challenge Faced
 The primary challenge I encountered during the development process was related to sending files with the chat room. There are varius ways to send a file with websockets. For example- base64(currently used), Buffer(max. size limit is 1MB) and streams.
 
+## Postman Collection
+[https://www.postman.com/munishrukhaya/workspace/munish-assignment/collection/30129538-53e769e5-7259-40e9-bc49-907aa39f577c?action=share&creator=30129538]
