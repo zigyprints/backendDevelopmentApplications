@@ -1,92 +1,73 @@
-### Task: Build a Real-Time Chat Application
+# Chat App
+A chat application which allows various users to connect at real time and allows them share messages and data within the chat room. Various chat rooms can be implemented in the chat app and can be increased if needed.
 
-In this assignment, your task is to create a real-time chat application using Node.js, Express.js, TypeScript, and Socket.io. This chat application will enable users to communicate with each other by sending text messages and sharing images in real-time within a chat room.
+## Authentication
+### API Endpoints
+1. **POST /signup**
+   - Get username and password from the request body and adds the user in the database.
+   - Password will be stored in database in hashed form(using bcrypt).
+   - Returns a 200 OK status response if the user is successfully signed up.
 
-### Requirements:
+2. **POST /login**
+   - Get username and password from the request body and searches the user in the database.
+   - Returns a 200 OK status response when user is successfully logged in.
+   - Returns cookies login with value of JWT token and username with username of user.
 
-1. **Backend Setup with Node.js, Express.js, TypeScript, and Socket.io:**
+## Chat Room
+### API Endpoints
+All the routes other than /auth are protected with userProtect controller.
 
-   - Set up a Node.js server using Express.js to handle HTTP requests and Socket.io to enable real-time WebSocket communication.
+1. **GET /chatrooms**
+   - Returns a JSON array consisting the name of chatrooms.
 
-2. **User Authentication:**
+2. **GET /:roomname**
+   - User enters the chatroom with roo name specified in URL.
+   - User can interact with all other users in the room in real-time by sending messages and files in the chatroom.
 
-   - Implement user authentication to allow users to join the chat room with a unique username. Users should not be able to use the same username simultaneously.
+## Socket Events
+1. **socket.on(user-joined')**
+   - Catches the event when a user joins the chatroom.
+   - Gets the username of the user as parameter.
+   - Emits the 'user-joined' message to all users within room.
 
-3. **Chat Room Creation:**
+2. **socket.on('chat-message')**
+   - Will catch the event when some other user in the chatroom sends a message.
+   - Gets the message sent by some other user within chatroom as parameter.
+   - Emits the 'chat message' to all users within room.
 
-   - Create a chat room where users can join and exchange messages. Multiple chat rooms may be supported, and users should be able to choose a room to join.
+3. **socket.on('file')**
+   - Will catch the event when some other user in the chatroom sends a file.
+   - Gets the filename and base64 data of the file sent by some other user within chatroom as parameter.
+   - Stores the file on the server.
+   - Sends the file to all users in the chatroom.
 
-4. **Real-Time Text Messaging:**
+4. **socket.on('disconnect')**
+   - Will catch the event when user disconnects from the chatroom.
+   - Gets the username of the user as parameter.
+   - Disconnects the user from chatroom.
+   - Updates the list of users present in the chatroom.
 
-   - Implement real-time text messaging functionality within the chat room. Messages sent by one user should be immediately visible to all other users in the same chat room.
+## Data Models
+- Users in the application are represented using the following TypeScript interface:
+```typescript
+interface userModel {
+  _id: string; // Unique ID assigned by MongoDB
+  username: string; // username
+  password: boolean; // password
+}
+```
 
-5. **Image Sharing:**
+- Chatrooms in the application are represented using the following TypeScript interface:
+```typescript
+interface chatroom {
+  name: string;
+  users: string[];
+}
+const chatrooms: chatroom[] = [{ name: "ROOM NAME", users: [] }];
+```
 
-   - Enable users to upload and share images within the chat. Images should be uploaded to the server, temporarily stored, and then shared as part of the chat conversation.
+## Challenge Faced
+The primary challenge I encountered during the development process was related to sending files with the chat room. There are varius ways to send a file with websockets. For example- base64(currently used), Buffer(max. size limit is 1MB) and streams.
 
-6. **Error Handling:**
-
-   - Implement error handling mechanisms to gracefully handle scenarios such as user disconnections, failed image uploads, or other potential issues that may arise during real-time communication.
-
-7. **Documentation:**
-
-   - Create Postman collection or Swagger documentation for your WebSocket API endpoints. The documentation should provide comprehensive information about the WebSocket events, data structures, and message formats used for communication.
-
-### Submission Details:
-
-To submit your assignment, follow these steps:
-
-1. **Fork Repository:**
-
-   - Fork the provided GitHub repository to create your own copy.
-
-2. **Create Branch:**
-
-   - Create a new branch in your forked repository with your name (e.g., "yourname_assignment").
-
-3. **Commit Regularly:**
-
-   - Commit your code regularly to the branch so that your progress can be tracked.
-
-4. **Pull Request:**
-
-   - Once you have completed the assignment, create a pull request from your branch to the main repository. Replace "main repository" with the URL of the original repository.
-
-5. **README.md:**
-
-   - Include a README.md file in your project repository. This README should explain your approach to building the chat application, any challenges you faced, and any additional features or improvements you would have added if given more time.
-
-6. **Documentation Link:**
-
-   - Include the link to your Postman collection or Swagger documentation in the README.md file.
-
-### Evaluation Criteria:
-
-Your assignment will be evaluated based on the following factors:
-
-- **Technical Proficiency:**
-  - Demonstrating your skills in using Node.js, Express.js, TypeScript, and Socket.io to build a functional real-time chat application with image sharing.
-
-- **Code Quality:**
-  - Writing clean, well-structured, and maintainable code with proper comments and strict typing.
-
-- **WebSocket Implementation:**
-  - Creating WebSocket endpoints and handling real-time communication effectively.
-
-- **User Authentication:**
-  - Implementing a secure user authentication system.
-
-- **Image Upload:**
-  - Allowing users to upload and share images in the chat room.
-
-- **Error Handling:**
-  - Implementing error handling mechanisms for a robust chat application.
-
-- **Documentation:**
-  - Providing detailed Postman collection or Swagger documentation for the WebSocket API endpoints.
-
-### Submission Deadline:
-
-You have 3-4 days from the date you received this assignment to complete and submit it.
-
-Good luck with the assignment! If you have any questions during the development process, feel free to reach out for clarification. Happy coding!
+## Postman Collection
+[https://www.postman.com/munishrukhaya/workspace/munish-assignment/collection/30129538-53e769e5-7259-40e9-bc49-907aa39f577c?action=share&creator=30129538]
