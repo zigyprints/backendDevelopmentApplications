@@ -1,92 +1,31 @@
-### Task: Build a Real-Time Chat Application
+# Advanced Chat Application
 
-In this assignment, your task is to create a real-time chat application using Node.js, Express.js, TypeScript, and Socket.io. This chat application will enable users to communicate with each other by sending text messages and sharing images in real-time within a chat room.
+It is a real-time application built using the MERN stack. It provides users with a seamless and interactive chatting experience.
 
-### Requirements:
+## Features
 
-1. **Backend Setup with Node.js, Express.js, TypeScript, and Socket.io:**
+- Real-time Messaging: Users can chat with each other in real time, sending and receiving messages instantly without the need to refresh the page.
 
-   - Set up a Node.js server using Express.js to handle HTTP requests and Socket.io to enable real-time WebSocket communication.
+- User Authentication: The application supports user registration and authentication, ensuring secure access to the chat functionality.
 
-2. **User Authentication:**
+- Group Chats: Users can create or join group chats, allowing them to communicate with multiple participants simultaneously.
 
-   - Implement user authentication to allow users to join the chat room with a unique username. Users should not be able to use the same username simultaneously.
+- Message History: The application keeps a history of previous messages, allowing users to view their chat history and scroll through past conversations.
 
-3. **Chat Room Creation:**
+- Emojis and Media Sharing: Users can enhance their conversations by sending emojis and sharing media files such as images or videos.
 
-   - Create a chat room where users can join and exchange messages. Multiple chat rooms may be supported, and users should be able to choose a room to join.
+## Technologies Used
 
-4. **Real-Time Text Messaging:**
+The project is built using the MERN stack, which consists of the following technologies:
 
-   - Implement real-time text messaging functionality within the chat room. Messages sent by one user should be immediately visible to all other users in the same chat room.
+- MongoDB: A NoSQL database used to store and manage user information, chat messages, and other relevant data.
 
-5. **Image Sharing:**
+- Express.js: A web application framework for Node.js that handles server-side logic and API routes.
 
-   - Enable users to upload and share images within the chat. Images should be uploaded to the server, temporarily stored, and then shared as part of the chat conversation.
+- React: A JavaScript library for building user interfaces, used to create the client-side of the application.
 
-6. **Error Handling:**
+- Node.js: A JavaScript runtime environment used for server-side development and running the Express.js server.
 
-   - Implement error handling mechanisms to gracefully handle scenarios such as user disconnections, failed image uploads, or other potential issues that may arise during real-time communication.
+- Socket.IO: A library that enables real-time, bidirectional communication between the server and the clients, facilitating instant messaging.
 
-7. **Documentation:**
-
-   - Create Postman collection or Swagger documentation for your WebSocket API endpoints. The documentation should provide comprehensive information about the WebSocket events, data structures, and message formats used for communication.
-
-### Submission Details:
-
-To submit your assignment, follow these steps:
-
-1. **Fork Repository:**
-
-   - Fork the provided GitHub repository to create your own copy.
-
-2. **Create Branch:**
-
-   - Create a new branch in your forked repository with your name (e.g., "yourname_assignment").
-
-3. **Commit Regularly:**
-
-   - Commit your code regularly to the branch so that your progress can be tracked.
-
-4. **Pull Request:**
-
-   - Once you have completed the assignment, create a pull request from your branch to the main repository. Replace "main repository" with the URL of the original repository.
-
-5. **README.md:**
-
-   - Include a README.md file in your project repository. This README should explain your approach to building the chat application, any challenges you faced, and any additional features or improvements you would have added if given more time.
-
-6. **Documentation Link:**
-
-   - Include the link to your Postman collection or Swagger documentation in the README.md file.
-
-### Evaluation Criteria:
-
-Your assignment will be evaluated based on the following factors:
-
-- **Technical Proficiency:**
-  - Demonstrating your skills in using Node.js, Express.js, TypeScript, and Socket.io to build a functional real-time chat application with image sharing.
-
-- **Code Quality:**
-  - Writing clean, well-structured, and maintainable code with proper comments and strict typing.
-
-- **WebSocket Implementation:**
-  - Creating WebSocket endpoints and handling real-time communication effectively.
-
-- **User Authentication:**
-  - Implementing a secure user authentication system.
-
-- **Image Upload:**
-  - Allowing users to upload and share images in the chat room.
-
-- **Error Handling:**
-  - Implementing error handling mechanisms for a robust chat application.
-
-- **Documentation:**
-  - Providing detailed Postman collection or Swagger documentation for the WebSocket API endpoints.
-
-### Submission Deadline:
-
-You have 3-4 days from the date you received this assignment to complete and submit it.
-
-Good luck with the assignment! If you have any questions during the development process, feel free to reach out for clarification. Happy coding!
+- SCSS: A CSS preprocessor that provides additional features and enhancements to standard CSS, such as variables, nesting, and modular organization.
