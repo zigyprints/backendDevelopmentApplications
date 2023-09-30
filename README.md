@@ -41,7 +41,7 @@ All the routes other than /auth are protected with userProtect controller.
    - Stores the file on the server.
    - Sends the file to all users in the chatroom.
 
-   4. **socket.on('disconnect')**
+4. **socket.on('disconnect')**
    - Will catch the event when user disconnects from the chatroom.
    - Gets the username of the user as parameter.
    - Disconnects the user from chatroom.
