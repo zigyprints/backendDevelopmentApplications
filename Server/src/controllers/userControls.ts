@@ -7,7 +7,7 @@ import validator from 'validator';
 // Generating salt
 const bcryptsalt = await bcrypt.genSaltSync(10)
 
-const createToken = (_id) =>{
+function createToken(_id){
     const jwtkey:string = process.env.JWT_SECRET_KEY;
     return jwt.sign({ _id }, jwtkey, {expiresIn: "7d"});
 }
@@ -18,7 +18,7 @@ const registerUser = async(req:Request,res:Response)=>{
         let user = await userModel.findOne({email})
         //Checks
         if (user) {
-            return res.status(400).json("user with the given email already exit...")
+            return res.status(400).json("user with the given email already exits...")
         }
         if (!name || !email || !password){
             return res.status(400).json("All fields are required")
@@ -27,7 +27,7 @@ const registerUser = async(req:Request,res:Response)=>{
             return res.status(400).json("Email must be valid email...")
         }
         if (!validator.isStrongPassword(password)){
-            return res.json("Password should be a strong password...")
+            return res.status(400).json("Password should be a strong password...")
         }
         
         user = new userModel({name,email,password})
@@ -57,9 +57,9 @@ const loginUser = async(req:Request,res:Response)=>{
         if (!isValidPassword) {
             return res.status(400).json("Invalid Email or Password...")
         }
-    
+        
         const token = createToken(user._id);
-        res.status(200).json({_id:user._id,email,token})
+        res.status(200).json({_id:user._id,name:user.name,email,token})
     } catch (error) {
         console.log(error);
         res.status(500).json(error)
@@ -77,6 +77,7 @@ const finduser= async(req:Request,res:Response) => {
     }
 }
 
+
 const getalluser= async(req:Request,res:Response) => {
     try {
         const users = await userModel.find()
@@ -86,5 +87,6 @@ const getalluser= async(req:Request,res:Response) => {
         res.status(500).json(error)
     }
 }
+
 
 export {registerUser,loginUser,finduser,getalluser}
