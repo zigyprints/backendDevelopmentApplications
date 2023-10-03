@@ -4,7 +4,7 @@ export default function Chat() {
 
     return(
         <>
-        Chat
+        <h1>Chat</h1>
         </>
     )
 };

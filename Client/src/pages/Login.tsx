@@ -21,6 +21,8 @@ export default function Login() {
         }))
     }
 
+    let errormessage:string;
+
     async function LoginUser(event:FormEvent) {
         event.preventDefault();
         try {
@@ -29,8 +31,9 @@ export default function Login() {
             localStorage.setItem("User",JSON.stringify(UserDoc.data))
             toast.success("Login Successful");
             setredirect(true)
-        } catch (error) {
-            toast.error("Please enter correct email and password")
+        } catch (error:any) {
+            errormessage = JSON.stringify(error.response.data)
+            toast.error("Please enter correct email and password - "+errormessage)
         }
     }
     if (redirect) {

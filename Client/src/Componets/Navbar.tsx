@@ -6,7 +6,11 @@ import { Link } from 'react-router-dom'
 
 
 export default function Navbar() {
-    const {User} = useContext(UserContext)
+    const { User,setUser } = useContext(UserContext)
+    function LogOut() {
+        localStorage.removeItem("User")
+        setUser(null)
+    }
     return (
         <motion.div
             initial={{ y: 100, opacity: 0 }}
@@ -36,29 +40,23 @@ export default function Navbar() {
                     </div>
 
                 </motion.div>
-                <div className='flex flex-row-reverse gap-4 mx-8'>
-                    <Link to={'/login'} className={Cn('group shadow-md rounded-full px-5 my-3 hover:font-bold bg-gradient-to-r from-gray-700 to-gray-500 hover:from-pink-500 hover:to-yellow-500 text-white flex justify-center items-center hover:scale-[0.9]')}>
-                        Login
-                    </Link>
-                    <Link to={'/register'}
-                        className={Cn('group shadow-md rounded-full px-5 my-3 flex justify-center items-center hover:font-bold bg-gradient-to-r from-gray-700 to-gray-500 hover:from-pink-500 hover:to-yellow-500 text-white hover:scale-[0.9]')}>
+                {User ?
+                    <div className='flex flex-row-reverse gap-4 mx-8'>
+                        <div onClick={LogOut} className={Cn('group shadow-md rounded-full px-5 my-3 hover:font-bold bg-gradient-to-r from-gray-700 to-gray-500 hover:from-pink-500 hover:to-yellow-500 text-white flex justify-center items-center hover:scale-[0.9]')}>
+                            LogOut
+                        </div>
+                    </div>
+                    :
+                    <div className='flex flex-row-reverse gap-4 mx-8'>
+                        <Link to={'/login'} className={Cn('group shadow-md rounded-full px-5 my-3 hover:font-bold bg-gradient-to-r from-gray-700 to-gray-500 hover:from-pink-500 hover:to-yellow-500 text-white flex justify-center items-center hover:scale-[0.9]')}>
+                            Login
+                        </Link>
+                        <Link to={'/register'}
+                            className={Cn('group shadow-md rounded-full px-5 my-3 flex justify-center items-center hover:font-bold bg-gradient-to-r from-gray-700 to-gray-500 hover:from-pink-500 hover:to-yellow-500 text-white hover:scale-[0.9]')}>
                             Register
-                    </Link>
-
-                    {/* <div className='my-3 mx-4 sm:mx-6 md:mx-8 lg:mx-10 w-10 h-10 rounded-full overflow-hidden xl:diplay-none visible flex justify-center items-center bg-gray-700 text-white' onClick={togglehamburger}>
-                        {hamburger ?
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-
-                            :
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M12 17.25h8.25" />
-                            </svg>
-
-                        }
-                    </div> */}
-                </div>
+                        </Link>
+                    </div>
+                }
             </nav >
         </motion.div>
     )
