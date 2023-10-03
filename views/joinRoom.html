@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Rooms</title>
+    <style>
+        .user_info {
+            display: flex;
+            flex-direction: column;
+            padding-inline: 100px;
+            /* padding-block: 20px; */
+        }
+
+        .info_input {
+            padding-inline-start: 10px;
+            margin-block: 5px;
+            padding-block: 10px;
+            font-size: larger;
+        }
+
+        .info_btn {
+            padding-block: 10px;
+            margin-block: 5px;
+            margin-inline-end: 20px;
+            width: max-content;
+            font-size: larger;
+            min-width: 160px;
+        }
+        .join_set {
+            display: flex;
+            flex-direction: row;
+            /* justify-content: center; */
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="user_info">
+        Rooms
+    </h1>
+    <div class="user_info">
+        <div class="join_set">
+            <input id="room_id" placeholder="Room ID" class="info_input" type="text" name="room_id" id="Room ID">
+            <button class="info_btn" type="submit" onclick="setRoomID()">Join</button>
+        </div>
+        <button class="info_btn" type="submit" onclick="generateRoomID()">Create</button>
+    </div>
+</body>
+<script>
+    function setRoomID() {
+        let room_id = document.getElementById("room_id").value;
+        let final = "";
+        for (let i = 0; i < 4 - room_id.length; i++) {
+            final += "0";
+        }
+        room_id = final + room_id;
+        console.log(room_id)
+        document.cookie = `room_id=${room_id}; path=/`;
+        window.location.replace("http://localhost:4000/chat");
+    }
+
+    function generateRoomID() {
+        let room_id = Math.floor(Math.random() * 1000).toString();
+        let final = "";
+        for (let i = 0; i < 4 - room_id.length; i++) {
+            final += "0";
+        }
+        room_id = final + room_id;
+        document.cookie = `room_id=${room_id}; path=/`;
+        window.location.replace("http://localhost:4000/chat");
+    }
+</script>
+</html>
