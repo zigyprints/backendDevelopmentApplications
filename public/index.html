@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Chat App 👾</title>
+  <script defer src="/socket.io/socket.io.js"></script>
+  <script defer src="./index.js"></script>
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      /* justify-content: center; */
+    }
+
+    .message-container {
+      display: flex;
+      flex-direction: column;
+      margin-inline: 200px;
+      font-size: larger;
+      max-height: 80%;
+      background-color: #fffef1;
+      height: 400px;
+      overflow-x: hidden;
+      overflow-y: auto;
+      padding-inline: 40px;
+      padding-block: 20px;
+    }
+
+    #room_id {
+      margin-inline: 200px;
+    }
+
+    p {
+      margin: 5px;
+      border: 1px rgba(46, 46, 46, 0.168) solid;
+      border-right: 0px;
+      border-left: 0px;
+      border-top: 0px;
+    }
+
+    .btns_inps {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin-inline: 300px;
+      margin-block: 30px;
+    }
+
+    .sub-message {
+      display: flex;
+      justify-content: center;
+      margin: 10px;
+    }
+
+    .btns {
+      padding-inline: 40px;
+      padding-block: 10px;
+      margin-inline: 10px;
+    }
+
+    #message-input {
+      padding-inline: 20px;
+    }
+
+  </style>
+</head>
+<body>
+  <h3 id="room_id"></h3>
+  <div class="message-container" id="msg-container"></div>
+  <div class="btns_inps">
+    <div class="sub-message">
+      <input autocomplete="off" placeholder="message" type="text" name="message_input" id="message-input">
+      <button class="btns" type="submit" id="send-button" onclick="sendMessage()">Send</button>
+    </div>
+    <div class="sub-message">
+      <input class="btns" type="file" id="imageInput" accept="image/*">
+      <button class="btns" onclick="sendImage()">Send Image</button>
+    </div>
+  </div>
+</body>
+</html>

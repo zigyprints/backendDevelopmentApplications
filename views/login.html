@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Chat App</title>
+    <style>
+        .user_info {
+            display: flex;
+            flex-direction: column;
+            padding-inline: 100px;
+            /* padding-block: 20px; */
+        }
+
+        .info_input {
+            padding-inline-start: 10px;
+            margin-block: 5px;
+            padding-block: 10px;
+            font-size: larger;
+        }
+
+        .info_btn {
+            padding-block: 10px;
+            margin-block: 5px;
+            font-size: larger;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="user_info">
+        Login
+    </h1>
+    <form id="myForm" action="/api/login" method="POST">
+        <div class="user_info">
+            <input class="info_input" name="username" type="text" placeholder="username" autocomplete="off">
+            <input class="info_input" name="password" type="text" placeholder="password" autocomplete="off">
+            <button class="info_btn" type="submit">Sign Up</button>
+        </div>
+    </form>
+</body>
+</html>
