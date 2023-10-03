@@ -34,7 +34,7 @@ export function UserContextProvider({ children }: ContextProps) {
 
   return (
     <UserContext.Provider value={{ User, setUser }}>
-      {children}:ContextProps
+      {children}
     </UserContext.Provider>
   );
 }
