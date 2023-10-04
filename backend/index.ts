@@ -1,78 +1,36 @@
-const { getUsers } = require("./utils/users");
-const { userJoin } = require("./utils/users");
-const { getRooms } = require("./utils/rooms");
-const { roomJoin } = require("./utils/rooms");
-const { leaveRoom } = require("./utils/rooms");
+import express from "express";
+import http from "http";
+import cors from "cors";
+import { Socket, Server } from "socket.io";
 
-const express = require("express");
-const http = require("http");
-const { Server } = require("socket.io");
-const cors = require("cors");
+// Import the function to handle socket connections
+import { handleSocketConnection } from "./actions/socket";
 
+// Create an Express application
 const app = express();
 
+// Enable Cross-Origin Resource Sharing (CORS)
 app.use(cors());
 
+// Create an HTTP server using Express
 const server = http.createServer(app);
 
+// Create a Socket.IO server instance, configuring CORS settings
 const io = new Server(server, {
   cors: {
-    origin: true,
+    origin: true, // You can specify the allowed origins here
     // origin: "http://locahost:3000",
     methods: ["GET", "POST"],
   },
 });
 
-interface messageProps {
-  username: string;
-  message: string;
-  room: string;
-}
-
-io.on("connection", (socket: any) => {
-  console.log(`User Connected: ${socket.id}`);
-
-  socket.on("join_room", (data: string) => {
-    if (!roomJoin(data, socket.id)) {
-      socket.emit("username", `User already joined the room`);
-    } else {
-      socket.join(data);
-      socket.emit("username", `User joined the room`);
-      console.log(getRooms());
-    }
-
-    console.log(data, "room");
-  });
-
-  socket.on("add_user", (username: string) => {
-    if (!userJoin(socket.id, username)) {
-      socket.emit("username", `Username ${username} already exists`);
-    } else {
-      socket.emit("username", `Username ${username} submitted successfully`);
-      console.log(getUsers());
-    }
-  });
-
-  socket.on("send_message", (data: messageProps) => {
-    // socket.broadcast.emit("receive_message", data);
-    socket.broadcast.to(data.room).emit("receive_message", data.message);
-    console.log(typeof data.room, data.message);
-  });
-
-  socket.on("leave_room", (data: string) => {
-    console.log("dis", data);
-
-    if (leaveRoom(socket.id, data)) {
-      socket.broadcast
-        .to(data)
-        .emit("receive_message", "A user has left the chat");
-      socket.leave(data);
-    } else {
-      console.log(
-        "You cannot leave because you did not joined the room before"
-      );
-    }
-  });
+// Handle incoming socket connections
+io.on("connection", (socket: Socket) => {
+  handleSocketConnection(socket);
 });
 
-server.listen(5000, () => console.log("Server started on PORT 5000"));
+// Define the server's port, using the specified environment variable or a default value
+const PORT = process.env.PORT || 5000;
+
+// Start the server and listen on the specified port
+server.listen(PORT, () => console.log(`Server started on PORT ${PORT}`));

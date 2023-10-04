@@ -1,92 +1,130 @@
-### Task: Build a Real-Time Chat Application
+## Chat Application Backend
 
-In this assignment, your task is to create a real-time chat application using Node.js, Express.js, TypeScript, and Socket.io. This chat application will enable users to communicate with each other by sending text messages and sharing images in real-time within a chat room.
+### Introduction
 
-### Requirements:
+This documentation summarizes the approach taken for building the backend for a chat application using Node.js, Express, and Socket.IO. The chat application allows users to connect, join rooms, send messages, and leave rooms. This document explains the high-level architecture, the choice of technologies, and key implementation details.
 
-1. **Backend Setup with Node.js, Express.js, TypeScript, and Socket.io:**
+### Technologies Used
 
-   - Set up a Node.js server using Express.js to handle HTTP requests and Socket.io to enable real-time WebSocket communication.
+- Node.js: Chosen for its server-side capabilities, scalability, and extensive package ecosystem.
+- Express.js: Used as the web application framework for handling HTTP requests.
+- Socket.IO: A WebSocket library for real-time, bidirectional communication between clients and the server.
+- Cors: Middleware for enabling Cross-Origin Resource Sharing, allowing communication with different domains.
+- TypeScript: Used for server-side scripting and for type safety.
+- High-Level Architecture
 
-2. **User Authentication:**
+The chat application backend follows a server-client architecture. It uses WebSocket technology to enable real-time communication between clients (users) and the server.
 
-   - Implement user authentication to allow users to join the chat room with a unique username. Users should not be able to use the same username simultaneously.
+Server: The backend server is responsible for handling HTTP requests, managing WebSocket connections, and facilitating communication between users.
+Clients: Users connect to the server via WebSocket connections and interact with each other in real-time.
 
-3. **Chat Room Creation:**
+### Key Features and Implementation
 
-   - Create a chat room where users can join and exchange messages. Multiple chat rooms may be supported, and users should be able to choose a room to join.
+Socket.IO Integration: Socket.IO is integrated into the Express.js application to handle WebSocket connections. When a client connects to the server, a WebSocket connection is established.
 
-4. **Real-Time Text Messaging:**
+### User Management:
 
-   - Implement real-time text messaging functionality within the chat room. Messages sent by one user should be immediately visible to all other users in the same chat room.
+- Users are identified by a unique identifier (id) and a chosen username.
 
-5. **Image Sharing:**
+![username](https://imgur.com/yM1wYvo.jpg)
 
-   - Enable users to upload and share images within the chat. Images should be uploaded to the server, temporarily stored, and then shared as part of the chat conversation.
+![username](https://imgur.com/luqrSwN.jpg)
 
-6. **Error Handling:**
+---
 
-   - Implement error handling mechanisms to gracefully handle scenarios such as user disconnections, failed image uploads, or other potential issues that may arise during real-time communication.
+Message Handling
 
-7. **Documentation:**
+- Users can add their username by emitting the "add_user" event. If the username is taken, they receive a notification.
 
-   - Create Postman collection or Swagger documentation for your WebSocket API endpoints. The documentation should provide comprehensive information about the WebSocket events, data structures, and message formats used for communication.
+![username](https://imgur.com/eyKZfVu.jpg)
 
-### Submission Details:
+![username](https://imgur.com/PuKPTmk.jpg)
 
-To submit your assignment, follow these steps:
+![username](https://imgur.com/D1Pesks.jpg)
 
-1. **Fork Repository:**
+![username](https://imgur.com/Ivk231x.jpg)
 
-   - Fork the provided GitHub repository to create your own copy.
+---
 
-2. **Create Branch:**
+- Users can join rooms by emitting the "join_room" event. If a user attempts to join a room they're already in, they receive a notification.
 
-   - Create a new branch in your forked repository with your name (e.g., "yourname_assignment").
+![join_room](https://imgur.com/7oXrlZW.jpg)
 
-3. **Commit Regularly:**
+![join_room](https://imgur.com/iWVDQ6M.jpg)
 
-   - Commit your code regularly to the branch so that your progress can be tracked.
+---
 
-4. **Pull Request:**
+- Users can send messages to rooms by emitting the "send_message" event. Messages can include text and optional images.
+- Messages are broadcast to all users in the same room.
 
-   - Once you have completed the assignment, create a pull request from your branch to the main repository. Replace "main repository" with the URL of the original repository.
+![send_message](https://imgur.com/1ksXWsL.jpg)
 
-5. **README.md:**
+![send_message](https://imgur.com/xp1wOYt.jpg)
 
-   - Include a README.md file in your project repository. This README should explain your approach to building the chat application, any challenges you faced, and any additional features or improvements you would have added if given more time.
+![send_message](https://imgur.com/5fxVw1s.jpg)
 
-6. **Documentation Link:**
+![send_message](https://imgur.com/0DnQPTU.jpg)
 
-   - Include the link to your Postman collection or Swagger documentation in the README.md file.
+![send_message](https://imgur.com/ipJzxMf.jpg)
 
-### Evaluation Criteria:
+---
 
-Your assignment will be evaluated based on the following factors:
+- Leaving Rooms:
+- Users can leave rooms by emitting the "leave_room" event. When a user leaves a room, a message is broadcast to inform others.
 
-- **Technical Proficiency:**
-  - Demonstrating your skills in using Node.js, Express.js, TypeScript, and Socket.io to build a functional real-time chat application with image sharing.
+![leave](https://imgur.com/fGVm11X.jpg)
 
-- **Code Quality:**
-  - Writing clean, well-structured, and maintainable code with proper comments and strict typing.
+![leave](https://imgur.com/BFDCytf.jpg)
 
-- **WebSocket Implementation:**
-  - Creating WebSocket endpoints and handling real-time communication effectively.
+![leave](https://imgur.com/7UWfLtE.jpg)
 
-- **User Authentication:**
-  - Implementing a secure user authentication system.
+---
 
-- **Image Upload:**
-  - Allowing users to upload and share images in the chat room.
+### Error Handling:
 
-- **Error Handling:**
-  - Implementing error handling mechanisms for a robust chat application.
+The application handles potential errors, such as joining a non-existing room or leaving a room the user never joined which shown in the above images.
 
-- **Documentation:**
-  - Providing detailed Postman collection or Swagger documentation for the WebSocket API endpoints.
+## Conclusion
 
-### Submission Deadline:
+The chat application backend provides real-time communication capabilities for users. It's built using Node.js, Express.js, and Socket.IO, making it suitable for chat applications requiring low-latency communication. Proper error handling ensures a smooth user experience, and the application can be easily scaled to accommodate a growing user base.
 
-You have 3-4 days from the date you received this assignment to complete and submit it.
+This documentation provides an overview of the approach used to build the chat application backend, including technologies, architecture, key features, and deployment considerations. It serves as a reference for developers and stakeholders involved in the project.
 
-Good luck with the assignment! If you have any questions during the development process, feel free to reach out for clarification. Happy coding!
+## Additional Features to Implement in Future:
+
+Frontend Implementaion:
+
+Implement frontend using Reactjs or Nextjs.
+
+User Authentication:
+
+Implement user authentication to ensure that only registered users can access the chat.
+Add features like user registration, login, and password reset functionality.
+
+Private Messaging:
+
+Enable users to send private messages to specific users within a room.
+Implement a feature for users to create private rooms for one-on-one conversations.
+
+Message History:
+
+Store and retrieve chat message history so that users can view previous messages when joining a room.
+Implement pagination or infinite scroll for browsing through older messages.
+
+Notifications:
+
+Implement push notifications to alert users to new messages or mentions when they are not actively using the application.
+Provide notification settings to allow users to customize their notification preferences.
+
+User Profiles:
+
+Create user profiles where users can set profile pictures and update their personal information.
+Allow users to view the profiles of other users.
+
+User Status:
+
+Display the online/offline status of users in the chat.
+Implement a feature to show when a user was last active.
+
+Database:
+Setting database for storing messages, users profiles, status etc.
