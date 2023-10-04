@@ -7,8 +7,7 @@ import Possiblechats from "@/Componets/Possiblechats";
 
 export default function Chat() {
     const { userChats, updatecurrentChat, isLoading } = useContext(ChatContext)
-    const { User } = useContext(UserContext)
-
+    const { User } = useContext(UserContext)    
 
     return (
         <>

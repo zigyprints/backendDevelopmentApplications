@@ -1,6 +1,7 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { io } from "socket.io-client";
 
 type ContextProps = {
   children: React.ReactNode,
@@ -23,6 +24,59 @@ export function ChatContextProvider({ children, user }: ContextProps) {
   const [messages,setmessages] = useState(null)
   const [messagesLoading,setmessagesLoading] =  useState(false)
   const [newMessage, setnewMessage] = useState(null)
+  const [Socket, setSocket] = useState<any>(null)
+  const [OnlineUsers, setonlineUsers] = useState([])
+
+  // # Socket Io #
+  //connecting socket io
+  useEffect(()=>{
+    const newSocket = io("http://localhost:5000");
+    setSocket(newSocket);
+
+    return () =>{
+      newSocket.disconnect();
+    }
+  },[user])
+
+  useEffect(()=>{
+    if(Socket === null ) return
+    Socket.emit("addNewUser",user?._id) 
+    Socket.on("getOnlineUsers",(res)=>{
+      setonlineUsers(res);
+    })
+
+    return () =>{
+      Socket.off("getOnlineUsers");
+    }
+  },[Socket])
+
+// send message in socket io 
+useEffect(()=>{
+  if(Socket === null ) return
+  const recipientId = currentChat?.members?.find((id) => id !== user?._id)
+  console.log(recipientId);
+  
+  
+  Socket.emit("sendMessage",{...newMessage,recipientId}) 
+},[newMessage])
+
+// receive messages
+useEffect(()=>{
+  if(Socket === null ) return
+  Socket.on("getMessage", res => {
+    if(currentChat?._id !== res.chatId){
+      return
+    };
+    setmessages((prev)=>[...prev,res])
+  });
+
+  return ()=>{
+    Socket.off("getMessage")
+  }
+},[Socket, currentChat])
+
+
+
 
   async function createChat(firstId:string,secondId:string){
     try {
@@ -120,7 +174,8 @@ export function ChatContextProvider({ children, user }: ContextProps) {
     <ChatContext.Provider value={{ 
       userChats, isLoading, userChatsError, 
       possibleChats , createChat ,updatecurrentChat,
-      messages, messagesLoading,sendMessage,currentChat
+      messages, messagesLoading,sendMessage,currentChat,
+      OnlineUsers
       }}>
       {children}
     </ChatContext.Provider>

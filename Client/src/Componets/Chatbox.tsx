@@ -35,7 +35,6 @@ export default function Chatbox() {
                                     <div className='font-semibold'>{messages.text}</div>
                                     <div className='font-semibold text-sm'>{moment(messages.createdAt).calendar()}</div>
                                 </div>
-
                             ))}
                         </div>
 
