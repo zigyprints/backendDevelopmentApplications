@@ -20,90 +20,90 @@ export function ChatContextProvider({ children, user }: ContextProps) {
   const [userChatsError, setuserChatsError] = useState(null);
   const [isLoading, setisLoading] = useState(true)
   const [possibleChats, setpossibleChats] = useState([])
-  const [currentChat,setcurrentChat] = useState<any>(null)
-  const [messages,setmessages] = useState(null)
-  const [messagesLoading,setmessagesLoading] =  useState(false)
-  const [newMessage, setnewMessage] = useState(null)
-  const [Socket, setSocket] = useState<any>(null)
+  const [currentChat, setcurrentChat] = useState<any>(null)
+  const [messages, setmessages] = useState<any>(null)
+  const [messagesLoading, setmessagesLoading] = useState(false)
+  const [newMessage, setnewMessage] = useState<any>(null)
+  const [socket, setsocket] = useState<any>(null)
   const [OnlineUsers, setonlineUsers] = useState([])
 
   // # Socket Io #
   //connecting socket io
-  useEffect(()=>{
+  useEffect(() => {
     const newSocket = io("http://localhost:5000");
-    setSocket(newSocket);
+    setsocket(newSocket);
 
-    return () =>{
+    return () => {
       newSocket.disconnect();
     }
-  },[user])
+  }, [user])
 
-  useEffect(()=>{
-    if(Socket === null ) return
-    Socket.emit("addNewUser",user?._id) 
-    Socket.on("getOnlineUsers",(res)=>{
+  useEffect(() => {
+    if (socket === null) return
+    socket.emit("addNewUser", user?._id)
+    socket.on("getOnlineUsers", (res: []) => {
       setonlineUsers(res);
     })
 
-    return () =>{
-      Socket.off("getOnlineUsers");
+    return () => {
+      socket.off("getOnlineUsers");
     }
-  },[Socket])
+  }, [socket])
 
-// send message in socket io 
-useEffect(()=>{
-  if(Socket === null ) return
-  const recipientId = currentChat?.members?.find((id) => id !== user?._id)
-  console.log(recipientId);
-  
-  
-  Socket.emit("sendMessage",{...newMessage,recipientId}) 
-},[newMessage])
-
-// receive messages
-useEffect(()=>{
-  if(Socket === null ) return
-  Socket.on("getMessage", res => {
-    if(currentChat?._id !== res.chatId){
-      return
-    };
-    setmessages((prev)=>[...prev,res])
-  });
-
-  return ()=>{
-    Socket.off("getMessage")
-  }
-},[Socket, currentChat])
+  // send message in socket io 
+  useEffect(() => {
+    if (socket === null) return
+    const recipientId = currentChat?.members?.find((id: any) => id !== user?._id)
+    console.log(recipientId);
 
 
+    socket.emit("sendMessage", { ...newMessage, recipientId })
+  }, [newMessage])
+
+  // receive messages
+  useEffect(() => {
+    if (socket === null) return
+    socket.on("getMessage", (res: any) => {
+      if (currentChat?._id !== res.chatId) {
+        return
+      };
+      setmessages((prev: any) => [...prev, res])
+    });
+
+    return () => {
+      socket.off("getMessage")
+    }
+  }, [socket, currentChat])
 
 
-  async function createChat(firstId:string,secondId:string){
+
+
+  async function createChat(firstId: string, secondId: string) {
     try {
-      const data = await axios.post("/api/chat",{firstId,secondId})
-      setUserChats((prev:[])=> [...prev,data])
-    } catch (error:any) {
+      const data = await axios.post("/api/chat", { firstId, secondId })
+      setUserChats((prev: []) => [...prev, data])
+    } catch (error: any) {
       return setuserChatsError(error)
     }
-  }  
+  }
 
   //Filter existing Chats
   useEffect(() => {
     async function getusers() {
       try {
         const data = await axios.get("/api/users")
-        
-        const pChats = data.data.filter((u) => {
+
+        const pChats = data.data.filter((u: { _id: any; }) => {
           let isChatCreated = false;
           if (user._id == u._id) {
             return false
           }
           if (userChats) {
-            isChatCreated = userChats?.some((chat) => {
+            isChatCreated = userChats?.some((chat: any) => {
               return chat.members[0] === u._id || chat.members[1] === u._id
             })
           }
-          
+
           return !isChatCreated
         })
         setpossibleChats(pChats)
@@ -120,7 +120,7 @@ useEffect(()=>{
   useEffect(() => {
     async function getuserChats() {
       try {
-        setisLoading(true) 
+        setisLoading(true)
         const data = await axios.get(`/api/chat/${user?._id}`)
         setUserChats(data.data);
         setisLoading(false)
@@ -131,10 +131,10 @@ useEffect(()=>{
     getuserChats()
   }, [user])
 
-  function updatecurrentChat(chat:{}) {
+  function updatecurrentChat(chat: {}) {
     setcurrentChat(chat)
   }
-  
+
 
   //fetching messages for the current user
   useEffect(() => {
@@ -153,30 +153,28 @@ useEffect(()=>{
 
 
   //sending message
-  async function sendMessage(senderId,chatId,text,settext) {
+  async function sendMessage(senderId: string, chatId: string, text: string, settext: any) {
     if (!text) {
       return toast("must type something>>>")
     }
     try {
-        const messageDetails = {senderId,chatId,text,settext}
-        const response = await axios.post('/api/messages',messageDetails)
-        console.log(response);
-        
-        // setnewMessage(response)
-        // setmessages((prev)=>[...prev,response])
-        settext("")
-    } catch (error:any) {
-        toast("can't send message "+ error.message)
+      const messageDetails = { senderId, chatId, text, settext }
+      const response: any = await axios.post('/api/messages', messageDetails)
+      setnewMessage(response)
+      setmessages((prev: any) => [...prev, response])
+      settext("")
+    } catch (error: any) {
+      toast("can't send message " + error.message)
     }
-}
-  
+  }
+
   return (
-    <ChatContext.Provider value={{ 
-      userChats, isLoading, userChatsError, 
-      possibleChats , createChat ,updatecurrentChat,
-      messages, messagesLoading,sendMessage,currentChat,
+    <ChatContext.Provider value={{
+      userChats, isLoading, userChatsError,
+      possibleChats, createChat, updatecurrentChat,
+      messages, messagesLoading, sendMessage, currentChat,
       OnlineUsers
-      }}>
+    }}>
       {children}
     </ChatContext.Provider>
   );
