@@ -1,32 +1,34 @@
 const express=require('express')
 const app=express()
-const port=3000
-const socketio=require('socket.io')
-const path=require('path')
-const http=require('http')
+const port=5001
+require('dotenv').config();
+const rooms=['general','tech','finance','crypto'];
+const cors=require('cors');
 
-app.use(express.static(path.join(__dirname,'./public')))
+app.use(express.urlencoded({extended:true}));
+app.use(express.json());
+app.use(cors());
 
-const server=http.createServer(app)
+const connectDB = require('./connection');
 
-const io=socketio(server)
+const server=require('http').createServer(app);
+const io=require('socket.io')(server,{
+    cors:{
+        origin:'http://localhost:3000',
+        methods:['GET','POST'],
+    }
+});
 
-io.on('connection',(socket)=>{
-    console.log('New WebSocket connection')
-    socket.emit('welcomemessage','Welcome to the chat!')
-    // socket.broadcast.emit('message','A new user has joined!')
-    // socket.on('sendMessage',(message)=>{
-    //     io.emit('message',message)
-    // })
-    // socket.on('disconnect',()=>{
-    //     io.emit('message','A user has left!')
-    // })
-    socket.on('connected',(data)=>{
-        console.log(data);
-    })
-})
+const start = async () => {
+  try {
+    await connectDB(process.env.MONGO_URL);
+    server.listen(port, () =>
+      console.log(`Server is listening on port ${port}...`)
+    );
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-server.listen(port,()=>{
-    console.log(`Server is up on port ${port}`)
-})
+start();
 
