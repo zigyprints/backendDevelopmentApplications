@@ -1,0 +1,301 @@
+{
+	"info": {
+		"_postman_id": "614e8ece-5593-44bb-94d2-5e8a00962db0",
+		"name": "whisper-chat",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24819862"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Search User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MWM4ZTQ4ZmZmOTI5NzgxMjNiNjE3ZCIsImlhdCI6MTY5NjM5MjY1MCwiZXhwIjoxNjk2NDc5MDUwfQ.bgFCizcVFlw4MLZv1Q-bpsqol9nntA96iVWa2IuVpBY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MWM4ZTQ4ZmZmOTI5NzgxMjNiNjE3ZCIsImlhdCI6MTY5NjM5MzQ5MywiZXhwIjoxNjk2NDc5ODkzfQ.Z54IIGR5jhhmDkOsGKYesO7Hxch-DdY0ChYEkF8s-qU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/user/getAllUsers?search=j",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"getAllUsers"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "j"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"kobe\",\n    \"password\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/user/register",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Chats",
+			"item": [
+				{
+					"name": "Access Chat",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MWM4ZTQ4ZmZmOTI5NzgxMjNiNjE3ZCIsImlhdCI6MTY5NjM5MzQ5MywiZXhwIjoxNjk2NDc5ODkzfQ.Z54IIGR5jhhmDkOsGKYesO7Hxch-DdY0ChYEkF8s-qU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"651cce371b8e03cfcba0f1dd\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/chat/accessChat",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"chat",
+								"accessChat"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FetchChats",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MWM4ZTQ4ZmZmOTI5NzgxMjNiNjE3ZCIsImlhdCI6MTY5NjM5MzQ5MywiZXhwIjoxNjk2NDc5ODkzfQ.Z54IIGR5jhhmDkOsGKYesO7Hxch-DdY0ChYEkF8s-qU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/chat/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"chat",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Group Chat",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MWM4ZTQ4ZmZmOTI5NzgxMjNiNjE3ZCIsImlhdCI6MTY5NjM5MzQ5MywiZXhwIjoxNjk2NDc5ODkzfQ.Z54IIGR5jhhmDkOsGKYesO7Hxch-DdY0ChYEkF8s-qU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"football team\",\n    \"users\":\"[\\\"651cd07e1b8e03cfcba0f214\\\", \\\"651cce3f1b8e03cfcba0f1df\\\"]\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/chat/createGroupChat",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"chat",
+								"createGroupChat"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add to group",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{Cookie}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"chatId\": \"651ce9743e317f3b0b68469c\",\n    \"userId\": \"651cce3f1b8e03cfcba0f1df\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/chat/addToGroupChat",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"chat",
+								"addToGroupChat"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove user from group",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{Cookie}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"chatId\": \"651ce9743e317f3b0b68469c\",\n    \"userId\": \"651cce3f1b8e03cfcba0f1df\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/chat/removeFromGroup",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"chat",
+								"removeFromGroup"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Messages",
+			"item": [
+				{
+					"name": "Send New Message",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{Cookie}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"content\": \"HELLO THERE! HOW ARE YOU DOING?\",\n    \"chatId\": \"651ce9743e317f3b0b68469c\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/message/sendMessage",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"message",
+								"sendMessage"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "Cookie",
+			"value": "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MWM4ZTQ4ZmZmOTI5NzgxMjNiNjE3ZCIsImlhdCI6MTY5NjM5MzQ5MywiZXhwIjoxNjk2NDc5ODkzfQ.Z54IIGR5jhhmDkOsGKYesO7Hxch-DdY0ChYEkF8s-qU"
+		}
+	]
+}
