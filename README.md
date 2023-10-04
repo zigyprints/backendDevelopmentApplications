@@ -90,3 +90,6 @@ Your assignment will be evaluated based on the following factors:
 You have 3-4 days from the date you received this assignment to complete and submit it.
 
 Good luck with the assignment! If you have any questions during the development process, feel free to reach out for clarification. Happy coding!
+
+Postman Collection-:
+https://documenter.getpostman.com/view/25012702/2s9YJdX3Gx
