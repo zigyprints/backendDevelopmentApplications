@@ -1,22 +1,29 @@
-import mongoose, { Document, Schema, Model } from 'mongoose';
+import mongoose, { Document, Schema, Model } from "mongoose";
 
-interface IGroupChat extends Document {
+export interface IGroupChat extends Document {
+  author: mongoose.Schema.Types.ObjectId;
+  name: string;
   participants: mongoose.Types.ObjectId[];
   messages: mongoose.Types.ObjectId[];
   created_at: Date;
 }
 
 const groupChatSchema: Schema<IGroupChat> = new Schema({
+  author: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
+  name: String,
   participants: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
+      ref: "User",
     },
   ],
   messages: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'GroupMe',
+      ref: "GroupMe",
     },
   ],
   created_at: {
@@ -25,6 +32,9 @@ const groupChatSchema: Schema<IGroupChat> = new Schema({
   },
 });
 
-const Chat: Model<IGroupChat> = mongoose.model<IGroupChat>('GroupChat', groupChatSchema);
+const GroupChat: Model<IGroupChat> = mongoose.model<IGroupChat>(
+  "GroupChat",
+  groupChatSchema
+);
 
-export default Chat;
+export default GroupChat;

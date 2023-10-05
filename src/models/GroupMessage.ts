@@ -1,24 +1,24 @@
-import mongoose, { Document, Schema, Model } from 'mongoose';
+import mongoose, { Document, Schema, Model } from "mongoose";
 
-interface IGroupMessage extends Document {
-  sender: mongoose.Types.ObjectId;   
-  group: mongoose.Types.ObjectId; 
-  data: string;
+export interface IGroupMessage extends Document {
+  sender: mongoose.Types.ObjectId;
+  group: mongoose.Types.ObjectId;
+  text: string;
   created_at: Date;
 }
 
 const groupMessageSchema: Schema<IGroupMessage> = new Schema({
   sender: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User', 
+    ref: "User",
     required: true,
   },
   group: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Group',
+    ref: "Group",
     required: true,
   },
-  data: {
+  text: {
     type: String,
     required: true,
   },
@@ -28,6 +28,9 @@ const groupMessageSchema: Schema<IGroupMessage> = new Schema({
   },
 });
 
-const Message: Model<IGroupMessage> = mongoose.model<IGroupMessage>('GroupMessage', groupMessageSchema);
+const Message: Model<IGroupMessage> = mongoose.model<IGroupMessage>(
+  "GroupMessage",
+  groupMessageSchema
+);
 
 export default Message;

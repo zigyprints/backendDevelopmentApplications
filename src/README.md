@@ -1,92 +1,59 @@
-### Task: Build a Real-Time Chat Application
+# Real-Time Chat Application
 
-In this assignment, your task is to create a real-time chat application using Node.js, Express.js, TypeScript, and Socket.io. This chat application will enable users to communicate with each other by sending text messages and sharing images in real-time within a chat room.
+This is a real-time chat application that combines HTTP and WebSocket approaches to provide real-time messaging, message history, and seamless chat experiences. It includes features for one-on-one chat rooms, group chats, image uploads, JWT authentication, and error handling.
 
-### Requirements:
+## Features
 
-1. **Backend Setup with Node.js, Express.js, TypeScript, and Socket.io:**
+### 1. Real-Time Messaging and Message History
 
-   - Set up a Node.js server using Express.js to handle HTTP requests and Socket.io to enable real-time WebSocket communication.
+- Utilizes a hybrid approach combining HTTP and WebSocket to support real-time messaging.
+- Provides message history so users can view past messages.
 
-2. **User Authentication:**
+### 2. Chat Room Flexibility
 
-   - Implement user authentication to allow users to join the chat room with a unique username. Users should not be able to use the same username simultaneously.
+- Supports both one-on-one chat rooms and group chats.
+- Seamlessly switch between different chat rooms while maintaining message history.
 
-3. **Chat Room Creation:**
+### 3. Image Upload Functionality
 
-   - Create a chat room where users can join and exchange messages. Multiple chat rooms may be supported, and users should be able to choose a room to join.
+- Allows users to upload images within the chat.
+- Images are stored on the server, and a URL is generated for easy sharing during file uploads.
 
-4. **Real-Time Text Messaging:**
+### 4. JWT Authentication and Cookie Management
 
-   - Implement real-time text messaging functionality within the chat room. Messages sent by one user should be immediately visible to all other users in the same chat room.
+- Implements JWT (JSON Web Token) authentication for secure user authorization.
+- Manages user sessions using cookies to ensure authenticated access.
 
-5. **Image Sharing:**
+### 5. Seamless Error Handling
 
-   - Enable users to upload and share images within the chat. Images should be uploaded to the server, temporarily stored, and then shared as part of the chat conversation.
+- Properly handles errors with appropriate HTTP response codes.
+- Utilizes nested try-catch blocks to ensure robust error handling.
 
-6. **Error Handling:**
+## Getting Started
 
-   - Implement error handling mechanisms to gracefully handle scenarios such as user disconnections, failed image uploads, or other potential issues that may arise during real-time communication.
+To get started with this chat application, follow these steps:
 
-7. **Documentation:**
+1. Clone the repository to your local machine.
+2. Install the necessary dependencies using `npm install`.
+3. Configure your environment variables for authentication and database settings.
+4. Start the application using `npm start`.
+5. Open the application in your web browser and create an account or log in.
 
-   - Create Postman collection or Swagger documentation for your WebSocket API endpoints. The documentation should provide comprehensive information about the WebSocket events, data structures, and message formats used for communication.
+## Usage
 
-### Submission Details:
+1. Create one-on-one or group chat rooms.
+2. Send and receive messages in real-time.
+3. Upload and share images with other users.
+4. Enjoy seamless authentication and error handling.
 
-To submit your assignment, follow these steps:
+## Technologies Used
 
-1. **Fork Repository:**
+- Node.js
+- Express.js
+- WebSocket (Socket.io)
+- Multer for image uploads
+- JSON Web Tokens (JWT) for authentication
 
-   - Fork the provided GitHub repository to create your own copy.
+## License
 
-2. **Create Branch:**
-
-   - Create a new branch in your forked repository with your name (e.g., "yourname_assignment").
-
-3. **Commit Regularly:**
-
-   - Commit your code regularly to the branch so that your progress can be tracked.
-
-4. **Pull Request:**
-
-   - Once you have completed the assignment, create a pull request from your branch to the main repository. Replace "main repository" with the URL of the original repository.
-
-5. **README.md:**
-
-   - Include a README.md file in your project repository. This README should explain your approach to building the chat application, any challenges you faced, and any additional features or improvements you would have added if given more time.
-
-6. **Documentation Link:**
-
-   - Include the link to your Postman collection or Swagger documentation in the README.md file.
-
-### Evaluation Criteria:
-
-Your assignment will be evaluated based on the following factors:
-
-- **Technical Proficiency:**
-  - Demonstrating your skills in using Node.js, Express.js, TypeScript, and Socket.io to build a functional real-time chat application with image sharing.
-
-- **Code Quality:**
-  - Writing clean, well-structured, and maintainable code with proper comments and strict typing.
-
-- **WebSocket Implementation:**
-  - Creating WebSocket endpoints and handling real-time communication effectively.
-
-- **User Authentication:**
-  - Implementing a secure user authentication system.
-
-- **Image Upload:**
-  - Allowing users to upload and share images in the chat room.
-
-- **Error Handling:**
-  - Implementing error handling mechanisms for a robust chat application.
-
-- **Documentation:**
-  - Providing detailed Postman collection or Swagger documentation for the WebSocket API endpoints.
-
-### Submission Deadline:
-
-You have 3-4 days from the date you received this assignment to complete and submit it.
-
-Good luck with the assignment! If you have any questions during the development process, feel free to reach out for clarification. Happy coding!
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

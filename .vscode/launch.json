@@ -9,13 +9,7 @@
       "request": "launch",
       "name": "Zigy",
       "skipFiles": ["<node_internals>/**"],
-      "program": "${workspaceFolder}\\src\\app.ts",
-      "runtimeArgs": [
-        "-r",
-        "ts-node/register",
-        "-r",
-        "tsconfig-paths/register"
-      ],
+      "program": "${workspaceFolder}\\dist\\src\\app.js",
       "outFiles": ["${workspaceFolder}/**/*.js"],
       "console": "integratedTerminal"
     }
