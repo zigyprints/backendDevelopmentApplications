@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Chat App</title>
+  <script defer src="http://localhost:3000/socket.io/socket.io.js"></script>
+  <script defer src="script.js"></script>
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    #message-container {
+      width: 80%;
+      max-width: 800px; /* Adjust the maximum width as needed */
+      overflow-y: auto;
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 20px;
+      max-height: 60vh; /* Limit message container height */
+    }
+
+    #message-container div {
+      background-color: #CCC;
+      padding: 5px;
+      margin: 5px;
+      border-radius: 5px;
+    }
+
+    #message-container div:nth-child(2n) {
+      background-color: #FFF;
+    }
+
+    #send-container {
+      width: 80%;
+      max-width: 800px; /* Adjust the maximum width as needed */
+      display: flex;
+      margin-top: 10px;
+    }
+
+    #message-input {
+      flex-grow: 1;
+      padding: 5px;
+    }
+
+    #send-button {
+      padding: 5px 10px;
+      background-color: #007BFF;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+
+    #image-input {
+      margin-right: 10px;
+    }
+
+    #shared-images {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    #shared-images img {
+      max-width: 100px;
+      max-height: 100px;
+      margin: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div id="message-container"></div>
+  <div id="shared-images"></div>
+  <form id="send-container">
+    <input type="file" id="image-input" accept="image/*">
+    <input type="text" id="message-input" placeholder="Type your message...">
+    <button type="submit" id="send-button">Send</button>
+  </form>
+</body>
+</html>
