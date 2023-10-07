@@ -1,92 +1,51 @@
-### Task: Build a Real-Time Chat Application
+# Real-Time Chat Application
 
-In this assignment, your task is to create a real-time chat application using Node.js, Express.js, TypeScript, and Socket.io. This chat application will enable users to communicate with each other by sending text messages and sharing images in real-time within a chat room.
+A real-time chat application that enables users to communicate via text messages and share images in real-time within chat rooms.
 
-### Requirements:
+## Features
 
-1. **Backend Setup with Node.js, Express.js, TypeScript, and Socket.io:**
+- User authentication with unique usernames.
+- Multiple chat rooms support.
+- Real-time text messaging.
+- Image sharing with temporary server storage.
+- Robust error handling.
+- WebSocket API documentation.
 
-   - Set up a Node.js server using Express.js to handle HTTP requests and Socket.io to enable real-time WebSocket communication.
+## Technologies Used
 
-2. **User Authentication:**
+- Node.js
+- Express.js
+- TypeScript
+- Socket.io
+- Multer (for image uploads)
 
-   - Implement user authentication to allow users to join the chat room with a unique username. Users should not be able to use the same username simultaneously.
+## Usage
 
-3. **Chat Room Creation:**
+1. Register or log in with a unique username.
+2. Choose a chat room to join or create a new one.
+3. Start sending text messages and sharing images in real-time.
 
-   - Create a chat room where users can join and exchange messages. Multiple chat rooms may be supported, and users should be able to choose a room to join.
+## Challenges Faced
 
-4. **Real-Time Text Messaging:**
+Building this chat application presented several challenges:
 
-   - Implement real-time text messaging functionality within the chat room. Messages sent by one user should be immediately visible to all other users in the same chat room.
+- Implementing real-time synchronization for messages.
+- Handling image uploads and temporary storage securely.
+- Implementing error handling for various scenarios.
+- Securely implementing user authentication and unique usernames.
 
-5. **Image Sharing:**
+## Future Improvements
 
-   - Enable users to upload and share images within the chat. Images should be uploaded to the server, temporarily stored, and then shared as part of the chat conversation.
+Given more time, these improvements and features could be added:
 
-6. **Error Handling:**
+- Private one-on-one messaging.
+- Message history and chat room management.
+- User profiles with avatars and status messages.
+- Emoji support.
+- Moderation tools.
+- Real-time notifications for new messages and mentions.
+- need to work on frontend
 
-   - Implement error handling mechanisms to gracefully handle scenarios such as user disconnections, failed image uploads, or other potential issues that may arise during real-time communication.
+### This was backend project so left frontend side work on pending but will work on that for sure. Also had to work on User Authentication part
+## You can find the WebSocket API documentation in JSON format [here](https://api.npoint.io/bc8b37c25a0d22d93e27).
 
-7. **Documentation:**
-
-   - Create Postman collection or Swagger documentation for your WebSocket API endpoints. The documentation should provide comprehensive information about the WebSocket events, data structures, and message formats used for communication.
-
-### Submission Details:
-
-To submit your assignment, follow these steps:
-
-1. **Fork Repository:**
-
-   - Fork the provided GitHub repository to create your own copy.
-
-2. **Create Branch:**
-
-   - Create a new branch in your forked repository with your name (e.g., "yourname_assignment").
-
-3. **Commit Regularly:**
-
-   - Commit your code regularly to the branch so that your progress can be tracked.
-
-4. **Pull Request:**
-
-   - Once you have completed the assignment, create a pull request from your branch to the main repository. Replace "main repository" with the URL of the original repository.
-
-5. **README.md:**
-
-   - Include a README.md file in your project repository. This README should explain your approach to building the chat application, any challenges you faced, and any additional features or improvements you would have added if given more time.
-
-6. **Documentation Link:**
-
-   - Include the link to your Postman collection or Swagger documentation in the README.md file.
-
-### Evaluation Criteria:
-
-Your assignment will be evaluated based on the following factors:
-
-- **Technical Proficiency:**
-  - Demonstrating your skills in using Node.js, Express.js, TypeScript, and Socket.io to build a functional real-time chat application with image sharing.
-
-- **Code Quality:**
-  - Writing clean, well-structured, and maintainable code with proper comments and strict typing.
-
-- **WebSocket Implementation:**
-  - Creating WebSocket endpoints and handling real-time communication effectively.
-
-- **User Authentication:**
-  - Implementing a secure user authentication system.
-
-- **Image Upload:**
-  - Allowing users to upload and share images in the chat room.
-
-- **Error Handling:**
-  - Implementing error handling mechanisms for a robust chat application.
-
-- **Documentation:**
-  - Providing detailed Postman collection or Swagger documentation for the WebSocket API endpoints.
-
-### Submission Deadline:
-
-You have 3-4 days from the date you received this assignment to complete and submit it.
-
-Good luck with the assignment! If you have any questions during the development process, feel free to reach out for clarification. Happy coding!
