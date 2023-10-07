@@ -12,6 +12,11 @@ app.use(bodyParser.json());
 const users = {};
 const rooms = {};
 
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send("Something went wrong!");
+});
+
 io.on("connection", (socket) => {
   socket.on("new-user", (name) => {
     users[socket.id] = { name, socket };
@@ -23,6 +28,8 @@ io.on("connection", (socket) => {
       rooms[roomId].users.push(socket.id);
       socket.join(roomId);
       socket.emit("room-joined", roomId);
+    } else {
+      socket.emit("room-not-found", "Room not found");
     }
   });
 
@@ -32,6 +39,8 @@ io.on("connection", (socket) => {
       const chatMessage = { message, senderName };
       rooms[roomId].messages.push(chatMessage);
       io.to(roomId).emit("chat-message", chatMessage);
+    } else {
+      socket.emit("room-not-found", "Room not found");
     }
   });
 
@@ -41,7 +50,6 @@ io.on("connection", (socket) => {
       const userName = user.name;
       socket.broadcast.emit("user-disconnected", userName);
 
-      // Remove the user from all rooms they were in
       Object.keys(rooms).forEach((roomId) => {
         if (rooms[roomId].users.includes(socket.id)) {
           rooms[roomId].users = rooms[roomId].users.filter(
