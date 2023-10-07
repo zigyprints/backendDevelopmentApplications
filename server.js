@@ -8,7 +8,6 @@ const io = socketIo(server);
 
 const users = {};
 
-// Your WebSocket logic goes here
 io.on("connection", (socket) => {
   socket.on("new-user", (name) => {
     users[socket.id] = name;
@@ -26,7 +25,6 @@ io.on("connection", (socket) => {
   });
 });
 
-// Serve your Express routes and static files here
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
 });
