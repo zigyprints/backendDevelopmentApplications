@@ -1,92 +1,235 @@
-### Task: Build a Real-Time Chat Application
+# Chat Room Application Readme
 
-In this assignment, your task is to create a real-time chat application using Node.js, Express.js, TypeScript, and Socket.io. This chat application will enable users to communicate with each other by sending text messages and sharing images in real-time within a chat room.
+-   [Assumptions](#assumptions)
+-   [Challenges Faced](#challenges-faced)
+-   [Improvements](#improvements)
+-   [Basic Working of the Room](#basic-working-of-the-room)
+-   [Data Structures](#data-structures)
+-   [Events](#events)
+    -   [connection](#connection)
+    -   [join_server](#join_server)
+    -   [create_room](#create_room)
+    -   [delete_room](#delete_room)
+    -   [join_room](#join_room)
+    -   [leave_room](#leave_room)
+    -   [send_message](#send_message)
+    -   [disconnecting](#disconnecting)
+    -   [disconnect](#disconnect)
+-   [Emitted Events](#emitted-events)
+    -   [server_joined](#server_joined)
+    -   [room_created](#room_created)
+    -   [room_deleted](#room_deleted)
+    -   [room_joined](#room_joined)
+    -   [room_left](#room_left)
+    -   [new_message](#new_message)
+-   [Error Handling](#error-handling)
+    -   [error_status](#error_status)
+-   [Postman Documentation](#postman-documentation)
 
-### Requirements:
+## Assumptions
 
-1. **Backend Setup with Node.js, Express.js, TypeScript, and Socket.io:**
+-   **Data Storage**: All data is stored on the server, including user information, room details, and messages. Clients interact with the server to retrieve and manipulate this data.
 
-   - Set up a Node.js server using Express.js to handle HTTP requests and Socket.io to enable real-time WebSocket communication.
+-   **Image Sharing**: Image sharing is accomplished by encoding images as base64 strings. This allows images to be treated as text messages within the application, simplifying storage and transmission.
 
-2. **User Authentication:**
+## Challenges Faced
 
-   - Implement user authentication to allow users to join the chat room with a unique username. Users should not be able to use the same username simultaneously.
+-   **Learning Socket.io**: As someone who had never worked with Socket.io before, I had to spend time researching and learning about its concepts and usage.
 
-3. **Chat Room Creation:**
+-   **Adapting to Version Changes**: When faced with certain concepts that I might not have come across during my initial learning phase, finding solutions could be time-consuming. Some of the Stack Overflow solutions I found were based on previous versions of Socket.io. However, these resources still proved valuable as they pointed me in the right direction. I could adapt the solutions by referring to the migration sections in the Socket.io documentation to implement the required functionality.
 
-   - Create a chat room where users can join and exchange messages. Multiple chat rooms may be supported, and users should be able to choose a room to join.
+## Improvements
 
-4. **Real-Time Text Messaging:**
+-   **Using Frontend Application**: Implementing a frontend application can reduce the number of events that are being emitted. Callbacks can be used in certain situations when the event pertains to a specific socket only.
 
-   - Implement real-time text messaging functionality within the chat room. Messages sent by one user should be immediately visible to all other users in the same chat room.
+-   **Implementing Databases and Proper User Management**: Incorporating databases offers several advantages, including:
 
-5. **Image Sharing:**
+    -   User Registration, Login, and Authentication: Utilizing techniques like JSON Web Tokens (JWT) and other forms of authorization can enhance system security and user convenience.
 
-   - Enable users to upload and share images within the chat. Images should be uploaded to the server, temporarily stored, and then shared as part of the chat conversation.
+    -   Data Persistence: Storing data permanently enables users to retain their chat histories, enhancing user experience.
 
-6. **Error Handling:**
+    -   Reduced Event Handling: With a database, there's no need to handle events related to user information deletion. User information can be associated with their account, eliminating the need for manual data management.
 
-   - Implement error handling mechanisms to gracefully handle scenarios such as user disconnections, failed image uploads, or other potential issues that may arise during real-time communication.
+## Basic Working of the Room
 
-7. **Documentation:**
+The Chat Room Application facilitates communication among users within different rooms. Here's how it works:
 
-   - Create Postman collection or Swagger documentation for your WebSocket API endpoints. The documentation should provide comprehensive information about the WebSocket events, data structures, and message formats used for communication.
+1. **User Registration**:
 
-### Submission Details:
+    - Users can join the server by providing a unique username.
+    - If the username is invalid or already in use, an error event is emitted.
 
-To submit your assignment, follow these steps:
+2. **Room Joining**:
 
-1. **Fork Repository:**
+    - Upon joining the server, users can see a list of pre-existing rooms and join them.
+    - This allows users to engage in conversations within various rooms.
 
-   - Fork the provided GitHub repository to create your own copy.
+3. **Room Creation**:
 
-2. **Create Branch:**
+    - Users have the ability to create new rooms, becoming the admin for those rooms.
+    - When a room is created, the server is notified, and it initializes the room's data structures.
 
-   - Create a new branch in your forked repository with your name (e.g., "yourname_assignment").
+4. **Room Deletion**:
 
-3. **Commit Regularly:**
+    - Only the admin of a room can delete it.
+    - Deleting a room clears all associated data structures and forces all participants to leave the room.
+    - An error event is emitted if a non-admin user attempts to delete a room.
 
-   - Commit your code regularly to the branch so that your progress can be tracked.
+5. **Leaving a Room**:
 
-4. **Pull Request:**
+    - Users can leave a room at any time.
+    - When they do, an event is emitted to inform other room members of their departure.
 
-   - Once you have completed the assignment, create a pull request from your branch to the main repository. Replace "main repository" with the URL of the original repository.
+6. **Messaging**:
 
-5. **README.md:**
+    - Users can send text messages and share images (encoded as base64 strings) within a room.
+    - All room members can view and respond to these messages.
 
-   - Include a README.md file in your project repository. This README should explain your approach to building the chat application, any challenges you faced, and any additional features or improvements you would have added if given more time.
+7. **Disconnect Handling**:
+    - When a user disconnects, their data is removed from the server.
+    - If they were part of a room, they are removed from that room and a departure message is emitted to the room.
 
-6. **Documentation Link:**
+## Data Structures
 
-   - Include the link to your Postman collection or Swagger documentation in the README.md file.
+The Chat Room Application relies on several data structures to manage users, rooms, and messages:
 
-### Evaluation Criteria:
+-   **User Mapping**: A `Map` that associates usernames with socket IDs.
+-   **Room Admins**: A `Map` that links room names to the usernames of their respective admins.
+-   **Room Members**: An object where each key is a room name, and the value is an array of usernames for room members.
+-   **Messages**: An object where each key is a room name, and the value is an array of messages, including sender and content.
 
-Your assignment will be evaluated based on the following factors:
+## Events
 
-- **Technical Proficiency:**
-  - Demonstrating your skills in using Node.js, Express.js, TypeScript, and Socket.io to build a functional real-time chat application with image sharing.
+### `connection`
 
-- **Code Quality:**
-  - Writing clean, well-structured, and maintainable code with proper comments and strict typing.
+This event is triggered when a client establishes a connection with the server. It marks the beginning of communication between the client and the server, allowing the client to interact with the chat room system.
 
-- **WebSocket Implementation:**
-  - Creating WebSocket endpoints and handling real-time communication effectively.
+### `join_server`
 
-- **User Authentication:**
-  - Implementing a secure user authentication system.
+Checks if the provided username is valid and not already in use. If the username is invalid or already in use, emits an error event. If the username is valid and available, associates it with the client and sends a welcome message along with a list of available rooms.
 
-- **Image Upload:**
-  - Allowing users to upload and share images in the chat room.
+### `create_room`
 
-- **Error Handling:**
-  - Implementing error handling mechanisms for a robust chat application.
+Checks if the room name is already in use. If the room name is already in use, emits an error event. If the room name is available, creates the room, adds the user as the admin, and notifies all clients of the new room's creation.
 
-- **Documentation:**
-  - Providing detailed Postman collection or Swagger documentation for the WebSocket API endpoints.
+### `delete_room`
 
-### Submission Deadline:
+Checks if the user is the admin of the room they want to delete. If the user is not the admin, emits an error event. If the user is the admin, deletes the room, its data, and notifies all clients of the room's deletion.
 
-You have 3-4 days from the date you received this assignment to complete and submit it.
+### `join_room`
 
-Good luck with the assignment! If you have any questions during the development process, feel free to reach out for clarification. Happy coding!
+Checks if the room exists and if the user is not already a member. If the room does not exist or the user is already a member, emits an error event. If the room exists and the user is not a member, adds the user to the room and notifies all clients in the room of the new member.
+
+### `leave_room`
+
+Checks if the room exists and if the user is a member. If the room does not exist or the user is not a member, emits an error event. If the room exists and the user is a member, removes the user from the room and notifies all clients in the room of the departure.
+
+### `send_message`
+
+Checks if the room and user exist and if the user is a member of the room. If any conditions are not met, emits an error event. If conditions are met, sends the message to all clients in the room and adds it to the room's message history.
+
+### `disconnecting`
+
+Removes the user from all the rooms they joined. Sends a "room_left" message to each room the user was part of, notifying other room members of the departure.
+
+### `disconnect`
+
+Handles the socket disconnect event, triggered when a client fully disconnects.
+
+## Emitted Events
+
+### `server_joined`
+
+Emitted after a client successfully joins the server. Includes a welcome message and a list of available rooms.
+
+### `room_created`
+
+Emitted when a user successfully creates a new room. Notifies all clients of the new room's creation.
+
+### `room_deleted`
+
+Emitted when the room admin successfully deletes a room. Notifies all clients of the room's deletion.
+
+### `room_joined`
+
+Emitted when a user successfully joins a room. Notifies all clients in the room of the new member's arrival.
+
+### `room_left`
+
+Emitted when a user successfully leaves a room. Notifies all clients in the room of the departure.
+
+### `new_message`
+
+Emitted when a user sends a message in a room. Sends the message to all clients in the room and adds it to the room's message history.
+
+## Error Handling
+
+### `error_status`
+
+Emits an error event to a socket with details about the error.
+
+## Postman Documentation
+
+-   **URL**: `http://localhost:8080`
+
+### Events to be Listened
+
+1. `server_joined`: Emits when a client successfully joins the server.
+
+2. `room_created`: Emits when a user successfully creates a new room.
+
+3. `room_deleted`: Emits when the admin of a room successfully deletes it, removing all members.
+
+4. `room_joined`: Emits when a user successfully joins a room.
+
+5. `new_message`: Emits when a user sends a message in a room.
+
+6. `error_status`: Emits when an error occurs.
+
+7. `room_left`: Emits when a user successfully leaves a room.
+
+8. `disconnecting`: Emits when a user is in the process of disconnecting.
+
+9. `disconnect`: Emits when a client fully disconnects from the server.
+
+### Events to be Emited
+
+#### `join_server` => Allows a user to join the server with a unique username.
+
+-   **Parameters**:
+    -   `username` (string) - The unique username to be associated with the client.
+
+#### `create_room` => Enables a user to create a new room and become its admin.
+
+-   **Parameters**:
+    -   `username` (string) - The username of the user creating the room.
+    -   `roomName` (string) - The name of the room to be created.
+
+#### `delete_room` => Allows the admin of a room to delete it, removing all members.
+
+-   **Parameters**:
+    -   `username` (string) - The username of the user making the request.
+    -   `roomName` (string) - The name of the room to be deleted.
+
+#### `join_room` => Allows a user to join an existing room.
+
+-   **Parameters**:
+    -   `username` (string) - The username of the user joining the room.
+    -   `roomName` (string) - The name of the room to join.
+
+#### `leave_room` => Allows a user to leave a room.
+
+-   **Parameters**:
+    -   `username` (string) - The username of the user leaving the room.
+    -   `roomName` (string) - The name of the room to leave.
+
+#### `send_message` => Allows a user to send a message in a room.
+
+-   **Parameters**:
+    -   `username` (string) - The username of the user sending the message.
+    -   `roomName` (string) - The name of the room where the message is sent.
+    -   `content` (string) - The content of the message. (Images in base64 string)
+
+#### `disconnecting` => Handles the event when a user disconnects from the server.
+
+#### `disconnect` => Handles the socket disconnect event, triggered when a client fully disconnects.
